@@ -20,12 +20,11 @@ export default {
   name: 'App',
   data () {
     return {
-      toolbarItems : [
-        { title: '미유박스 이야기' , link:'/story'},
-        { title: '주문하기',link: '/order' },
-        { title: '미유박스 후기' ,link: '/review'},
-        {  title: '로그인/회원가입', link: '/sign' },
-
+      toolbarItems: [
+        {title: '미유박스 이야기', link: '/story'},
+        {title: '주문하기', link: '/order'},
+        {title: '미유박스 후기', link: '/review'},
+        {title: '로그인/회원가입', link: '/sign'}
       ]
     }
   }

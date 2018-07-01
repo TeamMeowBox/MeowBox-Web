@@ -1,16 +1,18 @@
 <template>
   <div>
-    <item></item>
+    <p>2018년</p>
+    <p>미유 박스와 함께한 아이들</p>
+    <best-items></best-items>
   </div>
 </template>
 
 <script>
-import Item from '../components/Review/Item'
+import BestItems from '../components/Review/BestItems'
 
 export default {
   name: 'Review',
   components: {
-    Item
+    BestItems
   }
 }
 </script>

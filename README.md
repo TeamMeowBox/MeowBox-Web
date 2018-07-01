@@ -1,4 +1,4 @@
-# meobox
+# meowbox
 
 > A Vue.js project
 

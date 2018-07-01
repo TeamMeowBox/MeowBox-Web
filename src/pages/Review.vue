@@ -1,10 +1,17 @@
 <template>
-    <p>후기</p>
+  <div>
+    <item></item>
+  </div>
 </template>
 
 <script>
-export default {
+import Item from '../components/Review/Item'
 
+export default {
+  name: 'Review',
+  components: {
+    Item
+  }
 }
 </script>
 

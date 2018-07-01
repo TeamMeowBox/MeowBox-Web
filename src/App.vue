@@ -1,7 +1,7 @@
 <template>
  <v-app>
       <v-toolbar>
-        <v-toolbar-title>Meow box</v-toolbar-title>
+        <v-toolbar-title>MEOW BOX</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
             <v-btn flat v-for="item in toolbarItems" :key="item.title" router :to="item.link">

@@ -3,8 +3,8 @@
     <div v-for="(item, index) in items" :key="index">
       <p>{{item.month}}월의 베스트</p>
       <p>{{item.description}}</p>
-      <div v-for="(image, idx) in item.images" :key="idx">
-        <img :src="image.url" alt="" height="200" width="200">
+      <div v-for="(image, idx) in item.images" :key="idx" style="display: inline-block">
+        <img :src="image.url" alt="" height="300" width="300">
         <p>{{image.instaNick}}</p>
         <p>{{image.instaId}}</p>
       </div>
@@ -23,17 +23,17 @@ export default {
           description: '점점 무더워지는 7월, 미유 박스를 통해 어쩌구',
           images: [
             {
-              url: 'http://img.newspim.com/news/2017/07/15/1707152207201160.jpg',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             },
             {
-              url: 'http://cdnweb01.wikitree.co.kr/webdata/editor/201701/16/img_20170116133834_e6e8975d.png',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/235f0c354475ab7f7f9c0e2bafb65fcc/5BDB00EB/t51.2885-15/s640x640/sh0.08/e35/30884486_214424729153578_7901523588686020608_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             },
             {
-              url: 'http://ojsfile.ohmynews.com/STD_IMG_FILE/2017/1125/IE002250825_STD.jpg',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/e84e4fb1d4057feab0e82c1e57263292/5BDE5414/t51.2885-15/s640x640/sh0.08/e35/18889176_313343875786874_2034665817890619392_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             }
@@ -44,17 +44,17 @@ export default {
           description: '점점 무더워지는 6월, 미유 박스를 통해 어쩌구',
           images: [
             {
-              url: 'http://img.newspim.com/news/2017/07/15/1707152207201160.jpg',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             },
             {
-              url: 'http://cdnweb01.wikitree.co.kr/webdata/editor/201701/16/img_20170116133834_e6e8975d.png',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/235f0c354475ab7f7f9c0e2bafb65fcc/5BDB00EB/t51.2885-15/s640x640/sh0.08/e35/30884486_214424729153578_7901523588686020608_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             },
             {
-              url: 'http://ojsfile.ohmynews.com/STD_IMG_FILE/2017/1125/IE002250825_STD.jpg',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/e84e4fb1d4057feab0e82c1e57263292/5BDE5414/t51.2885-15/s640x640/sh0.08/e35/18889176_313343875786874_2034665817890619392_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             }
@@ -65,17 +65,17 @@ export default {
           description: '점점 무더워지는 5월, 미유 박스를 통해 어쩌구',
           images: [
             {
-              url: 'http://img.newspim.com/news/2017/07/15/1707152207201160.jpg',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             },
             {
-              url: 'http://cdnweb01.wikitree.co.kr/webdata/editor/201701/16/img_20170116133834_e6e8975d.png',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/235f0c354475ab7f7f9c0e2bafb65fcc/5BDB00EB/t51.2885-15/s640x640/sh0.08/e35/30884486_214424729153578_7901523588686020608_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             },
             {
-              url: 'http://ojsfile.ohmynews.com/STD_IMG_FILE/2017/1125/IE002250825_STD.jpg',
+              url: 'https://scontent-icn1-1.cdninstagram.com/vp/e84e4fb1d4057feab0e82c1e57263292/5BDE5414/t51.2885-15/s640x640/sh0.08/e35/18889176_313343875786874_2034665817890619392_n.jpg',
               instaNick: '@냥냥이',
               instaId: '10000hyuk'
             }

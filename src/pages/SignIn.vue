@@ -1,10 +1,17 @@
 <template>
-    <p>signin</p>
+    <div>
+      <sigin-in-form></sigin-in-form>
+    </div>
 </template>
 
 <script>
-export default {
+import SiginInForm from '../components/SignIn/SignInForm'
 
+export default {
+  name: 'SiginIn',
+  components: {
+    SiginInForm
+  }
 }
 </script>
 

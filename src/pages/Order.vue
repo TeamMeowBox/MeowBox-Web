@@ -1,34 +1,81 @@
 <template>
-<div>   
-    <div v-if="flag === 0" class='name'>
-        <p>반려묘의 이름은 무엇인가요?</p>
-        이름:
-        <br>
-        <input type="text">
-   </div>
-   <div v-else-if="flag === 1" class='etc'>
-      <div class="size">
-           크기
-            <br>
-        <input type="radio" id="small" name="size" checked />
-        <label for="sm">마름</label>
-        <input type="radio" id="middle" name="size" />
-        <label for="mi">중간</label>
-        <input type="radio" id="big" name="size" />
-        <label for="bi">큼</label>
-    </div>
-        <br>
-        생일
+<div class="container">
+    <section v-if="flag === 0" class='name'>
+        <aside>
+            <p class="catInputTitle">반려묘의<br><b>이름</b>은 무엇인가요?<small>필수항목(*)은 꼭 입력해주세요.</small></p>
+            <p>이름*</p>
+            <v-text-field class="catName" v-model="name" placeholder="반려묘 이름" required/>
+        </aside>
+   </section>
+   <section v-else-if="flag === 1" class='etc'>
+      <aside>
+        <p class="catInputTitle"><b>(여기에 반려동물 이름)</b>에 대해<br>더 자세히 알려주세요!<small>필수항목(*)은 꼭 입력해주세요.</small></p>
+      </aside>
+      <aside class="size">
+        <p>크기*</p>
+        <input id="small" class="radio-inline__input" type="radio" name="accessible-radio" value="small" checked="checked" />
+        <label class="radio-inline__label" for="small">
+            <v-card>
+                <v-card-media
+                src="https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg"
+                height="10vh" width="12vw"
+                ></v-card-media>
+                <v-card-title primary-title>
+                <div>
+                    <h5 class="headline mb-0">조금 마른</h5>
+                    <div>먼치킨 종 부터<br>몸무게가 1-2kg 인 고양이</div>
+                </div>
+                </v-card-title>
+            </v-card>
+        </label>
+        <input id="middle" class="radio-inline__input" type="radio" name="accessible-radio" value="middle" />
+        <label class="radio-inline__label" for="middle">
+            <v-card>
+                <v-card-media
+                src="https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg"
+                height="10vh" width="12vw"
+                ></v-card-media>
+                <v-card-title primary-title>
+                <div>
+                    <h5 class="headline mb-0">보통</h5>
+                    <div>일반적인 무게<br>몸무게가 2-4kg인 고양이</div>
+                </div>
+                </v-card-title>
+            </v-card>
+        </label>
+        <input id="large" class="radio-inline__input" type="radio" name="accessible-radio" value="large" />
+        <label class="radio-inline__label" for="large">
+            <v-card>
+                <v-card-media
+                src="https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg"
+                height="10vh" width="12vw"
+                ></v-card-media>
+                <v-card-title primary-title>
+                <div>
+                    <h5 class="headline mb-0">과체중</h5>
+                    <div>비만이거나 몸집이 큼<br>몸무게가 5kg 이상인 고양이</div>
+                </div>
+                </v-card-title>
+            </v-card>
+        </label>
+      </aside>
+      <aside>
+        <p>생일*</p>
         <input type="datetime-local" name="bdaytime">
-        <br>
+      </aside>
+      <aside>
+        <p>알레르기 및 특이사항</p>
+        <v-textarea
+          solo
+          name="input-7-4"
+          label="Solo textarea"
+        ></v-textarea>
 
-        특이사항
-        <br>
-        <textarea></textarea>
-   </div>
+      </aside>
+   </section>
    
-   <div v-else-if="flag === 2" class='date'>
-    <div>
+   <section v-else-if="flag === 2" class='date'>
+    <aside>
         <div class ="one_pay">
             <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
             <label for="one">한번만받기</label>
@@ -43,25 +90,28 @@
             <br>
             <span>체크한 이름: {{ addprice }}</span>원
         </div>
-    </div>
+    </aside>
 
-    <div class="three_pay">
+    <aside class="three_pay">
         <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=2 />
         <label for="huey">3개월 정기 배송</label><br>
         <span>37,000원</span>
-    </div>
+    </aside>
 
-    <div class="six_pay">
+    <aside class="six_pay">
         <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=3  />
         <label for="dewey">6개월 정기 배송</label><br>
         <span>35,000원</span>
-    </div>
-    <div class="twelve_pay">
+    </aside>
+
+    <aside class="twelve_pay">
         <input type="radio" id="twelve_month" name="month"  v-model="date" v-bind:value=4  />
         <label for="louie">12개월 정기 배송</label><br>
         <span>32,500 원</span>
-    </div>
-   </div>
+    </aside>
+
+   </section>
+
    
    
    <div  v-else-if="flag === 3" class='price'>
@@ -88,11 +138,9 @@
        5
    </div>
 
-
-
-   <button v-if="flag <4 " @click="upFlag()">다음</button>
-    <button v-if="flag === 4" @click="back()">홈으로 돌아가기</button>
-   <button v-if="flag > 0 && flag<4" @click="downFlag()">돌아가기</button>
+   <v-btn color="error" v-if="flag > 0 && flag<4" @click="downFlag()">돌아가기</v-btn>
+   <v-btn color="error" v-if="flag <4 " @click="upFlag()">다음</v-btn>
+   <v-btn color="error" v-if="flag === 4" @click="back()">홈으로 돌아가기</v-btn>
 </div>
 
 </template>
@@ -181,6 +229,7 @@ export default {
 </script>
 
 <style>
+@import '../assets/css/Order.css';
 .date > div {
     
 }

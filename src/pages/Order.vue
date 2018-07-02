@@ -228,8 +228,8 @@ export default {
 }
 </script>
 
-<style>
-@import '../assets/css/Order.css';
+<style lang="scss">
+@import '../assets/css/Order.scss';
 .date > div {
     
 }

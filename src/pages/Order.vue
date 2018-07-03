@@ -13,7 +13,7 @@
       </aside>
       <aside class="size">
         <p>크기*</p>
-        <input id="small" class="radio-inline__input" type="radio" name="accessible-radio" value="small" checked="checked" />
+        <input id="small" class="radio-inline__input" type="radio" name="accessible-radio" checked="checked" v-model="size" value="small"/>
         <label class="radio-inline__label" for="small">
             <v-card>
                 <v-card-media
@@ -28,7 +28,7 @@
                 </v-card-title>
             </v-card>
         </label>
-        <input id="middle" class="radio-inline__input" type="radio" name="accessible-radio" value="middle" />
+        <input id="middle" class="radio-inline__input" type="radio" name="accessible-radio" v-model="size"  value="middle"/>
         <label class="radio-inline__label" for="middle">
             <v-card>
                 <v-card-media
@@ -43,7 +43,7 @@
                 </v-card-title>
             </v-card>
         </label>
-        <input id="large" class="radio-inline__input" type="radio" name="accessible-radio" value="large" />
+        <input id="large" class="radio-inline__input" type="radio" name="accessible-radio" v-model="size" value="large" />
         <label class="radio-inline__label" for="large">
             <v-card>
                 <v-card-media
@@ -61,7 +61,8 @@
       </aside>
       <aside>
         <p>생일*</p>
-        <input type="datetime-local" name="bdaytime">
+        <input type="date" name="bdaytime" v-model="birth">
+       
       </aside>
       <aside>
         <p>알레르기 및 특이사항</p>
@@ -69,8 +70,8 @@
           solo
           name="input-7-4"
           label="Solo textarea"
+          v-model="etc"
         ></v-textarea>
-
       </aside>
    </section>
    
@@ -109,7 +110,6 @@
         <label for="louie">12개월 정기 배송</label><br>
         <span>32,500 원</span>
     </aside>
-
    </section>
 
    
@@ -118,14 +118,62 @@
        <div>
            주문자 정보<br>
            주문하시는 분 : <input type="text"><br>
-            <input type="text" id="sample2_postcode" placeholder="우편번호" v-model="zonecode">
+            <input type="text" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode">
             <input type="button" @click="loadDaum()" value="우편번호 찾기"><br>
-            <input type="text" id="sample2_address" placeholder="한글주소" v-model="fullAddr">
-            <input type="text" id="sample2_addressEnglish" placeholder="상세주소" v-model="subAddr">
-           
+            <input type="text" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr">
+            <input type="text" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"><br>
+            휴대전화 : <input type="text" v-model="phone.firstNum"> - <input type="text" v-model="phone.secondNum"> - <input type="text" v-model="phone.thirdNum"><br>
+            이메일 : <input type="text" v-model="email.firstEmail"> @<input type="text" v-model="email.secondEmail">
+            <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+            <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
+            </div>
+       </div>
+
+       <div>
+           결제금액<br>
+           7월 패키지 박스<br>
+           구독기간 : <p>{{date}}</p>
+           반려묘 크기 : <p>{{size}}</p>
+           특이사항 :<p>{{etc}}</p>
+           소계 <p>{{boxprice}}</p>
+           배송 <p>무료배송</p>
+           최종결제금액 <p>{{boxprice}}</p>
+       </div>
+       
+       <div>
+           주문자 정보<br>
+            <input type="checkbox" id="orderFlag" value=1 v-model="orderFlag">
+            <label for="orderFlag">주문자와 다른 주소로 배송</label><br>
+           주문하시는 분 : <input type="text"><br>
+            <input type="text" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode">
+            <input type="button" @click="loadDaum()" value="우편번호 찾기"><br>
+            <input type="text" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr">
+            <input type="text" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"><br>
+            휴대전화 : <input type="text" > - <input type="text"> - <input type="text"><br>
+            이메일 : <input type="text"> @<input type="text">
             <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
             <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
             </div>
+       </div>
+
+       <div>
+           결제정보<br>
+           결제수단 
+           <input type="radio" id="card" name="month"  v-model="payment" v-bind:value=1 />
+            <label for="card">신용카드</label>
+
+           <input type="radio" id="transfer" name="month"  v-model="payment" v-bind:value=2 />
+            <label for="transfer">실시간 계좌이체</label>
+
+
+           <input type="radio" id="virtual_account" name="month"  v-model="payment" v-bind:value=2 />
+            <label for="virtual_account">가상 계좌</label>
+
+           <input type="radio" id="phone_payment" name="month"  v-model="payment" v-bind:value=2 />
+            <label for="phone_payment">휴대폰 결제</label>
+
+           <input type="radio" id="kakao_pay" name="month"  v-model="payment" v-bind:value=2 />
+            <label for="kakao_pay">카카오 페이</label>
        </div>
    </div>
 
@@ -157,9 +205,22 @@ export default {
             box:'',
             boxprice:0,
             checkedNames:[],
-            zonecode:'',
-            fullAddr:'',
-            subAddr:''
+            address:{
+                zonecode:'',
+                fullAddr:'',
+                subAddr:''
+            },
+            payment:'',
+            orderFlag:'',
+            phone:{
+                firstNum:'',
+                secondNum:'',
+                thirdNum: ''
+            },
+            email:{
+                firstEmail:'',
+                secondEmail:''
+            }
         }
     },
     methods: {
@@ -179,42 +240,56 @@ export default {
         },
        loadDaum () {
       var self = this;
-      console.log(self);
       
+      var element_layer = window.document.getElementById('layer')
       daum.postcode.load(function(){
         new daum.Postcode({
             oncomplete: function(data) {
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+                var fullAddr = ''; 
+                var extraAddr = '';
                 
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                if (data.userSelectedType === 'R') { 
                     fullAddr = data.roadAddress;
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                } else { 
                     fullAddr = data.jibunAddress;
                 }
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
                 if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
                     if(data.bname !== ''){
                         extraAddr += data.bname;
                     }
-                    // 건물명이 있을 경우 추가한다.
                     if(data.buildingName !== ''){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               self.zonecode = data.zonecode; //5자리 새우편번호 사용
-               
-               self.fullAddr = fullAddr;
+               self.address.zonecode = data.zonecode;               
+               self.address.fullAddr = fullAddr;
+               element_layer.style.display = 'none';
             }
-        }).open();
+        }).embed(element_layer);
       });
+
+        element_layer.style.display = 'block';
+        //화면 중간에 오게하기
+        this.initLayerPosition(element_layer);
+       },
+       initLayerPosition(element_layer){
+           var width = 300; 
+           var height = 400; 
+           var borderWidth = 5; 
+
+        element_layer.style.width = width + 'px';
+        element_layer.style.height = height + 'px';
+        element_layer.style.border = borderWidth + 'px solid';
+        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+           
+       },
+       closeDaumPostcode(){
+           window.document.getElementById('layer').style.display='none';
        }
     },
     computed: {
@@ -225,12 +300,16 @@ export default {
             }
             this.boxprice = price
             return this.boxprice
+        },
+        getBirth: function(){
+            return this.birth;
         }
     }
 }
 </script>
 
 <style lang="scss">
+@import '../assets/scss/Order.scss';
 .date > div {
     
 }

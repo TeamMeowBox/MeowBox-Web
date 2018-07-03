@@ -179,6 +179,8 @@ export default {
         },
        loadDaum () {
       var self = this;
+      console.log(self);
+      
       daum.postcode.load(function(){
         new daum.Postcode({
             oncomplete: function(data) {
@@ -229,7 +231,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/css/Order.scss';
 .date > div {
     
 }

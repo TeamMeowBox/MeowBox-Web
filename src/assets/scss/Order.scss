@@ -42,7 +42,6 @@ small {
     clip: rect(1px, 1px, 1px, 1px);
     position: absolute !important;
     &:checked + .radio-inline__label{
-        // border:1px solid rgb(255, 202, 202);
         box-shadow: 0px 5px 5px $cardDark;
         color: #fff;
     }

@@ -229,7 +229,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/css/Order.scss';
+@import '../assets/scss/Order.scss';
 .date > div {
     
 }

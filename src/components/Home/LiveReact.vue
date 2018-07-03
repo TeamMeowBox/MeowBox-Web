@@ -6,7 +6,7 @@
             </section>
             <section class="container live-react-instas" style="text-align:center">
                 <p>여기에 인스타 크롤링 리스트</p>
-                <v-layout>
+                <v-layout row wrap>
                     <v-flex xs12 sm6 md4 lg3 v-for="(item, index) in items" :key="index">
                         <v-card>
                             <v-card-title primary-title>

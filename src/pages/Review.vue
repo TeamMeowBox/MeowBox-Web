@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <v-container grid-list-md text-xs-center>
     <p>2018년</p>
     <p>미유 박스와 함께한 아이들</p>
     <best-items></best-items>
-  </div>
+  </v-container>
 </template>
 
 <script>

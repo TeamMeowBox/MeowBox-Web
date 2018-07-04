@@ -1,5 +1,19 @@
 <template>
-<div class="container">
+<div class="container" style="width:70vw;">
+    <br>
+    <section style="text-align:right;">
+        <template v-if="flag!==4">
+            <span v-for="(category, index) in categorys" :key="index" style="font-size:1.2rem">
+                <b v-if="category.cate_id===flag" style="color:#e68789">
+                    {{category.numberCircle}}{{category.cateName}}&nbsp;&nbsp;
+                </b>
+                <template v-if="category.cate_id!==flag">
+                    {{category.cateName}}&nbsp;
+                </template>
+            </span>
+        </template>
+    </section>
+    <br><br>
     <section v-if="flag === 0" class='name'>
         <aside>
             <p class="catInputTitle">반려묘의<br><b>이름</b>은 무엇인가요?<small>필수항목(*)은 꼭 입력해주세요.</small></p>
@@ -220,7 +234,14 @@ export default {
             email:{
                 firstEmail:'',
                 secondEmail:''
-            }
+            },
+            categorys:[
+                {cate_id : 0, cateName : '이름', numberCircle:'❶ '},
+                {cate_id : 1, cateName : '기타', numberCircle:'❷ '},
+                {cate_id : 2, cateName : '기간', numberCircle:'❸ '},
+                {cate_id : 3, cateName : '결제', numberCircle:'❹ '}
+            ]
+
         }
     },
     methods: {

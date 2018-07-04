@@ -19,10 +19,12 @@
       </v-toolbar-items>
     </v-toolbar>
     <router-view></router-view>
+    <footer-page></footer-page>
   </v-app>
 </template>
 
 <script>
+import footerPage from './components/Home/Footer'
 export default {
   name: 'App',
   data () {
@@ -39,6 +41,9 @@ export default {
         {title: '자주 묻는 질문', link:'/faq'}
       ]
     }
+  },
+  components : {
+    footerPage
   }
 }
 </script>

@@ -1,15 +1,17 @@
 <template>
-  <div>
-    <div v-for="(item, index) in items" :key="index">
-      <p>{{item.month}}월의 베스트</p>
-      <p>{{item.description}}</p>
-      <div v-for="(image, idx) in item.images" :key="idx" style="display: inline-block">
-        <img :src="image.url" alt="" height="300" width="300">
-        <p>{{image.instaNick}}</p>
-        <p>{{image.instaId}}</p>
-      </div>
-    </div>
-  </div>
+  <v-layout row wrap>
+    <v-flex>
+      <section v-for="(item, index) in items" :key="index">
+        <p>{{item.month}}월의 베스트</p>
+        <p>{{item.description}}</p>
+        <article v-for="(image, idx) in item.images" :key="idx" style="display: inline-block">
+          <img :src="image.url" alt="" height="300" width="300">
+          <p>{{image.instaNick}}</p>
+          <p>{{image.instaId}}</p>
+        </article>
+      </section>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

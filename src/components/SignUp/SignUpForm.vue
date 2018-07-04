@@ -13,7 +13,7 @@
             <label for="name" style="color:#4c4e51">이름*</label>
           </td>
           <td>
-            <v-text-field class="name" style="width:14vw"></v-text-field>
+            <v-text-field class="name" style="width:14vw" v-model="info.name"></v-text-field>
           </td>
           <td>
             <small style="float:left">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
@@ -24,7 +24,7 @@
             <label for="phone" style="color:#4c4e51">휴대전화*</label>
           </td>
           <td colspan="2">
-            <v-text-field class="phone" type="number" style="width:14vw"></v-text-field>
+            <v-text-field class="phone" type="number" style="width:14vw" v-model="info.phone_number"></v-text-field>
           </td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
             <small>(아이디)</small>
           </td>
           <td colspan="2">
-            <v-text-field class="email" type="email" style="width:14vw"></v-text-field>
+            <v-text-field class="email" type="email" style="width:14vw" v-model="info.email"></v-text-field>
           </td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
             <label for="password" style="color:#4c4e51">비밀번호</label>
           </td>
           <td>
-            <v-text-field class="password" type="password" style="width:14vw"></v-text-field>
+            <v-text-field class="password" type="password" style="width:14vw" v-model="info.pwd"></v-text-field>
           </td>
           <td>
             <small style="float:left">10~16자의 영문 대소문자, 숫자, 특수문자를 조합하여 사용할 수 있습니다</small>
@@ -67,11 +67,28 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'SignUpForm',
+  data(){
+    return{
+      info:{
+      email:'',
+      pwd:'',
+      phone_number:'',
+      name:''
+      }
+    }
+  },
   methods: {
     clickSignUp () {
-      alert('click SignUp')
+          axios.post('http://13.209.220.1:3000/user/signup',this.info)
+            .then(response => {
+              console.log(response.data);
+                 })
+             .catch(e => {
+              console.log(e);    
+            })
     }
   }
 }

@@ -14,7 +14,7 @@
             <label for="email" style="color:#4c4e51">이메일</label>
           </td>
           <td>
-            <v-text-field class="email" type="email" style="width:10vw"></v-text-field>
+            <v-text-field class="email" type="email" style="width:10vw" v-model="info.email"></v-text-field>
           </td>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
             <label for="password" style="color:#4c4e51">비밀번호</label>
           </td>
           <td>
-            <v-text-field class="password" type="password" style="width:10vw"></v-text-field>
+            <v-text-field class="password" type="password" style="width:10vw" v-model="info.pwd"></v-text-field>
           </td>
         </tr>
         <tr>
@@ -41,11 +41,34 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'SignInForm',
+  data(){
+    return {
+      info:{
+        email:'',
+        pwd:''
+      }
+    }
+  },
   methods: {
     clickLogin () {
-      alert('click Login Btn')
+        axios.post('http://13.209.220.1:3000/user/signin',this.info)
+            .then(response => {
+              console.log(response.data);
+                if(response.data.result.status == 'true'){
+                    localStorage.token = response.data.result.token
+                    this.$router.push("/");
+                  }else{
+                    alert("아이디,비밀번호를 확인해주세요")
+                  }
+                })
+             .catch(e => {
+              console.log(e);
+              alert("아이디,비밀번호를 확인해주세요")
+                  
+            })
     }
   }
 }

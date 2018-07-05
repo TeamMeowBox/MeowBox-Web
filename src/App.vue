@@ -37,7 +37,7 @@ export default {
       ],
       userToolbarItems: [
         {title: '로그인/회원가입', link:'/signIn', isLogin:false},
-        {title: '마이페이지', link:'/mypage', isLogin:true},
+        {title: '마이페이지', link:'/mypage/update', isLogin:true},
         {title: '자주 묻는 질문', link:'/faq'}
       ]
     }

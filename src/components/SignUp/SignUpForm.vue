@@ -58,6 +58,25 @@
             <small style="float:left">비밀번호를 다시 한 번 입력주세요</small>
           </td>
         </tr>
+        <tr>
+          <td style="width:10rem; text-align:left">
+            <label for="name" style="color:#4c4e51">이름*</label>
+          </td>
+          <td>
+            <v-text-field class="name" style="width:14vw"></v-text-field>
+          </td>
+          <td>
+            <small style="float:left">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
+          </td>
+        </tr>
+        <tr>
+          <td style="width:10rem; text-align:left">
+            <label for="phone" style="color:#4c4e51">휴대전화*</label>
+          </td>
+          <td colspan="2">
+            <v-text-field class="phone" type="number" style="width:14vw"></v-text-field>
+          </td>
+        </tr>
       </table>
       <aside>
         <v-btn @click="clickSignUp" style="width:20vw; background:#e68789; color:white">가입하기</v-btn>

@@ -91,37 +91,55 @@
    
    <section v-else-if="flag === 2" class='date'>
     <aside>
-        <div class ="one_pay">
+        <table>
+            <tr>
+                <td class="one_pay">
+                    <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
+                    <label for="one">
+                        한번만받기
+                    </label>
+                </td>
+                <td class="one_pay_info" v-if="date===1" style="transition:2s">
+                    <input type="checkbox" id="package_box" value=39900 v-model="checkedNames">
+                    <label for="package_box">7월 패키지 박스</label>
+                    <input type="checkbox" id="first_box" value=27000 v-model="checkedNames">
+                    <label for="first_box">고양이는 처음이지? 박스</label>
+                    <br>
+                    <span>체크한 이름: {{ addprice }}</span>원
+                </td>
+            </tr>
+        </table>
+        <!-- <div class ="one_pay">
             <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
-            <label for="one">한번만받기</label>
+            <label for="one">
+                한번만받기
+            </label>
         </div>
         <div v-if="date===1">
             <input type="checkbox" id="package_box" value=39900 v-model="checkedNames">
             <label for="package_box">7월 패키지 박스</label>
-            <input type="checkbox" id="brith_box" value=17000 v-model="checkedNames" >
-            <label for="brith_box">생일냥이를 위한 생일박스</label>
             <input type="checkbox" id="first_box" value=27000 v-model="checkedNames">
             <label for="first_box">고양이는 처음이지? 박스</label>
             <br>
             <span>체크한 이름: {{ addprice }}</span>원
-        </div>
+        </div> -->
     </aside>
 
     <aside class="three_pay">
         <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=2 />
-        <label for="huey">3개월 정기 배송</label><br>
+        <label for="huey">3개월 정기 배송 / 월</label><br>
         <span>37,000원</span>
     </aside>
 
     <aside class="six_pay">
         <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=3  />
-        <label for="dewey">6개월 정기 배송</label><br>
+        <label for="dewey">6개월 정기 배송 / 월</label><br>
         <span>35,000원</span>
     </aside>
 
     <aside class="twelve_pay">
-        <input type="radio" id="twelve_month" name="month"  v-model="date" v-bind:value=4  />
-        <label for="louie">12개월 정기 배송</label><br>
+        <input type="radio" id="brith_box" name="month"  v-model="date" v-bind:value=4  />
+        <label for="louie">생일 박스</label><br>
         <span>32,500 원</span>
     </aside>
    </section>
@@ -334,4 +352,11 @@ export default {
 .date > div {
     
 }
+input {
+    transition: 2s;
+}
+input:checked + .one_pay_info {
+    width:1000px
+}
+
 </style>

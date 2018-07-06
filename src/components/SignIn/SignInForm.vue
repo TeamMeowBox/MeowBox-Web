@@ -56,9 +56,10 @@ export default {
     clickLogin () {
         axios.post('http://13.209.220.1:3000/user/signin',this.info)
             .then(response => {
-              console.log(response.data);
-                if(response.data.result.status == 'true'){
+              console.log(response.data.status);
+                if(response.data.status === true){
                     localStorage.token = response.data.result.token
+                    localStorage.user_idx = response.data.result.user_idx
                     this.$router.push("/");
                   }else{
                     alert("아이디,비밀번호를 확인해주세요")
@@ -67,7 +68,6 @@ export default {
              .catch(e => {
               console.log(e);
               alert("아이디,비밀번호를 확인해주세요")
-                  
             })
     }
   }

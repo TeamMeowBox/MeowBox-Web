@@ -1,0 +1,56 @@
+@import 'Variable.scss';
+
+label {
+    font-family: $kor-font;
+    font-weight: $kor-font-medium;
+    color: $dark-gray;
+    font-size: 0.9rem;
+}
+
+small {
+    font-family: $kor-font;
+    font-weight: $kor-font-regular;
+    color: #999999;
+}
+
+.more-signUp {
+    padding-top: 0.6rem;
+    padding-bottom:4rem;
+}
+
+.signInBtn {
+    width: 100%;
+    background-color: $pink !important;
+    color: white !important;
+}
+
+.signUpLink {
+    font-weight: $kor-font-bold;
+    color: $pink;
+    transition: 0.4s;
+    text-decoration: none;
+}
+.signUpLink:hover {
+    color: $baby-pink;
+}
+
+.primary--text input,
+.primary--text textarea {
+    caret-color: $pink !important;
+}
+.primary--text {
+    color: $pink !important;
+}
+
+.login-title {
+    color: $dark-gray;
+    font-weight: $kor-font-bold;
+    font-family: $kor-font;
+    font-size:2rem;
+}
+
+.signIn-hr {
+    border-top:4px solid $pink;
+    margin-top:2rem;
+    margin-bottom:2rem;
+}

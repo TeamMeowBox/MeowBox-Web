@@ -35,13 +35,13 @@ export default {
     return {
       toolbarItems: [
         {title: '미유박스이야기', link: '/story'},
-        {title: '생일박스', link: '/birthbox'},
+        {title: '생일축하해! 박스', link: '/birthbox'},
         {title: '주문하기', link: '/order'},
-        {title: '미유박스 후기', link: '/review'}
+        {title: '집사들의 후기', link: '/review'}
       ],
       userToolbarItems: [
-        {title: '로그인/회원가입', link:'/signIn'},
-        {title: '마이페이지', link:'/mypage'},
+        {title: '로그인/회원가입', link:'/signIn', isLogin:false},
+        {title: '마이페이지', link:'/mypage/update', isLogin:true},
         {title: '자주 묻는 질문', link:'/faq'}
       ]
     }

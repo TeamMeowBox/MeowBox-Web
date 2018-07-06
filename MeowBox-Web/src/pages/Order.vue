@@ -279,7 +279,6 @@ export default {
         },
        loadDaum () {
       var self = this;
-      
       var element_layer = window.document.getElementById('layer')
       daum.postcode.load(function(){
         new daum.Postcode({

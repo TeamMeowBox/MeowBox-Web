@@ -1,0 +1,40 @@
+@import 'Variable.scss';
+
+h2 {
+    color : $dark-gray;
+    font-family: $kor-font;
+    font-weight: $kor-font-medium;
+}
+
+b {
+    color : $dark-gray;
+    font-family : $kor-font;
+}
+
+span {
+    color : $dark-gray;
+    font-family : $kor-font;
+}
+
+.footer-info {
+    width:16vw;
+    vertical-align:top;
+    & + .footer-logo {
+        width:16vw;
+        text-align:right;
+        vertical-align: bottom;
+    }
+}
+
+.logo-bottom-info {
+    font-size:0.9rem;
+    color:#cecece;
+}
+
+.footer-table {
+    margin-bottom:5rem;
+}
+
+hr {
+    border: 1px solid $hr-line;
+}

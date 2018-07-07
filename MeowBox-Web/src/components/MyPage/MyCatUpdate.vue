@@ -9,7 +9,7 @@
                     <label for="catName" style="color:#4c4e51">고양이 이름</label><br>
                 </td>
                 <td colspan="2">
-                    <v-text-field class="catName" type="text" style="width:14vw"></v-text-field>
+                    <v-text-field class="catName" type="text" style="width:14vw" v-model="catInfo.name"></v-text-field>
                 </td>
                 </tr>
                 <tr>
@@ -18,10 +18,10 @@
                 </td>
                 <td colspan="2">
                     <div class="cat-size" >
-                        <input id="small" class="catSize" type="radio" name="accessible-radio" checked="checked" v-model="size" value="small"/> 조금 마른
+                        <input id="small" class="catSize" type="radio" name="accessible-radio" checked="checked" v-model="catInfo.size" value="1"/> 조금 마른
                     </div>
-                    <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="size"  value="middle"/> 보통
-                    <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="size" value="large" /> 과체중
+                    <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="2"/> 보통
+                    <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="3" /> 과체중
                 </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                     <label for="bdaytime" style="color:#4c4e51">생일</label>
                 </td>
                 <td colspan="2">
-                    <input type="date" name="bdaytime" v-model="birth">
+                    <input type="date" name="bdaytime" v-model="catInfo.birthday">
                 </td>
                 </tr>
                 <tr>
@@ -41,24 +41,64 @@
                 solo
                 name="input-7-4"
                 label="Solo textarea"
-                v-model="etc"
-                ></v-textarea>
+                v-model="catInfo.caution"></v-textarea>
                 </td>
                 </tr>
             </table>
             <aside>
-                <v-btn style="width:20vw; background:#e68789; color:white">수정하기</v-btn>
+                <v-btn style="width:20vw; background:#e68789; color:white" @click="clickEdit">수정하기</v-btn>
             </aside>
         </section>
     </div>
 </template>
 
 <script>
-export default {
+import {mapGetters} from 'vuex';
+import axios from 'axios';
 
+export default {
+  name: 'MyCatUpdate',
+  data() {
+    return {
+      catInfo: {
+        name: null,
+        size: null,
+        birthday: null,
+        caution: null
+      }
+    };
+  },
+  computed: {
+    ...mapGetters([
+      'userProfile'
+    ])
+  },
+  methods: {
+    async clickEdit() {
+      try {
+
+        const result = await axios.post('http://13.209.220.1:3000/user/cat_signup', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
+
+        if (result.data.status) {
+          alert('success');
+        }
+      } catch (e) {
+        alert('failed');
+      }
+    },
+    init() {
+      this.catInfo.name = this.userProfile.catName;
+      this.catInfo.size = this.userProfile.size;
+      this.catInfo.birthday = this.userProfile.birthday;
+      this.catInfo.caution = this.userProfile.caution;
+    }
+  },
+  created() {
+    this.init();
+  }
 }
 </script>
 
 <style lang="scss">
-    @import '../../assets/scss/MyCatUpdate.scss'
+    @import '../../assets/scss/MyCatUpdate.scss';
 </style>

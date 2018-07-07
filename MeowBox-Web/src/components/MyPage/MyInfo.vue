@@ -7,7 +7,7 @@
                     </td>
                     <td style="padding-right:2rem;border-right:1px solid #efefef;width:12vw">
                         안녕하세요<br>
-                        온풍이 집사 <b>황윤선</b>님!
+                        온풍이 집사 <b>{{userProfile.userName}}</b>님!
                     </td>
                     <td style="padding-right:2rem; border-right:1px solid #efefef; text-align:center;">
                         <small>정기권 > </small><br>
@@ -16,8 +16,8 @@
                     </td>
                     <td style="padding-right:2rem; text-align:center;">
                         <small>내 개인정보 > </small><br>
-                        <p>사용자 이메일 보여주는 곳</p>
-                        <p>고양이이름/무게/생일</p>
+                        <p>{{userProfile.email}}</p>
+                        <p>{{userProfile.catName}}/{{userProfile.size}}/</p>
                     </td>
                 </tr>
             </table>
@@ -25,8 +25,13 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
-
+  computed: {
+    ...mapGetters([
+      'userProfile'
+    ])
+  }
 }
 </script>
 

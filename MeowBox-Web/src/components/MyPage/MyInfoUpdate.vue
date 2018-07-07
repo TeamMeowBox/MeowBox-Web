@@ -10,7 +10,7 @@
                     <small>(아이디)</small>
                 </td>
                 <td colspan="2" >
-                    <v-text-field class="email-id" type="text" /> @ <v-text-field class="email-domain" type="text"  />
+                    <v-text-field class="email-id" type="text" v-model="email" /> @ <v-text-field class="email-domain" type="text"  />
                 </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                     <label for="name">이름</label>
                 </td>
                 <td>
-                    <v-text-field class="name" ></v-text-field>
+                    <v-text-field class="name" v-model="name" ></v-text-field>
                 </td>
                 <td>
                     <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
@@ -51,7 +51,7 @@
                     <label for="phone">휴대전화</label>
                 </td>
                 <td colspan="2">
-                    <v-text-field class="phone1" type="text"/> - <v-text-field class="phone2" type="text" /> - <v-text-field class="phone3" type="text" />
+                    <v-text-field class="phone1" type="text" v-model="phone"/> - <v-text-field class="phone2" type="text" /> - <v-text-field class="phone3" type="text" />
                 </td>
                 </tr>
             </table>
@@ -63,8 +63,32 @@
 </template>
 
 <script>
-export default {
+import {mapGetters} from 'vuex';
 
+export default {
+  name: 'MyInfoUpdate',
+  data() {
+    return {
+      email: '',
+      name: '',
+      phone: ''
+    };
+  },
+  computed: {
+    ...mapGetters([
+      'userProfile'
+    ])
+  },
+  methods: {
+    init() {
+      this.email = this.userProfile.email;
+      this.name = this.userProfile.userName;
+      this.phone = this.userProfile.phoneNumber;
+    }
+  },
+  created() {
+    this.init();
+  }
 }
 </script>
 

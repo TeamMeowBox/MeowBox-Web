@@ -1,15 +1,17 @@
 import axios from 'axios';
-
+import {SET_TOKEN, REMOVE_TOKEN} from '../constants/constants';
 const BASE_URL = 'http://13.209.220.1:3000';
 
-const SET_TOKEN = 'SET_TOKEN';
+
 
 
 const state = {
+  token: localStorage.getItem('token') || null,
   userInfo: {}
 };
 
 const getters = {
+  token: state => state.token,
   userInfo: state => state.userInfo
 };
 
@@ -37,9 +39,14 @@ const actions = {
 
 const mutations = {
   [SET_TOKEN](state, payload) {
-    state.userInfo.token = payload.token;
+    state.token = payload.token;
     state.userInfo.userIdx = payload.user_idx;
   },
+
+  [REMOVE_TOKEN](state) {
+    state.token = null;
+    state.userInfo.userIdx = null;
+  }
 };
 
 

@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+.application {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.thin { font-weight: 100 }
+.light { font-weight: 300 }
+.regular { font-weight: 400 }
+.medium { font-weight: 500 }
+.bold { font-weight: 700 }
+.bolder { font-weight: 900 }
+.catInputTitle {
+    font-size:2.7rem;
+}
+.catName {
+    width:23vw;
+}
+small {
+    font-size:0.8rem;
+}
+
+
+.radio-inline__input {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+}
+
+.radio-inline__label {
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    margin-right: 18px;
+    border-radius: 3px;
+    transition: all .2s;
+}
+
+.radio-inline__input:checked + .radio-inline__label {
+    border:1px solid rgb(255, 202, 202);
+    color: #fff;
+}
+
+.radio-inline__input:focus + .radio-inline__label {
+    outline-color: #4D90FE;
+    outline-offset: -2px;
+    outline-style: auto;
+    outline-width: 5px;
+}

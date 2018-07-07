@@ -1,6 +1,6 @@
 import Story from '@/pages/Story'
 export default{
   path: '/story',
-  name: 'Order',
+  name: 'Story',
   component: Story
 }

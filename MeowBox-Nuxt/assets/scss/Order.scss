@@ -1,0 +1,55 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+$kor-font: 'Noto Sans KR', sans-serif;
+$kor-font-thin: 100;
+$kor-font-light: 300;
+$kor-font-regular: 400;
+$kor-font-medium: 500;
+$kor-font-bold: 700;
+$kor-font-bolder: 900;
+
+$title-cont-size: 2.7rem;
+$small-cont-size: 0.8rem;
+
+$cardDark: darken(#ffffff, 20%);
+
+.application {
+    font-family: $kor-font;
+}
+
+.catInputTitle {
+    font-size:$title-cont-size;
+}
+
+.catName {
+    width:23vw;
+}
+
+small {
+    font-size:$small-cont-size;
+}
+
+.radio-inline__label {
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    margin-right: 18px;
+    border-radius: 3px;
+    transition: all .2s;
+}
+
+.radio-inline__input {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    &:checked + .radio-inline__label{
+        outline-color: rgb(255, 149, 172);
+        box-shadow: 0px 5px 5px $cardDark;
+        color: #fff;
+    }
+    &:focus + .radio-inline__label{
+        outline-color: rgb(255, 149, 172);
+        outline-offset: -2px;
+        outline-style: auto;
+        outline-width: 5px;
+    }
+}

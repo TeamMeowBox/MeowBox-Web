@@ -11,7 +11,7 @@
       <table style="margin:0 auto">
         <tr>
           <td style="width:5rem; text-align:left">
-            <label for="email" >이메일</label>
+            <label for="email">이메일</label>
           </td>
           <td>
             <v-text-field class="email" type="email" style="width:10vw" v-model="info.email"></v-text-field>
@@ -19,7 +19,7 @@
         </tr>
         <tr>
           <td style="width:5rem; text-align:left">
-            <label for="password" >비밀번호</label>
+            <label for="password">비밀번호</label>
           </td>
           <td>
             <v-text-field class="password" type="password" style="width:10vw" v-model="info.pwd"></v-text-field>
@@ -42,37 +42,50 @@
 
 <script>
 import axios from 'axios'
+import {mapGetters, mapActions} from 'vuex';
+
 export default {
   name: 'SignInForm',
-  data(){
+  data() {
     return {
-      info:{
-        email:'',
-        pwd:''
+      info: {
+        email: '',
+        pwd: ''
       }
     }
   },
+  computed: {
+    userInfo() {
+      return this.$store.getters.userInfo
+    }
+  },
   methods: {
-    clickLogin () {
-        axios.post('http://13.209.220.1:3000/user/signin',this.info)
-            .then(response => {
-              console.log(response.data.status);
-                if(response.data.status === true){
-                    localStorage.token = response.data.result.token
-                    localStorage.user_idx = response.data.result.user_idx
-                    this.$router.push("/");
-                  }else{
-                    alert("아이디,비밀번호를 확인해주세요")
-                  }
-                })
-             .catch(e => {
-              console.log(e);
-              alert("아이디,비밀번호를 확인해주세요")
-            })
+    // clickLogin () {
+    //   axios.post('http://13.209.220.1:3000/user/signin', this.info)
+    //     .then(response => {
+    //       if (response.data.status === true) {
+    //         localStorage.token = response.data.result.token
+    //         localStorage.user_idx = response.data.result.user_idx
+    //         this.$router.back();
+    //       } else {
+    //         alert('아이디,비밀번호를 확인해주세요')
+    //       }
+    //     })
+    //     .catch(e => {
+    //       console.log(e);
+    //       alert('아이디,비밀번호를 확인해주세요')
+    //     })
+    // }
+    async clickLogin() {
+      const result = await this.$store.dispatch('loginAction', this.info);
+      console.log(result);
+
+      return result ? this.$router.back() : alert('check id or pw');
+
     }
   }
 }
 </script>
 <style lang="scss">
   @import '../../assets/scss/SignIn.scss';
-  </style>
+</style>

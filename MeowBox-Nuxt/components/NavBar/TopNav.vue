@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import {REMOVE_TOKEN} from '../../store/constants/constants';
+
 export default {
   name: 'TopNav',
   props: ['loginData'],
@@ -29,7 +31,7 @@ export default {
   },
   computed: {
     isLogin() {
-      return localStorage.getItem('token')
+      return this.$store.getters.token
     }
   },
   methods: {
@@ -39,6 +41,8 @@ export default {
     clickLogOut() {
       localStorage.removeItem('token');
       localStorage.removeItem('user_idx');
+      this.$store.commit(REMOVE_TOKEN);
+      this.$router.replace('/home');
     }
   }
 }

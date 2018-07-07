@@ -70,7 +70,8 @@ export default {
     // }
     async clickLogin() {
       const result = await this.$store.dispatch('loginAction', this.info);
-
+      console.log(result);
+      
       return result ? this.$router.back() : alert('check id or pw');
 
     }

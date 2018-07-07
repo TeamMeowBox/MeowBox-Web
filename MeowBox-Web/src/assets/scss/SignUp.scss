@@ -1,0 +1,63 @@
+@import 'Variable.scss';
+.signUpTable{
+    td {
+        border-bottom: 1px solid #efeded !important;
+        text-align:left;
+        small {
+             width:25rem; text-align:left;
+        }    
+    }
+}
+
+.primary--text input,
+.primary--text textarea, .error--text input, .error--text textarea {
+    caret-color: #e68789 !important;
+}
+.primary--text, .error--text {
+    color: #e68789 !important;
+}
+.star {
+    color: #e68789;
+}
+
+label {
+    font-family: $kor-font;
+    font-weight: $kor-font-medium;
+    color: $dark-gray;
+    font-size: 0.9rem;
+}
+small {
+    font-family: $kor-font;
+    font-weight: $kor-font-regular;
+    color: #999999;
+}
+.v-messages__message {
+    color:$pink;
+}
+.label {
+    width:10rem; 
+    text-align:left; 
+    padding-left:1rem;
+}
+.signUpTable {
+    margin:0 auto; width:100%; height:60vh;
+}
+.section-divide {
+    border-top:4px solid $pink;
+}
+.signUpBtn {
+    width:20vw !important; background:#e68789 !important; color:white !important;
+}
+.signUpBtnSpace {
+    margin-top:3rem;
+}
+.phone1, .phone2 ,.phone3 {
+    width:4vw; display:inline-block;
+}
+.email, .password, .passwordConfirm, .name {
+    width:14vw;
+    vertical-align:middle;
+}
+.signUpTitle {
+    font-size:2rem; color:$dark-gray;
+}

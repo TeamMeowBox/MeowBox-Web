@@ -1,0 +1,53 @@
+@import 'Variable.scss';
+
+.suggest-container {
+    h3 {
+        color: $dark-gray;
+        font-weight:$kor-font-medium;
+        margin-bottom:1rem;
+    }
+    h2 {
+        color: $dark-gray;
+        font-weight:$kor-font-regular;
+        margin-bottom:1rem;
+        margin-top:1rem;
+    }
+    .titleLabel{
+        color: $dark-gray;
+        font-weight:$kor-font-medium;
+    }
+    .suggestTd {
+        width:15vw;
+    }
+    .suggestTd2 {
+        width:35vw;
+        padding-top:1rem;
+    }
+    ::placeholder {
+        font-size:0.9rem;
+        padding-left:1rem;
+    }
+    .primary--text input,
+    .primary--text textarea, .error--text input, .error--text textarea {
+        caret-color: $pink !important;
+    }
+    .primary--text, .error--text {
+        color: $pink !important;
+    }
+
+    textarea {
+        height:30vh;
+    }
+    .suggestBtnSpace{
+        text-align:center;
+    }
+    .suggestBtn{
+        width:20vw !important; background:$pink !important; color:white !important;
+    }
+    .suggestTable {
+        margin:0 auto; width:100%;
+    }
+    .suggestTitle{
+        width:35vw; vertical-align:middle
+    }
+}

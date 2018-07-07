@@ -13,3 +13,13 @@ $dark-gray: #4c4e51;
 $gray: #707070;
 $light-gray: #efeded;
 $hr-line:#cecece;
+
+$title-cont-size: 2.7rem;
+$small-cont-size: 0.8rem;
+
+$cardDark: darken(#ffffff, 20%);
+
+.application {
+    font-family: $kor-font !important;
+    color:$dark-gray !important;
+}

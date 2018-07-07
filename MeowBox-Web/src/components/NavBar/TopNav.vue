@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       userToolbarItems: [
-        {title: '마이페이지', link: '/mypage/update'},
+        {title: '마이페이지', link: '/mypage/updateUser'},
         {title: '자주 묻는 질문', link: '/faq'}
       ]
     }
@@ -42,6 +42,7 @@ export default {
       localStorage.removeItem('token');
       localStorage.removeItem('user_idx');
       this.$store.commit(REMOVE_TOKEN);
+      alert("로그아웃")
       this.$router.replace('/');
     }
   }

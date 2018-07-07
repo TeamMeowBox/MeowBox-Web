@@ -1,25 +1,27 @@
 <template>
-    <div>
+    <div class="suggest-container">
         <h3>미유박스에 제안</h3>
         <section>
             <hr style="border-top:4px solid #e68789">
-            <table style="margin:0 auto; width:100%;">
+            <table class="suggestTable">
                 <tr>
-                    <td style="width:10vw">
-                        <h3>
+                    <td class="suggestTd" >
+                        <h2>
                             미유박스에 대한<br>
                             의견을 보내주세요
-                        </h3>
+                        </h2>
                     </td>
-                    <td style="width:35vw">
-                        <label for="suggestTitle" style="color:#4c4e51">제목을 입력해주세요</label>
+                    <td class="suggestTd2" >
+                        <label for="suggestTitle" class="titleLabel">제목을 입력해주세요</label>
                         <v-text-field class="suggestTitle" type="text" style="width:14vw; vertical-align:middle" placeholder="어떤 의견인가요?"></v-text-field>
                     </td>
                 </tr>
                 <tr>
                     <td>일러스트?</td>
-                    <td>
-                        <label for="suggestContent" style="color:#4c4e51">자세히 알려주세요</label>
+                    <td class="suggestTd2">
+                        <label for="suggestContent" class="titleLabel" >자세히 알려주세요</label>
+                        <br>
+                        <br>
                         <v-textarea
                         solo
                         name="input-7-4"
@@ -31,8 +33,8 @@
                 </tr>
             </table>
         </section>
-        <aside>
-                <v-btn style="width:20vw; background:#e68789; color:white">제안하기</v-btn>
+        <aside class="suggestBtnSpace">
+                <v-btn class="suggestBtn">제안하기</v-btn>
         </aside>
     </div>
 </template>
@@ -43,6 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+    @import '../../assets/scss/Suggest.scss';
 
 </style>

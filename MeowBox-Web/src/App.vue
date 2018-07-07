@@ -4,20 +4,20 @@
     <v-toolbar style="box-shadow:none; background-color:#ffffff;height:7vh;padding-right:15vw;">
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-         <v-btn flat router:to='signIn' v-if="getToken===false" class="login_btn">
+         <v-btn flat router:to='signIn' v-if="getToken===false" class="login_btn toolbar-item">
          로그인/회원가입 
         </v-btn>
-        <v-btn flat v-for="item in userToolbarItems" :key="item.title" router :to="item.link" v-if="item.flag===true || item.flag ===undefined">
+        <v-btn class="toolbar-item" flat v-for="item in userToolbarItems" :key="item.title" router :to="item.link" v-if="item.flag===true || item.flag ===undefined">
           {{item.title}}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-    <hr style="border-top:0.4px solid #efeded;">
-    <v-toolbar style="box-shadow:none; background-color:#ffffff; padding-left:15vw; padding-right:15vw;">
-      <v-toolbar-title style="font-size:2.5rem; color:#e68789">MEOW BOX</v-toolbar-title>
+    <hr style="border:1px solid #f4f4f4;">
+    <v-toolbar style="box-shadow:none; background-color:#ffffff; padding-left:15vw; padding-right:15vw; margin-top:2rem;">
+      <v-toolbar-title><a href="/"><img src="./assets/images/meowbox_logo.png" alt=""/></a></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat v-for="item in toolbarItems" :key="item.title" router :to="item.link">
+        <v-btn class="toolbar-item" flat v-for="item in toolbarItems" :key="item.title" router :to="item.link">
           {{item.title}}
         </v-btn>
       </v-toolbar-items>
@@ -57,5 +57,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import './assets/scss/Header.scss'
 </style>

@@ -29,7 +29,7 @@
                         <b>예금주</b> <span>미유박스</span><br>
                     </td>
                     <td class="footer-logo">
-                        <p>여기에 로고 들어감</p>
+                        <p><img src="../../assets/images/meowbox_logo_gray.png" style="width:15rem; margin-bottom:-2rem" alt=""/></p>
                         <b class="logo-bottom-info" >MEOW BOX ALL RIGHT RESERVED</b>
                     </td>
                 </tr>

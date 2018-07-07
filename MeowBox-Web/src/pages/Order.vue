@@ -17,7 +17,7 @@
     <section v-if="flag === 0" class='name'>
         <aside>
             <p class="catInputTitle">반려묘의<br><b>이름</b>은 무엇인가요?<small>필수항목(*)은 꼭 입력해주세요.</small></p>
-            <p>이름*</p>
+            <p>이름<span class="star">*</span></p>
             <v-text-field class="catName" v-model="name" placeholder="반려묘 이름" required/>
         </aside>
    </section>
@@ -26,14 +26,11 @@
         <p class="catInputTitle"><b>(여기에 반려동물 이름)</b>에 대해<br>더 자세히 알려주세요!<small>필수항목(*)은 꼭 입력해주세요.</small></p>
       </aside>
       <aside class="size">
-        <p>크기*</p>
+        <p>체형<span class="star">*</span></p>
         <input id="small" class="radio-inline__input" type="radio" name="accessible-radio" checked="checked" v-model="size" value="small"/>
         <label class="radio-inline__label" for="small">
             <v-card>
-                <v-card-media
-                src="https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg"
-                height="10vh" width="12vw"
-                ></v-card-media>
+                <img src="../assets/images/small-cat-img.png" alt=""/>
                 <v-card-title primary-title>
                 <div>
                     <h5 class="headline mb-0">조금 마른</h5>
@@ -45,10 +42,7 @@
         <input id="middle" class="radio-inline__input" type="radio" name="accessible-radio" v-model="size"  value="middle"/>
         <label class="radio-inline__label" for="middle">
             <v-card>
-                <v-card-media
-                src="https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg"
-                height="10vh" width="12vw"
-                ></v-card-media>
+                <img src="../assets/images/medium-cat-img.png" alt=""/>
                 <v-card-title primary-title>
                 <div>
                     <h5 class="headline mb-0">보통</h5>
@@ -60,10 +54,7 @@
         <input id="large" class="radio-inline__input" type="radio" name="accessible-radio" v-model="size" value="large" />
         <label class="radio-inline__label" for="large">
             <v-card>
-                <v-card-media
-                src="https://scontent-icn1-1.cdninstagram.com/vp/2e294fe57962f570adbd1f1913a119b3/5BE5461F/t51.2885-15/s640x640/sh0.08/e35/28435697_606407849704320_4774843541010513920_n.jpg"
-                height="10vh" width="12vw"
-                ></v-card-media>
+                <img src="../assets/images/large-cat-img.png" alt=""/>
                 <v-card-title primary-title>
                 <div>
                     <h5 class="headline mb-0">과체중</h5>
@@ -73,17 +64,20 @@
             </v-card>
         </label>
       </aside>
+      <br/>
+      <br/>
       <aside>
-        <p>생일*</p>
+        <p>생일<span class="star">*</span></p>
         <input type="date" name="bdaytime" v-model="birth">
-       
       </aside>
+      <br/>
+      <br/>
       <aside>
         <p>알레르기 및 특이사항</p>
         <v-textarea
           solo
           name="input-7-4"
-          label="Solo textarea"
+          label="알레르기가 있는 재료나 좋아하는 재료에 대해 적어주세요."
           v-model="etc"
         ></v-textarea>
       </aside>
@@ -98,31 +92,17 @@
                     <label for="one">
                         한번만받기
                     </label>
+                    <br>
+                    <span> {{ addprice }}</span>원
                 </td>
                 <td class="one_pay_info" v-if="date===1" style="transition:2s">
                     <input type="checkbox" id="package_box" value=39900 v-model="checkedNames">
-                    <label for="package_box">7월 패키지 박스</label>
+                    <label for="package_box">7월 패키지 박스</label><br>
                     <input type="checkbox" id="first_box" value=27000 v-model="checkedNames">
                     <label for="first_box">고양이는 처음이지? 박스</label>
-                    <br>
-                    <span>체크한 이름: {{ addprice }}</span>원
                 </td>
             </tr>
         </table>
-        <!-- <div class ="one_pay">
-            <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
-            <label for="one">
-                한번만받기
-            </label>
-        </div>
-        <div v-if="date===1">
-            <input type="checkbox" id="package_box" value=39900 v-model="checkedNames">
-            <label for="package_box">7월 패키지 박스</label>
-            <input type="checkbox" id="first_box" value=27000 v-model="checkedNames">
-            <label for="first_box">고양이는 처음이지? 박스</label>
-            <br>
-            <span>체크한 이름: {{ addprice }}</span>원
-        </div> -->
     </aside>
 
     <aside class="three_pay">
@@ -146,81 +126,172 @@
 
    
    
-   <div  v-else-if="flag === 3" class='price'>
-       <div>
-           주문자 정보<br>
-           주문하시는 분 : <input type="text"><br>
-            <input type="text" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode">
-            <input type="button" @click="loadDaum()" value="우편번호 찾기"><br>
-            <input type="text" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr">
-            <input type="text" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"><br>
-            휴대전화 : <input type="text" v-model="phone.firstNum"> - <input type="text" v-model="phone.secondNum"> - <input type="text" v-model="phone.thirdNum"><br>
-            이메일 : <input type="text" v-model="email.firstEmail"> @<input type="text" v-model="email.secondEmail">
-            <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-            <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
-            </div>
+   <div class="price" v-else-if="flag === 3">
+       <div class="title container">
+           <p>미유박스를 받기 위한</p>
+           <p><b>정보</b>를</p>
+           <p>입력해주세요&nbsp;<small class="star">필수항목(*)은 꼭 입력해주세요</small></p>
        </div>
+       <v-layout class="container" style="width:70vw;">
+            <section xs12 sm6>
+                <div>
+                    <input type="radio" id="last-delievery" name="month"  /> 이전 배송지 불러오기 &nbsp;
+                    <input type="radio" id="last-delievery" name="month"  /> 새로 입력하기
+                </div>
+                <br>
+                <hr class="pay-hr2">
+                <br>
+                <div>
+                    <b>주문자 정보</b><br>
+                    <table>
+                        <tr>
+                            <td class="label">
+                                주문자명
+                            </td>
+                            <td>
+                                <v-text-field class="order-name" type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>주소</td>
+                            <td>
+                                <v-text-field type="text" class="post-num" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode"/>
+                                <v-btn class="fint-post-num" @click="loadDaum()">우편번호 찾기</v-btn><br>
+                                <v-text-field type="text" class="address" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr"/><br/>
+                                <v-text-field type="text" class="detail-address" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>휴대전화</td>
+                            <td><v-text-field class="phone1" type="text" v-model="phone.firstNum"/> - <v-text-field class="phone2" type="text" v-model="phone.secondNum"/> - <v-text-field class="phone3" type="text" v-model="phone.thirdNum"/></td>
+                        </tr>
+                        <tr>
+                            <td>이메일</td>
+                            <td><v-text-field class="email-id" type="text" v-model="email.firstEmail"/> @<v-text-field class="email-domain" type="text" v-model="email.secondEmail"/></td>
+                        </tr>
+                        <div class="layer" id="layer">
+                        <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
+                        </div>
+                    </table>
+                </div>
+                <br><br><br>
+                <div>
+                    <b>배송지 정보</b><br>
+                        <table>
+                        <tr>
+                            <td class="label">
+                                주문자명
+                            </td>
+                            <td>
+                                <v-text-field class="order-name" type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>주소</td>
+                            <td>
+                                <v-text-field type="text" class="post-num" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode"/>
+                                <v-btn class="fint-post-num" @click="loadDaum()">우편번호 찾기</v-btn><br>
+                                <v-text-field type="text" class="address" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr"/><br/>
+                                <v-text-field type="text" class="detail-address" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>휴대전화</td>
+                            <td><v-text-field class="phone1" type="text" v-model="phone.firstNum"/> - <v-text-field class="phone2" type="text" v-model="phone.secondNum"/> - <v-text-field class="phone3" type="text" v-model="phone.thirdNum"/></td>
+                        </tr>
+                        <tr>
+                            <td>이메일</td>
+                            <td><v-text-field class="email-id" type="text" v-model="email.firstEmail"/> @<v-text-field class="email-domain" type="text" v-model="email.secondEmail"/></td>
+                        </tr>
+                        <div class="layer" id="layer">
+                        <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
+                        </div>
+                    </table>
+                </div>
+                <br>
+                <hr class="dotted-hr">
+                <br>
 
-       <div>
-           결제금액<br>
-           7월 패키지 박스<br>
-           구독기간 : <p>{{date}}</p>
-           반려묘 크기 : <p>{{size}}</p>
-           특이사항 :<p>{{etc}}</p>
-           소계 <p>{{boxprice}}</p>
-           배송 <p>무료배송</p>
-           최종결제금액 <p>{{boxprice}}</p>
-       </div>
+                <div class="pay-way">
+                    <b>결제 정보</b><br>
+                    <br>
+                    <span>결제수단<span class="star">*</span></span> &nbsp; &nbsp; &nbsp;
+                    <input type="radio" id="card" name="month"  v-model="payment" v-bind:value=1 />
+                        <label for="card">신용카드</label>
+                    &nbsp; &nbsp; &nbsp;
+                    <input type="radio" id="transfer" name="month"  v-model="payment" v-bind:value=2 />
+                        <label for="transfer">실시간 계좌이체</label>
+                    &nbsp; &nbsp; &nbsp;
+
+                    <input type="radio" id="virtual_account" name="month"  v-model="payment" v-bind:value=2 />
+                        <label for="virtual_account">가상 계좌</label>
+                    &nbsp; &nbsp; &nbsp;
+                    <input type="radio" id="phone_payment" name="month"  v-model="payment" v-bind:value=2 />
+                        <label for="phone_payment">휴대폰 결제</label>
+                    &nbsp; &nbsp; &nbsp;
+                    <input type="radio" id="kakao_pay" name="month"  v-model="payment" v-bind:value=2 />
+                        <label for="kakao_pay">페이코</label>
+                </div>
+            </section>
+            <section xs12 sm6 offset-sm3 style="margin-left:4vw">
+                <div>
+                    <b style="color:$dark-gray">결제금액</b><br><br>
+                    <div class="pay-price">
+                        <table class="pay-price-table">
+                            <tr>
+                                <td colspan="2">
+                                    <p style="font-size:1.5rem">7월 패키지 박스</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    구독기간 : {{date}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    반려묘 크기 : {{size}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    특이사항 : {{etc}}
+                                </td>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <td>소계</td>
+                                <td class="money-info"><p>{{boxprice}}원</p></td>
+                            </tr>
+                            <tr>
+                                <td>배송</td>
+                                <td class="money-info"><p>무료배송</p></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><hr class="pay-hr"></td>
+                            </tr>
+                            <tr>
+                                <td>최종결제금액</td>
+                                <td class="money-info last-price"><p>{{boxprice}}</p></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </v-layout>
        
-       <div>
-           주문자 정보<br>
-            <input type="checkbox" id="orderFlag" value=1 v-model="orderFlag">
-            <label for="orderFlag">주문자와 다른 주소로 배송</label><br>
-           주문하시는 분 : <input type="text"><br>
-            <input type="text" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode">
-            <input type="button" @click="loadDaum()" value="우편번호 찾기"><br>
-            <input type="text" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr">
-            <input type="text" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"><br>
-            휴대전화 : <input type="text" > - <input type="text"> - <input type="text"><br>
-            이메일 : <input type="text"> @<input type="text">
-            <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-            <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-            </div>
-       </div>
-
-       <div>
-           결제정보<br>
-           결제수단 
-           <input type="radio" id="card" name="month"  v-model="payment" v-bind:value=1 />
-            <label for="card">신용카드</label>
-
-           <input type="radio" id="transfer" name="month"  v-model="payment" v-bind:value=2 />
-            <label for="transfer">실시간 계좌이체</label>
-
-
-           <input type="radio" id="virtual_account" name="month"  v-model="payment" v-bind:value=2 />
-            <label for="virtual_account">가상 계좌</label>
-
-           <input type="radio" id="phone_payment" name="month"  v-model="payment" v-bind:value=2 />
-            <label for="phone_payment">휴대폰 결제</label>
-
-           <input type="radio" id="kakao_pay" name="month"  v-model="payment" v-bind:value=2 />
-            <label for="kakao_pay">카카오 페이</label>
-       </div>
+       
    </div>
-
-
-
-
-
 
    <div  v-else-if="flag === 4" class='price'>
-       5
+       <p class="catInputTitle">미유박스<br><b>주문이 완료</b>되었습니다<br></p>
+       <small>기다리는 반려묘들을 위해 빨리 배송할게요. <br>조금만 더 기다려주세요!</small>
    </div>
 
-   <v-btn color="error" v-if="flag > 0 && flag<4" @click="downFlag()">돌아가기</v-btn>
-   <v-btn color="error" v-if="flag <4 " @click="upFlag()">다음</v-btn>
-   <v-btn color="error" v-if="flag === 4" @click="back()">홈으로 돌아가기</v-btn>
+   <v-btn class="back" v-if="flag > 0 && flag<4" @click="downFlag()">돌아가기</v-btn>
+   <v-btn class="next" v-if="flag <4 " @click="upFlag()">다음</v-btn>
+   <v-btn class="goHome" v-if="flag === 4" @click="back()">홈으로 돌아가기</v-btn>
 </div>
 
 </template>
@@ -348,14 +419,5 @@ export default {
 
 <style lang="scss">
 @import '../assets/scss/Order.scss';
-.date > div {
-    
-}
-input {
-    transition: 2s;
-}
-input:checked + .one_pay_info {
-    width:1000px
-}
 
 </style>

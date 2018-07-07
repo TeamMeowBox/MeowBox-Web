@@ -1,6 +1,8 @@
 <template>
   <v-toolbar style="box-shadow:none; background-color:#ffffff; padding-left:15vw; padding-right:15vw;">
-    <v-toolbar-title style="font-size:2.5rem; color:#e68789">MEOW BOX</v-toolbar-title>
+    <v-toolbar-title style="font-size:2.5rem; color:#e68789">
+      <a href="/"><img src="../../assets/images/meowbox_logo.png" height="40vh" alt=""/></a>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
       <v-btn flat v-for="item in toolbarItems" :key="item.title" router :to="item.link">

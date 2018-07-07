@@ -13,7 +13,7 @@
                     </td>
                     <td class="suggestTd2" >
                         <label for="suggestTitle" class="titleLabel">제목을 입력해주세요</label>
-                        <v-text-field class="suggestTitle" type="text" style="width:14vw; vertical-align:middle" placeholder="어떤 의견인가요?"></v-text-field>
+                        <v-text-field class="suggestTitle" type="text" placeholder="어떤 의견인가요?"></v-text-field>
                     </td>
                 </tr>
                 <tr>

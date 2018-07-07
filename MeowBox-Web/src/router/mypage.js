@@ -1,4 +1,5 @@
 import Mypage from '@/pages/Mypage'
+import {authGuard} from './authGuard'
 import MyInfoUpdate from '@/components/MyPage/MyInfoUpdate'
 import MyOrderList from '@/components/MyPage/MyOrderList'
 import MySuggestion from '@/components/MyPage/MySuggestion'
@@ -27,11 +28,12 @@ export default {
             path: 'setting',
             component: MySetting
         }
-    ]
+    ],
+  beforeEnter: authGuard
+
 }
 // export const MyInfoUpdateRoutes = {
 //     path: '/mypage/update',
 //     name: 'MyInfoUpdate',
 //     component: MyInfoUpdate
 //   }
-  

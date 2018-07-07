@@ -11,10 +11,10 @@
             expand-icon="fas fa-caret-down"
             >
             <div slot="header">
-                <table>
+                <table class="faq-table">
                     <tr>
                         <td class="category">제품</td>
-                        <td>Q&nbsp;&nbsp;간식과 사료의 성분을 알 수 있을까요?</td>
+                        <td >Q&nbsp;&nbsp;간식과 사료의 성분을 알 수 있을까요?</td>
                     </tr>
                 </table>
             </div>
@@ -28,7 +28,7 @@
             expand-icon="fas fa-caret-down"
             >
             <div slot="header">
-                <table>
+                <table class="faq-table">
                     <tr>
                         <td class="category">제품</td>
                         <td>Q&nbsp;&nbsp;장난감은 같은 것으로 구성되어 있나요?</td>
@@ -45,7 +45,7 @@
             expand-icon="fas fa-caret-down"
             >
             <div slot="header">
-                <table>
+                <table class="faq-table">
                     <tr>
                         <td class="category">제품</td>
                         <td>Q&nbsp;&nbsp;크기는 어느정도 되나요?</td>
@@ -62,7 +62,7 @@
             expand-icon="fas fa-caret-down"
             >
             <div slot="header">
-                <table>
+                <table class="faq-table">
                     <tr>
                         <td class="category">배송</td>
                         <td>Q&nbsp;&nbsp;배송일은 몇일 정도 걸리나요?</td>
@@ -79,7 +79,7 @@
             expand-icon="fas fa-caret-down"
             >
             <div slot="header">
-                <table>
+                <table class="faq-table">
                     <tr>
                         <td class="category">포장</td>
                         <td>Q&nbsp;&nbsp;사료와 간식은 어떻게 포장되어 오나요?</td>
@@ -96,7 +96,7 @@
             expand-icon="fas fa-caret-down"
             >
             <div slot="header">
-                <table>
+                <table class="faq-table">
                     <tr>
                         <td class="category">구독</td>
                         <td>Q&nbsp;&nbsp;매번 결제를 해야하는건가요?</td>

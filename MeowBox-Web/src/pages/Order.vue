@@ -137,13 +137,13 @@
        <v-layout class="container" style="width:70vw;">
             <section xs12 sm6>
                 <div>
-                    <input type="radio" id="last-delievery" name="month"  /> 이전 배송지 불러오기 &nbsp;
-                    <input type="radio" id="last-delievery" name="month"  /> 새로 입력하기
+                    <input type="radio" id="last-delievery" name="month"  v-model="orderFlag" v-bind:value=0 checked/> 이전 배송지 불러오기 &nbsp;
+                    <input type="radio" id="last-delievery" name="month"  v-model="orderFlag" v-bind:value=1 /> 새로 입력하기
                 </div>
                 <br>
                 <hr class="pay-hr2">
                 <br>
-                <div>
+                <div v-if="orderFlag===0">
                     <b>주문자 정보</b><br>
                     <table>
                         <tr>
@@ -176,40 +176,42 @@
                         </div>
                     </table>
                 </div>
-                <br><br><br>
-                <div>
-                    <b>배송지 정보</b><br>
-                        <table>
+                <div v-if="orderFlag===1">
+                    <b>주문자 정보</b><br>
+                    <table>
                         <tr>
                             <td class="label">
                                 주문자명
                             </td>
                             <td>
-                                <v-text-field class="order-name" type="text"/>
+                                <v-text-field class="order-name" type="text" v-model="newInfo.name"/>
                             </td>
                         </tr>
                         <tr>
                             <td>주소</td>
                             <td>
-                                <v-text-field type="text" class="post-num" id="sample2_postcode" placeholder="우편번호" v-model="address.zonecode"/>
+                                <v-text-field type="text" class="post-num" id="sample2_postcode" placeholder="우편번호" v-model="newAddress.one"/>
                                 <v-btn class="fint-post-num" @click="loadDaum()">우편번호 찾기</v-btn><br>
-                                <v-text-field type="text" class="address" id="sample2_address" placeholder="한글주소" v-model="address.fullAddr"/><br/>
-                                <v-text-field type="text" class="detail-address" id="sample2_addressEnglish" placeholder="상세주소" v-model="address.subAddr"/>
+                                <v-text-field type="text" class="address" id="sample2_address" placeholder="한글주소" v-model="newAddress.two"/><br/>
+                                <v-text-field type="text" class="detail-address" id="sample2_addressEnglish" placeholder="상세주소" v-model="newAddress.three"/>
                             </td>
                         </tr>
                         <tr>
                             <td>휴대전화</td>
-                            <td><v-text-field class="phone1" type="text" v-model="phone.firstNum"/> - <v-text-field class="phone2" type="text" v-model="phone.secondNum"/> - <v-text-field class="phone3" type="text" v-model="phone.thirdNum"/></td>
+                            <td><v-text-field class="phone1" type="text" v-model="newPhone[0]"/> - <v-text-field class="phone2" type="text" v-model="newPhone[1]"/> - <v-text-field class="phone3" type="text" v-model="newPhone[2]"/></td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td><v-text-field class="email-id" type="text" v-model="email.firstEmail"/> @<v-text-field class="email-domain" type="text" v-model="email.secondEmail"/></td>
+                            <td><v-text-field class="email-id" type="text" v-model="newEmail[0]"/> @<v-text-field class="email-domain" type="text" v-model="newEmail[1]"/></td>
                         </tr>
                         <div class="layer" id="layer">
                         <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
                         </div>
                     </table>
                 </div>
+                
+                <br><br><br>
+                
                 <br>
                 <hr class="dotted-hr">
                 <br>
@@ -304,7 +306,6 @@ export default {
     data() {
         return {
             flag : 0,
-            
             cat:{
             name : '',
             size : '',
@@ -320,9 +321,16 @@ export default {
                 two:'',
                 three:''
             },
-            orderFlag:'',
+            newAddress:{
+                one:'',
+                two:'',
+                three:''
+            },
+            orderFlag:0,
             phone:[],
             email:[],
+            newPhone:[],
+            newEmail:[],
             categorys:[
                 {cate_id : 0, cateName : '이름', numberCircle:'❶ '},
                 {cate_id : 1, cateName : '기타', numberCircle:'❷ '},
@@ -334,17 +342,27 @@ export default {
                 phone_number:'',
                 email:'',
                 address:'',
-                product:'1',
+                product:'',
                 payment_method:''
+            },
+            newInfo :{
+                name:'',
+                phone_number:'',
+                email:'',
+                address:'',
+                product:''
             }
-
         }
     },
     methods: {
         upFlag(){
                 this.flag ++;
                 if(this.flag==4){
+                    if(this.orderFlag===0){
                     this.order();
+                    }else{
+                        this.newOrder();
+                    }
                 }
                 if(this.flag==2){
                     this.registCat();
@@ -386,9 +404,13 @@ export default {
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
 
+            if(self.orderFlag==0){
                self.address.one = data.zonecode; 
                self.address.two = fullAddr;
-               self.test = fullAddr;
+            }else if(self.orderFlag==1){
+               self.newAddress.one = data.zonecode; 
+               self.newAddress.two = fullAddr;
+            }
                element_layer.style.display = 'none';
               
             }
@@ -416,6 +438,8 @@ export default {
            window.document.getElementById('layer').style.display='none';
        },
        order(){
+           console.log("1");
+           
            let headers = {headers: {
                              authorization: localStorage.token,
                              }}
@@ -451,6 +475,48 @@ export default {
              .catch(e => {
               console.log(e);    
             })
+
+       },newOrder(){
+           let headers = {headers: {
+                             authorization: localStorage.token,
+                             }}
+           this.newInfo.address += this.newAddress.one;
+           this.newInfo.address += this.newAddress.two;
+           this.newInfo.address += this.newAddress.three;
+            
+           if(this.date === 1){
+               this.date = this.checkedNames
+           }
+           
+            for(let i = 0 ; i<this.newPhone.length ; i++){
+                this.newInfo.phone_number += this.newPhone[i]
+            }
+
+            for(let i =0 ; i<this.newEmail.length ; i++){
+                this.newInfo.email += this.newEmail[i]
+                if(i==0){
+                    this.newInfo.email+='@'
+                }
+            }
+            this.newInfo.user_idx = localStorage.getItem('user_idx')
+            this.newInfo.product = this.date;
+            axios.post('http://13.209.220.1:3000/order/order_page',this.newInfo,headers)
+            .then(response => {
+              console.log(response.data);
+                  if(response.data.status === true){
+                      console.log("주문완료");
+                      
+                  }else{
+                    alert("주문정보를 다시 확인해주세요")
+                  }
+                 })
+             .catch(e => {
+              console.log(e);    
+            })
+
+            console.log("--------------------------");
+            console.log(this.newInfo.email);
+            
 
        },
        registCat(){

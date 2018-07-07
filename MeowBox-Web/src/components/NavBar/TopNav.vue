@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       userToolbarItems: [
-        {title: '마이페이지', link: '/mypage/update'},
+        {title: '마이페이지', link: '/mypage/updateUser'},
         {title: '자주 묻는 질문', link: '/faq'}
       ]
     }

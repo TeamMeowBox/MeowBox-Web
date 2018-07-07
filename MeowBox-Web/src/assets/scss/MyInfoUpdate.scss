@@ -1,0 +1,73 @@
+@import 'Variable.scss';
+.my-info-container {
+
+    .error--text input,
+    .error--text textarea,
+    .primary--text input,
+    .primary--text textarea {
+        caret-color: #e68789 !important;
+    }
+    .error--text,
+    .primary--text {
+        color: #e68789 !important;
+    }
+    .star {
+        color: #e68789;
+    }
+    label {
+        font-family: $kor-font;
+        font-weight: $kor-font-medium;
+        color: $dark-gray;
+        font-size: 0.9rem;
+    }
+    small {
+        font-family: $kor-font;
+        font-weight: $kor-font-regular;
+        color: #999999;
+    }
+    .more-info {
+        @extend small;
+        margin-left:1rem;
+    }
+    v-text-field {
+        display: inline-block;
+    }
+    .password,
+    .passwordConfirm {
+        @extend v-text-field;
+        width: 14vw;
+    }
+    .phone1,
+    .phone2,
+    .phone3 {
+        @extend v-text-field;
+        width: 4vw;
+    }
+    .email-domain,
+    .email-id {
+        @extend v-text-field;
+        width: 8vw;
+    }
+
+    .btn-space {
+        text-align:center;
+    }
+    .cate-td {
+        width:10rem; text-align:left;
+        font-weight:$kor-font-medium;
+        font-size:0.9rem;
+    }
+    .updateBtn {
+        width:20vw !important; background:#e68789 !important; color:white !important;
+    }
+    
+}
+
+.section-divide {
+    border-top:4px solid $pink;
+}
+.title {
+    font-weight:$kor-font-medium;
+    font-size:1rem;
+    margin-bottom:1rem;
+}

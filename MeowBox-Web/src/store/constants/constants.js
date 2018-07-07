@@ -1,2 +1,3 @@
 export const SET_TOKEN = 'SET_TOKEN';
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';
+export const FETCH_USER_PROFILE = 'FETCH_USER_PROFILE';

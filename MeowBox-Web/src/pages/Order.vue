@@ -1,5 +1,5 @@
 <template>
-<div class="container" style="width:70vw;">
+<div class="order-container container" style="width:70vw;">
     <br>
     <section style="text-align:right;">
         <template v-if="flag!==4">

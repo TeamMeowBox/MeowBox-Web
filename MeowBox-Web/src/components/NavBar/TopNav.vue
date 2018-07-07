@@ -42,6 +42,7 @@ export default {
       localStorage.removeItem('token');
       localStorage.removeItem('user_idx');
       this.$store.commit(REMOVE_TOKEN);
+      alert("로그아웃")
       this.$router.replace('/');
     }
   }

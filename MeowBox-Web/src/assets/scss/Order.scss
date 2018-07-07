@@ -21,11 +21,13 @@ $cardDark: darken(#ffffff, 20%);
 .catName {
     width:23vw;
 }
-
-small {
-    font-size:$small-cont-size;
-    color:$pink;
+.order-container{
+    small {
+        font-size:$small-cont-size;
+        color:$pink;
+    }
 }
+
 .price {
     small {
         color:$dark-gray;

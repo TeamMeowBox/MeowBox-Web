@@ -52,22 +52,7 @@ export default {
     }
   },
   methods: {
-    // clickLogin () {
-    //   axios.post('http://13.209.220.1:3000/user/signin', this.info)
-    //     .then(response => {
-    //       if (response.data.status === true) {
-    //         localStorage.token = response.data.result.token
-    //         localStorage.user_idx = response.data.result.user_idx
-    //         this.$router.back();
-    //       } else {
-    //         alert('아이디,비밀번호를 확인해주세요')
-    //       }
-    //     })
-    //     .catch(e => {
-    //       console.log(e);
-    //       alert('아이디,비밀번호를 확인해주세요')
-    //     })
-    // }
+    
     async clickLogin() {
       const result = await this.$store.dispatch('loginAction', this.info);
       console.log(result);

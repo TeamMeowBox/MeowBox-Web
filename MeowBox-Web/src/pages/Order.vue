@@ -508,7 +508,8 @@ export default {
               console.log(response.data);
                   if(response.data.status === true){
                       console.log('등록완료');
-                      
+                      console.log(response.data.result.cat_idx);
+                      localStorage.cat_idx = response.data.result.cat_idx
                   }else{
                     alert("등록정보를 다시 확인해주세요")
                   }
@@ -532,24 +533,24 @@ export default {
             return this.birth;
         }
     },created() {
-        let headers = {headers: {
-                             authorization: localStorage.token,
-                             }}
+        // let headers = {headers: {
+        //                      authorization: localStorage.token,
+        //                      }}
            
-            axios.post('http://13.209.220.1:3000/order/order_page/'+localStorage.user_idx,headers)
-            .then(response => {
-              console.log(response.data);
-                  if(response.data.status === true){
-                      console.log(response.data.result);
+        //     axios.post('http://13.209.220.1:3000/order/order_page/'+localStorage.user_idx,headers)
+        //     .then(response => {
+        //       console.log(response.data);
+        //           if(response.data.status === true){
+        //               console.log(response.data.result);
                       
                       
-                  }else{
-                    alert("등록정보를 다시 확인해주세요")
-                  }
-                 })
-             .catch(e => {
-              console.log(e);    
-            })
+        //           }else{
+        //             alert("등록정보를 다시 확인해주세요")
+        //           }
+        //          })
+        //      .catch(e => {
+        //       console.log(e);    
+        //     })
         
     },
 }

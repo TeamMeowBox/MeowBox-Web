@@ -24,16 +24,16 @@
                     </div>
                     <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="2"/> 보통
                     <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="3" /> 과체중
->               </td>
+               </td>
                 </tr>
                 <tr>
                 <td style="width:10rem; text-align:left">
                     <label for="bdaytime" style="color:#4c4e51">생일</label>
                 </td>
                 <td colspan="2">
-<
+
                     <input type="date" name="bdaytime" v-model="catInfo.birthday">
->               </td>
+               </td>
                 </tr>
                 <tr>
                 <td style="width:10rem; text-align:left">
@@ -44,7 +44,6 @@
                 solo
                 name="input-7-4"
                 label="Solo textarea"
-
                 v-model="catInfo.caution"></v-textarea>
                 </td>
                 </tr>
@@ -80,10 +79,19 @@ export default {
   methods: {
     async clickEdit() {
       try {
-
-        const result = await axios.post('http://13.209.220.1:3000/user/cat_signup', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
-
-        if (result.data.status) {
+       var result
+        if(localStorage.cat_idx==-1){
+        result = await axios.post('http://13.209.220.1:3000/user/cat_signup', this.catInfo, {headers: {authorization: localStorage.getItem('token')}}); 
+        localStorage.cat_idx = result.data.result.cat_idx
+        
+        }else{
+         result = await axios.post('http://13.209.220.1:3000/mypage/account_setting/update_cat', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
+       console.log('-------------');
+       
+       }
+        console.log(result);
+        
+        if (result.data.status===true) {
           alert('success');
         }
       } catch (e) {
@@ -105,12 +113,10 @@ export default {
         .then(response => {
           if (response.data.status === true) {
             console.log(response);
-            this.name = response.data.result.name;
-            this.size = 1;
-            this.birthday = '2018-05-07';
-            this.caution = response.data.result.caution;
-
-            
+            this.catInfo.name = response.data.result.name;
+            this.catInfo.size = response.data.result.size;
+            this.catInfo.birthday = response.data.result.birthday;
+            this.catInfo.caution = response.data.result.caution;
           } else {
             alert('아이디,비밀번호를 ')
             

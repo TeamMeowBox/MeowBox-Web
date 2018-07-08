@@ -9,16 +9,7 @@
         <hr class="section-divide">
         <section class="my-info-container">
             <table style="margin:0 auto; width:100%;">
-                <tr>
-                <!-- <td class="cate-td">
-                    <label for="email">이메일</label><br>
-                    <small>(아이디)</small>
-
-                </td>
-                <td colspan="2" >
-                    <v-text-field class="email-id" type="text" v-model="email" /> @ <v-text-field class="email-domain" type="text"  />
-                </td>
-                </tr>
+                
                 <tr>
                 <td class="cate-td">
                     <label for="password">비밀번호</label>
@@ -77,24 +68,24 @@ export default {
         return{
         img:'',
         user_idx:'',
-        phone:[],
+        phone:'',
         name:'',
         email:'',
         file:'',
         pwd:''
         }
     },
-    created() {
-            let headers = {headers: {
+     created() {
+             let headers = {headers: {
                              authorization: localStorage.token,
                              }}
            
-    axios.get('http://13.209.220.1:3000/mypage/account_setting/account/'+localStorage.user_idx,headers)
+    axios.get('http://13.209.220.1:3000/mypage/account_setting/account/',headers)
         .then(response => {
           if (response.data.status === true) {
             console.log(response);
             this.name = response.data.result.user_name;
-            this.phone[0]=response.data.result.phone_number;
+            this.phone=response.data.result.phone_number;
             this.img = response.data.result.image_profile;
             this.email = response.data.result.email;
             
@@ -108,17 +99,11 @@ export default {
           console.log(e);
           alert('아이디,비밀번호를 확인해주세요')
         })
-              },
+        },
+        computed:{
+        
+        },
 methods: {
-            onUploadBoard (){
-                const data = new FormData()
-                data.append('user_idx', localStorage.user_idx)
-                data.append('board_title', this.title)
-                data.append('board_content', this.description)
-                data.append('photo', this.file)
-                
-                this.$store.dispatch('writeBoard', data)
-              },
               onFileChange (event) {
                   if(event.target.files[0]['type'].split('/')[0] === 'image') {
                     this.file = event.target.files[0]
@@ -134,7 +119,7 @@ methods: {
                   }
                   fileReader.readAsDataURL(file)
               },
-              updateUserInfo(){
+    updateUserInfo(){       
                           let headers = {headers: {
                              authorization: localStorage.token,
                              }}
@@ -154,6 +139,8 @@ methods: {
     axios.post('http://13.209.220.1:3000/mypage/account_setting/update_user',data,headers)
         .then(response => {
                    console.log(response);
+                   this.name = response.data.result.user_name
+                   this.phone_number = response.data.result.phone_number
      
      if (response.data.status === true) {
             console.log(response);
@@ -166,23 +153,9 @@ methods: {
           console.log(e);
           alert('아이디,비밀번호를 확인해주세요')
         })
-              },
-              computed: {
-    ...mapGetters([
-      'userProfile'
-    ])
-  },
-  methods: {
-    init() {
-      this.email = this.userProfile.email;
-      this.name = this.userProfile.userName;
-      this.phone = this.userProfile.phoneNumber;
-    }
-  },
-  created() {
-    this.init();
-  }
-        }
+    },
+}
+}
 </script>
 
 <style lang="scss">

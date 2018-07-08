@@ -9,7 +9,7 @@
                     <label for="catName" style="color:#4c4e51">고양이 이름</label><br>
                 </td>
                 <td colspan="2">
-                    <v-text-field class="catName" type="text" style="width:14vw"></v-text-field>
+                    <v-text-field class="catName" type="text" style="width:14vw" v-model="name"></v-text-field>
                 </td>
                 </tr>
                 <tr>
@@ -18,10 +18,9 @@
                 </td>
                 <td colspan="2">
                     <div class="cat-size" >
-                        <input id="small" class="catSize" type="radio" name="accessible-radio" checked="checked" v-model="size" value="small"/> 조금 마른
-                    </div>
-                    <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="size"  value="middle"/> 보통
-                    <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="size" value="large" /> 과체중
+                        <input id="small" class="catSize" type="radio" name="accessible-radio" checked="checked" v-model="size" value=1/> 조금 마른
+                    <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="size"  value=2/> 보통
+                    <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="size" value=3 /> 과체중
                 </td>
                 </tr>
                 <tr>
@@ -29,7 +28,7 @@
                     <label for="bdaytime" style="color:#4c4e51">생일</label>
                 </td>
                 <td colspan="2">
-                    <input type="date" name="bdaytime" v-model="birth">
+                    <input type="date" name="bdaytime" v-model="birthday">
                 </td>
                 </tr>
                 <tr>
@@ -41,7 +40,7 @@
                 solo
                 name="input-7-4"
                 label="Solo textarea"
-                v-model="etc"
+                v-model="caution"
                 ></v-textarea>
                 </td>
                 </tr>
@@ -54,8 +53,65 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+    data(){
+        return{
+            name:'',
+            size:'',
+            birthday:'',
+            caution:''
+        }
+    },
+    created() {
+              let headers = {headers: {
+                             authorization: localStorage.token,
+                             }}
+    axios.get('http://13.209.220.1:3000/user/cat/'+localStorage.cat_idx,headers)
+        .then(response => {
+          if (response.data.status === true) {
+            console.log(response);
+            this.name = response.data.result.name;
+            this.size = 1;
+            this.birthday = '2018-05-07';
+            this.caution = response.data.result.caution;
 
+            
+          } else {
+            alert('아이디,비밀번호를 ')
+            
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          alert('아이디,비밀번호를 확인해주세요')
+        })
+    },methods:{
+        updateCat(){
+                     let headers = {headers: {
+                             authorization: localStorage.token,
+                             }}
+    axios.get('http://13.209.220.1:3000/user/cat/'+localStorage.cat_idx,headers)
+        .then(response => {
+          if (response.data.status === true) {
+            console.log(response);
+            this.name = response.data.result.name;
+            this.size = response.data.result.size;
+            this.birthday = response.data.result.birthday;
+            this.caution = response.data.result.caution;
+            
+          } else {
+            alert('아이디,비밀번호를 ')
+            
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          alert('아이디,비밀번호를 확인해주세요')
+        })
+
+        }
+    }
 }
 </script>
 

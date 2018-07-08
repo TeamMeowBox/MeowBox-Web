@@ -55,11 +55,7 @@
             <label for="phone" >휴대전화<span class="star">*</span></label>
           </td>
           <td colspan="2" >
-            <v-text-field class="phone1" type="number" ></v-text-field>
-            <span>-</span>
-            <v-text-field class="phone2" type="number" ></v-text-field>
-            <span>-</span>
-            <v-text-field class="phone3" type="number" ></v-text-field>
+            <v-text-field class="name" type="number" v-model="info.phone_number"></v-text-field>
           </td>
         </tr>
       </table>

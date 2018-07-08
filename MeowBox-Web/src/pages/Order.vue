@@ -165,11 +165,11 @@
                         </tr>
                         <tr>
                             <td>휴대전화</td>
-                            <td><v-text-field class="phone1" type="text" v-model="phone[0]"/> - <v-text-field class="phone2" type="text" v-model="phone[1]"/> - <v-text-field class="phone3" type="text" v-model="phone[2]"/></td>
+                            <td><v-text-field class="order-name" type="text" v-model="info.phone_number"/></td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td><v-text-field class="email-id" type="text" v-model="email[0]"/> @<v-text-field class="email-domain" type="text" v-model="email[1]"/></td>
+                            <td><v-text-field class="order-name" type="text" v-model="info.email"/></td>
                         </tr>
                         <div class="layer" id="layer">
                         <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
@@ -198,11 +198,11 @@
                         </tr>
                         <tr>
                             <td>휴대전화</td>
-                            <td><v-text-field class="phone1" type="text" v-model="newPhone[0]"/> - <v-text-field class="phone2" type="text" v-model="newPhone[1]"/> - <v-text-field class="phone3" type="text" v-model="newPhone[2]"/></td>
+                            <td><v-text-field class="order-name" type="text" v-model="newInfo.phone_number"/></td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td><v-text-field class="email-id" type="text" v-model="newEmail[0]"/> @<v-text-field class="email-domain" type="text" v-model="newEmail[1]"/></td>
+                            <td><v-text-field class="order-name" type="text" v-model="newInfo.email"/></td>
                         </tr>
                         <div class="layer" id="layer">
                         <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" @click="closeDaumPostcode()" alt="닫기 버튼">
@@ -327,10 +327,6 @@ export default {
                 three:''
             },
             orderFlag:0,
-            phone:[],
-            email:[],
-            newPhone:[],
-            newEmail:[],
             categorys:[
                 {cate_id : 0, cateName : '이름', numberCircle:'❶ '},
                 {cate_id : 1, cateName : '기타', numberCircle:'❷ '},
@@ -443,23 +439,14 @@ export default {
            let headers = {headers: {
                              authorization: localStorage.token,
                              }}
-           this.info.address += this.address.one;
-           this.info.address += this.address.two;
+           this.info.address += this.address.one+'@';
+           this.info.address += this.address.two+'@';
            this.info.address += this.address.three;
 
            if(this.date === 1){
                this.date = this.checkedNames
            }
-           
-            for(let i = 0 ; i<this.phone.length ; i++){
-                this.info.phone_number += this.phone[i]
-            }
-            for(let i =0 ; i<this.email.length ; i++){
-                this.info.email += this.email[i]
-                if(i==0){
-                    this.info.email+='@'
-                }
-            }
+        
             this.info.user_idx = localStorage.getItem('user_idx')
             this.info.product = this.date;
             axios.post('http://13.209.220.1:3000/order/order_page',this.info,headers)
@@ -487,17 +474,7 @@ export default {
            if(this.date === 1){
                this.date = this.checkedNames
            }
-           
-            for(let i = 0 ; i<this.newPhone.length ; i++){
-                this.newInfo.phone_number += this.newPhone[i]
-            }
 
-            for(let i =0 ; i<this.newEmail.length ; i++){
-                this.newInfo.email += this.newEmail[i]
-                if(i==0){
-                    this.newInfo.email+='@'
-                }
-            }
             this.newInfo.user_idx = localStorage.getItem('user_idx')
             this.newInfo.product = this.date;
             axios.post('http://13.209.220.1:3000/order/order_page',this.newInfo,headers)
@@ -554,7 +531,27 @@ export default {
         getBirth: function(){
             return this.birth;
         }
-    }
+    },created() {
+        let headers = {headers: {
+                             authorization: localStorage.token,
+                             }}
+           
+            axios.post('http://13.209.220.1:3000/order/order_page/'+localStorage.user_idx,headers)
+            .then(response => {
+              console.log(response.data);
+                  if(response.data.status === true){
+                      console.log(response.data.result);
+                      
+                      
+                  }else{
+                    alert("등록정보를 다시 확인해주세요")
+                  }
+                 })
+             .catch(e => {
+              console.log(e);    
+            })
+        
+    },
 }
 </script>
 

@@ -9,7 +9,9 @@
                     <label for="catName" style="color:#4c4e51">고양이 이름</label><br>
                 </td>
                 <td colspan="2">
+
                     <v-text-field class="catName" type="text" style="width:14vw" v-model="catInfo.name"></v-text-field>
+
                 </td>
                 </tr>
                 <tr>
@@ -22,15 +24,16 @@
                     </div>
                     <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="2"/> 보통
                     <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="3" /> 과체중
-                </td>
+>               </td>
                 </tr>
                 <tr>
                 <td style="width:10rem; text-align:left">
                     <label for="bdaytime" style="color:#4c4e51">생일</label>
                 </td>
                 <td colspan="2">
+<
                     <input type="date" name="bdaytime" v-model="catInfo.birthday">
-                </td>
+>               </td>
                 </tr>
                 <tr>
                 <td style="width:10rem; text-align:left">
@@ -41,6 +44,7 @@
                 solo
                 name="input-7-4"
                 label="Solo textarea"
+
                 v-model="catInfo.caution"></v-textarea>
                 </td>
                 </tr>
@@ -94,7 +98,28 @@ export default {
     }
   },
   created() {
-    this.init();
+              let headers = {headers: {
+                             authorization: localStorage.token,
+                             }}
+    axios.get('http://13.209.220.1:3000/user/cat/'+localStorage.cat_idx,headers)
+        .then(response => {
+          if (response.data.status === true) {
+            console.log(response);
+            this.name = response.data.result.name;
+            this.size = 1;
+            this.birthday = '2018-05-07';
+            this.caution = response.data.result.caution;
+
+            
+          } else {
+            alert('아이디,비밀번호를 ')
+            
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          alert('아이디,비밀번호를 확인해주세요')
+        })
   }
 }
 </script>

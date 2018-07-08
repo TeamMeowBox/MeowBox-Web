@@ -13,10 +13,11 @@
                 <!-- <td class="cate-td">
                     <label for="email">이메일</label><br>
                     <small>(아이디)</small>
-                </td> -->
-                <!-- <td colspan="2" >
-                    <v-text-field class="email-id" type="text" v-model="user_idx"/> @ <v-text-field class="email-domain" type="text"  />
-                </td> -->
+
+                </td>
+                <td colspan="2" >
+                    <v-text-field class="email-id" type="text" v-model="email" /> @ <v-text-field class="email-domain" type="text"  />
+                </td>
                 </tr>
                 <tr>
                 <td class="cate-td">
@@ -57,6 +58,7 @@
                 </td>
                 <td colspan="2">
                     <v-text-field class="name" type="text" v-model="phone"/>
+
                 </td>
                 </tr>
             </table>
@@ -69,6 +71,7 @@
 
 <script>
 import axios from 'axios'
+import {mapGetters} from 'vuex';
 export default {
     data(){
         return{
@@ -163,9 +166,23 @@ methods: {
           console.log(e);
           alert('아이디,비밀번호를 확인해주세요')
         })
-              }
+              },
+              computed: {
+    ...mapGetters([
+      'userProfile'
+    ])
+  },
+  methods: {
+    init() {
+      this.email = this.userProfile.email;
+      this.name = this.userProfile.userName;
+      this.phone = this.userProfile.phoneNumber;
+    }
+  },
+  created() {
+    this.init();
+  }
         }
-}
 </script>
 
 <style lang="scss">

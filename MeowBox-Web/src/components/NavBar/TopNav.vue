@@ -41,6 +41,7 @@ export default {
     clickLogOut() {
       localStorage.removeItem('token');
       localStorage.removeItem('user_idx');
+      localStorage.removeItem('cat_idx');
       this.$store.commit(REMOVE_TOKEN);
       alert("로그아웃")
       this.$router.replace('/');

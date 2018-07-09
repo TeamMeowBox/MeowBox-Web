@@ -77,11 +77,12 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'userProfile'
+      'userProfile',
+      'catProfile'
     ]),
     checkCat() {
       // 등록된 고양이가 없을 경우
-      if (this.userProfile.cats_idx === "null" || this.userProfile.cats_idx === "-1" ) {
+      if (this.catProfile.idx === null || this.catProfile.idx === -1 ) {
         return true;
       }
       return false;
@@ -89,7 +90,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'registCatAction'
+      'registCatAction',
+      'fetchCatAction'
     ]),
     // async clickEdit() {
     //   try {
@@ -156,13 +158,28 @@ export default {
     //       alert('아이디,비밀번호를 확인해주세요')
     //     })
     // }
+    async getCatData() {
+      const result = await this.fetchCatAction();
+
+      if (result.cat_idx === -1) { // 등록된 고양이가 없는경우
+        alert('고양이없다')
+      } else {
+
+        this.catInfo.name = this.catProfile.name;
+        this.catInfo.size = this.catProfile.size;
+        this.catInfo.birthday = this.catProfile.birthday;
+        this.catInfo.caution = this.catProfile.caution;
+      }
+    }
   },
   async created() {
 
-    if (this.userProfile.cats_idx === "null" || this.userProfile.cats_idx === "-1" ) {
-      alert('고양이 없다 등록해라');
-    }
-    this.init();
+    // if (this.userProfile.cat_idx === null || this.userProfile.cats_idx === -1 ) {
+    //   alert('고양이 없다 등록해라');
+    // }
+
+    await this.getCatData();
+    // this.init();
     // await this.getCatData();
   }
 }

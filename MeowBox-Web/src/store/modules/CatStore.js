@@ -1,15 +1,17 @@
 import axios from 'axios'
 
-import {SET_CAT, SET_DEFAULT_CAT, HEADER} from '../constants/constants'
+import {SET_CAT, SET_DEFAULT_CAT, HEADER, GET_CAT} from '../constants/constants'
 
 const BASE_URL = 'http://13.209.220.1:3000';
 
 const state = {
-  cat_idx: localStorage.getItem('cat_idx') || null
+  cat_idx: localStorage.getItem('cat_idx') || null,
+  catProfile: {},
 }
 
 const getters = {
-  cat_idx: state => state.cat_idx
+  cat_idx: state => state.cat_idx,
+  catProfile: state => state.catProfile
 }
 
 const mutations = {
@@ -19,6 +21,13 @@ const mutations = {
   [SET_DEFAULT_CAT](state) {
     state.cat_idx = -1
   },
+  [GET_CAT](state, payload) {
+    state.catProfile.name = payload.name;
+    state.catProfile.idx = payload.cat_idx;
+    state.catProfile.birthday = payload.birthday;
+    state.catProfile.state = payload.state;
+    state.catProfile.caution = payload.caution;
+  }
 }
 
 const actions = {
@@ -40,6 +49,18 @@ const actions = {
           console.log('error in action regi', e);
           resolve(false)
         })
+    })
+  },
+  fetchCatAction(context) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/user/cat/${localStorage.getItem('cat_idx')}`, HEADER)
+        .then((res) => {
+          if (res.data.status) {
+            console.log('res', res);
+            context.commit(GET_CAT, res.data.result);
+            resolve(res.data.result);
+          }
+        });
     })
   },
   updateCatAction(context, info) {

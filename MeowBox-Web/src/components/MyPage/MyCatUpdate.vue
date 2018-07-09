@@ -52,14 +52,15 @@
         </tr>
       </table>
       <aside>
-        <v-btn style="width:20vw; background:#e68789; color:white" @click="clickEdit">수정하기</v-btn>
+        <v-btn v-if="!checkCat" style="width:20vw; background:#e68789; color:white" @click="clickEdit">수정하기</v-btn>
+        <v-btn v-else style="width:20vw; background:#e68789; color:white" @click="clickEdit">등록하기</v-btn>
       </aside>
     </section>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 import axios from 'axios';
 
 export default {
@@ -77,28 +78,52 @@ export default {
   computed: {
     ...mapGetters([
       'userProfile'
-    ])
+    ]),
+    checkCat() {
+      // 등록된 고양이가 없을 경우
+      if (this.userProfile.cats_idx === "null" || this.userProfile.cats_idx === "-1" ) {
+        return true;
+      }
+      return false;
+    }
   },
   methods: {
+    ...mapActions([
+      'registCatAction'
+    ]),
+    // async clickEdit() {
+    //   try {
+    //     var result
+    //     if (localStorage.cat_idx == -1) {
+    //       result = await axios.post('http://13.209.220.1:3000/user/cat_signup', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
+    //       localStorage.cat_idx = result.data.result.cat_idx
+    //
+    //     } else {
+    //       result = await axios.post('http://13.209.220.1:3000/mypage/account_setting/update_cat', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
+    //       console.log('-------------');
+    //
+    //     }
+    //     console.log(result);
+    //
+    //     if (result.data.status === true) {
+    //       alert('success');
+    //     }
+    //   } catch (e) {
+    //     alert('failed');
+    //   }
+    // },
     async clickEdit() {
       try {
-        var result
-        if (localStorage.cat_idx == -1) {
-          result = await axios.post('http://13.209.220.1:3000/user/cat_signup', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
-          localStorage.cat_idx = result.data.result.cat_idx
-
+        let result;
+        if (this.checkCat) {
+          result = await this.registCatAction(this.catInfo);
+          alert(result);
         } else {
-          result = await axios.post('http://13.209.220.1:3000/mypage/account_setting/update_cat', this.catInfo, {headers: {authorization: localStorage.getItem('token')}});
-          console.log('-------------');
-
-        }
-        console.log(result);
-
-        if (result.data.status === true) {
-          alert('success');
+          result = await this.updateCatAction(this.catInfo);
+          alert(result);
         }
       } catch (e) {
-        alert('failed');
+        alert(e);
       }
     },
     init() {
@@ -107,33 +132,38 @@ export default {
       this.catInfo.birthday = this.userProfile.birthday;
       this.catInfo.caution = this.userProfile.caution;
     },
-    getCatData() {
-      let headers = {
-        headers: {
-          authorization: localStorage.token,
-        }
-      };
-      axios.get('http://13.209.220.1:3000/user/cat/' + localStorage.cat_idx, headers)
-        .then(response => {
-          if (response.data.status === true) {
-            console.log(response);
-            this.catInfo.name = response.data.result.name;
-            this.catInfo.size = response.data.result.size;
-            this.catInfo.birthday = response.data.result.birthday;
-            this.catInfo.caution = response.data.result.caution;
-          } else {
-            alert('아이디,비밀번호를 ')
-
-          }
-        })
-        .catch(e => {
-          console.log(e);
-          alert('아이디,비밀번호를 확인해주세요')
-        })
-    }
+    // getCatData() {
+    //   let headers = {
+    //     headers: {
+    //       authorization: localStorage.token,
+    //     }
+    //   };
+    //   axios.get('http://13.209.220.1:3000/user/cat/' + localStorage.cat_idx, headers)
+    //     .then(response => {
+    //       if (response.data.status === true) {
+    //         // console.log(response);
+    //         this.catInfo.name = response.data.result.name;
+    //         this.catInfo.size = response.data.result.size;
+    //         this.catInfo.birthday = response.data.result.birthday;
+    //         this.catInfo.caution = response.data.result.caution;
+    //       } else {
+    //         alert('아이디,비밀번호를 ')
+    //
+    //       }
+    //     })
+    //     .catch(e => {
+    //       console.log(e);
+    //       alert('아이디,비밀번호를 확인해주세요')
+    //     })
+    // }
   },
   async created() {
-    await this.getCatData();
+
+    if (this.userProfile.cats_idx === "null" || this.userProfile.cats_idx === "-1" ) {
+      alert('고양이 없다 등록해라');
+    }
+    this.init();
+    // await this.getCatData();
   }
 }
 </script>

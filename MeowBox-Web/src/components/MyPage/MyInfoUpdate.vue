@@ -151,7 +151,7 @@ export default {
           }
         })
         .catch(e => {
-          console.log(e);
+          console.log('myinfoupdate', e);
           alert('아이디,비밀번호를 확인해주세요')
         })
     },

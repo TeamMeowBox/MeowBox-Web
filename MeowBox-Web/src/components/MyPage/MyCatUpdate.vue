@@ -82,10 +82,7 @@ export default {
     ]),
     checkCat() {
       // 등록된 고양이가 없을 경우
-      if (this.catProfile.idx === null || this.catProfile.idx === -1 ) {
-        return true;
-      }
-      return false;
+      return this.catProfile.idx === null || this.catProfile.idx === -1
     }
   },
   methods: {
@@ -117,7 +114,7 @@ export default {
     async clickEdit() {
       try {
         let result;
-        if (this.checkCat) {
+        if (this.checkCat) { // 고양이 없는경우
           result = await this.registCatAction(this.catInfo);
           alert(result);
         } else {

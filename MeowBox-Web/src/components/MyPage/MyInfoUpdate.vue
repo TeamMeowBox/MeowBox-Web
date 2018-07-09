@@ -139,14 +139,12 @@ methods: {
     axios.post('http://13.209.220.1:3000/mypage/account_setting/update_user',data,headers)
         .then(response => {
                    console.log(response);
-                   this.name = response.data.result.user_name
-                   this.phone_number = response.data.result.phone_number
-     
      if (response.data.status === true) {
             console.log(response);
+                   this.name = response.data.result.user_name
+                   this.phone_number = response.data.result.phone_number
           } else {
-            alert('아이디,비밀번호를 ')
-            
+            alert('아이디,비밀번호를 ') 
           }
         })
         .catch(e => {

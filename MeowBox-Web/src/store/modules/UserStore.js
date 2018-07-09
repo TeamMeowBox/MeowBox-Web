@@ -53,8 +53,9 @@ const actions = {
         })
     })
   },
-  fetchUserProfile (context, userIdx) {
+  fetchUserProfile (context) {
     return new Promise(() => {
+      console.log('call fetchuserprofile');
       axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {
@@ -62,8 +63,8 @@ const actions = {
           }
         })
     })
-  }
-}
+  },
+};
 const mutations = {
   [SET_TOKEN] (state, payload) {
     state.token = payload.token
@@ -73,10 +74,15 @@ const mutations = {
     state.userProfile.userIdx = null
   },
   [FETCH_USER_PROFILE] (state, payload) {
-    state.userProfile.userName = payload.user_name
-    state.userProfile.email = payload.email
-    state.userProfile.phoneNumber = payload.phone_number
-    state.userProfile.imageProfile = payload.image_profile
+    state.userProfile.userName = payload.user_name;
+    state.userProfile.email = payload.email;
+    state.userProfile.phoneNumber = payload.phone_number;
+    state.userProfile.imageProfile = payload.image_profile;
+    state.userProfile.cat_idx = payload.cat_idx;
+    state.userProfile.caution = payload.caution;
+    state.userProfile.size = payload.size;
+    state.userProfile.catName = payload.cat_name;
+    state.userProfile.birthday = payload.birthday;
   },
   [UP_FLAG] (state) {
     state.flag += 1

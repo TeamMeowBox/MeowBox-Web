@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG} from '../constants/constants'
+import {SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
 
 const state = {
@@ -64,6 +64,22 @@ const actions = {
         })
     })
   },
+  editUserProfile(context, data) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
+        .then(res => {
+          if (res.data.status) {
+            resolve(res.data.result);
+          } else {
+            resolve(false);
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          reject();
+        })
+    })
+  }
 };
 const mutations = {
   [SET_TOKEN] (state, payload) {

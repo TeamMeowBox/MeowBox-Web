@@ -62,7 +62,7 @@
 
 <script>
 import axios from 'axios'
-import {mapGetters} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   data() {
@@ -105,6 +105,9 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions([
+      'editUserProfile'
+    ]),
     onFileChange(event) {
       if (event.target.files[0]['type'].split('/')[0] === 'image') {
         this.file = event.target.files[0]
@@ -120,15 +123,15 @@ export default {
       }
       fileReader.readAsDataURL(file)
     },
-    updateUserInfo() {
+    async updateUserInfo() {
+
+
       let headers = {
         headers: {
           authorization: localStorage.token,
         }
       }
-
-
-      let data = new FormData()
+      let data = new FormData();
 
       data.append('user_name', this.name)
       data.append('user_phone', this.phone)
@@ -137,7 +140,22 @@ export default {
       }
       data.append('pwd', this.pwd)
 
-      console.log(data.get('image_profile'));
+      // console.log(data.get('image_profile'));
+
+
+      // try {
+      //   const result = await this.editUserProfile(data);
+      //
+      //   if (result) {
+      //     this.name = result.user_name;
+      //     this.phone_number = result.phone_number
+      //   } else {
+      //     alert('아이디,비밀번호를 ');
+      //   }
+      // } catch (e) {
+      //   alert(e);
+      // }
+
 
       axios.post('http://13.209.220.1:3000/mypage/account_setting/update_user', data, headers)
         .then(response => {
@@ -154,6 +172,8 @@ export default {
           console.log('myinfoupdate', e);
           alert('아이디,비밀번호를 확인해주세요')
         })
+
+
     },
   }
 }

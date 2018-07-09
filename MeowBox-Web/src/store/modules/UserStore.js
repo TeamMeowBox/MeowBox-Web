@@ -53,7 +53,7 @@ const actions = {
         })
     })
   },
-  fetchUserProfile (context, userIdx) {
+  fetchUserProfile (context) {
     return new Promise(() => {
       axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
@@ -62,8 +62,8 @@ const actions = {
           }
         })
     })
-  }
-}
+  },
+};
 const mutations = {
   [SET_TOKEN] (state, payload) {
     state.token = payload.token
@@ -77,6 +77,11 @@ const mutations = {
     state.userProfile.email = payload.email
     state.userProfile.phoneNumber = payload.phone_number
     state.userProfile.imageProfile = payload.image_profile
+    state.userProfile.cat_idx = payload.cat_idx
+    state.userProfile.caution = payload.caution
+    state.userProfile.size = payload.size
+    state.userProfile.catName = payload.cat_name
+
   },
   [UP_FLAG] (state) {
     state.flag += 1

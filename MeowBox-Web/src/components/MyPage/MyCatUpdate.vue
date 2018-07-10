@@ -46,7 +46,7 @@
             <v-textarea
               solo
               name="input-7-4"
-              label="Solo textarea"
+              label="알레르기가 있는 재료나 좋아하는 재료에 대해 적어주세요."
               v-model="catInfo.caution"></v-textarea>
           </td>
         </tr>

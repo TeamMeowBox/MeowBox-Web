@@ -15,6 +15,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {mapActions} from 'vuex';
+
 export default {
   name: 'BestItems',
   data () {
@@ -83,8 +86,23 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      bestImage7: {},
+      birthday: {}
+
     }
+  },
+  methods: {
+    ...mapActions([
+      'fetchReviewAction'
+    ]),
+    async getReview() {
+      const result = await this.fetchReviewAction();
+      console.log('rrrre', result);
+    }
+  },
+  created() {
+    this.getReview();
   }
 }
 </script>

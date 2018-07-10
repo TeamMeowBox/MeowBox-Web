@@ -104,11 +104,9 @@ export default {
     },
     async getCatData() {
       const result = await this.fetchCatAction();
-
       if (result.cat_idx === -1) { // 등록된 고양이가 없는경우
         alert('고양이없다')
       } else {
-
         this.catInfo.name = this.catProfile.name;
         this.catInfo.size = this.catProfile.size;
         this.catInfo.birthday = this.catProfile.birthday;

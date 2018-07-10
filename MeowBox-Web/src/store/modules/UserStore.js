@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
 
@@ -35,9 +36,9 @@ const actions = {
       axios.post(`${BASE_URL}/user/signin`, info)
         .then(res => {
           if (res.data.status) {
-            localStorage.token = res.data.result.token
-            localStorage.cat_idx = res.data.result.cat_idx
-            context.commit(SET_TOKEN, res.data.result)
+            localStorage.token = res.data.result.token;
+            localStorage.cat_idx = res.data.result.cat_idx;
+            context.commit(SET_TOKEN, res.data.result);
 
             resolve(true)
           }
@@ -53,29 +54,29 @@ const actions = {
       axios.post(`${BASE_URL}/user/signup`, info)
         .then(res => {
           if (res.data.status) {
-            localStorage.token = res.data.result.token
-            console.log(res.data)
+            localStorage.token = res.data.result.token;
+            console.log(res.data);
 
-            localStorage.cat_idx = -1
+            localStorage.cat_idx = -1;
 
-            context.commit(SET_TOKEN, res.data.result)
+            context.commit(SET_TOKEN, res.data.result);
             resolve(true)
           }
         })
         .catch(e => { // 500 error
-          console.log(e)
+          console.log(e);
           resolve(false)
         })
     })
   },
   fetchUserProfile (context) {
-    return new Promise(() => {
-      console.log('call fetchuserprofile')
-      axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
+    return new Promise((resolve) => {
+      console.log('call fetchuserprofile');
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
         .then((res) => {
           if (res.data.status) {
-            context.commit(FETCH_USER_PROFILE, res.data.result)
-            resolve(res.data.result)
+            context.commit(FETCH_USER_PROFILE, res.data.result);
+            resolve(res.data.result);
           }
         })
     })
@@ -86,7 +87,7 @@ const actions = {
         .then(res => {
           console.log(res)
           if (res.data.status) {
-            resolve(true)
+            resolve(true);
           } else {
             resolve(false)
           }
@@ -109,6 +110,7 @@ const actions = {
     })
   }
 }
+
 const mutations = {
   [SET_TOKEN] (state, payload) {
     state.token = payload.token

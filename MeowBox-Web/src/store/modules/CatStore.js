@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-import {SET_CAT, SET_DEFAULT_CAT, GET_CAT} from '../constants/constants'
+
+import {SET_CAT, SET_DEFAULT_CAT, HEADER, GET_CAT} from '../constants/constants'
 
 const BASE_URL = 'http://13.209.220.1:3000';
 

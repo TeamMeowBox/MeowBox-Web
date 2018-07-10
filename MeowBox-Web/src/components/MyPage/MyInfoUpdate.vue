@@ -49,19 +49,27 @@
                     <td class="cate-td">
                         <label for="profile-img">프로필 이미지</label>
                     </td>
-                    <td colspan="2" style="text-align:center">
+                    <td colspan="2" style="text-align:left;">
                         <div class="img-upload-cont">
-                            <div class="dropbox" v-if="!img">
-                            <input
-                                type="file"
-                                class="input-image"
-                                :multiple="false"
-                                @change="onFileChange"
-                                accept="image/*">
-                            </div>
-                            <v-btn class="updateProfileBtn">이미지 업로드</v-btn>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="dropbox" v-if="!img">
+                                            <input
+                                                type="file"
+                                                class="input-image"
+                                                :multiple="false"
+                                                @change="onFileChange"
+                                                accept="image/*">
+                                        </div>
+                                        <img class="my_image" :src="img" v-if="img" alt="">
+                                    </td>
+                                    <td>
+                                        <v-btn class="updateProfileBtn">이미지 업로드</v-btn>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                        <img class="my_image" :src="img" v-if="img" alt="">
                     </td>
                 </tr>
             </table> 
@@ -213,7 +221,7 @@ export default {
     height: 20vh;
 }
 .my_image{
-     width: 70%;
-    height: 200px;
-  }
+    width:10rem;
+    height:10rem;
+    }
 </style>

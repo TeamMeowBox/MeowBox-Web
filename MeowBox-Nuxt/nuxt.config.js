@@ -37,7 +37,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    '@/plugins/vuex',
+    {src: '~/plugins/localStorage.js', ssr: false}
   ],
 
   /*
@@ -62,7 +64,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
       if (ctx.isServer) {
         config.externals = [
           nodeExternals({

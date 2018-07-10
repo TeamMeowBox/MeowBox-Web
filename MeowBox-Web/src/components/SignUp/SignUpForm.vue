@@ -44,7 +44,7 @@
             <label for="name" >이름<span class="star">*</span></label>
           </td>
           <td>
-            <v-text-field class="name" :rules="nameRules"></v-text-field>
+            <v-text-field class="name" :rules="nameRules" v-model="info.name"></v-text-field>
           </td>
           <td >
             <small>영문 소문자/영문 소문자 + 숫자, 4-16자</small>
@@ -55,11 +55,7 @@
             <label for="phone" >휴대전화<span class="star">*</span></label>
           </td>
           <td colspan="2" >
-            <v-text-field class="phone1" type="number" ></v-text-field>
-            <span>-</span>
-            <v-text-field class="phone2" type="number" ></v-text-field>
-            <span>-</span>
-            <v-text-field class="phone3" type="number" ></v-text-field>
+            <v-text-field class="name" type="number" v-model="info.phone_number"></v-text-field>
           </td>
         </tr>
       </table>
@@ -71,6 +67,8 @@
 </template>
 
 <script>
+
+import {SET_DEFAULT_CAT} from '../../store/constants/constants';
 import axios from 'axios'
 export default {
   name: 'SignUpForm',
@@ -94,21 +92,11 @@ export default {
     }
   },
   methods: {
-    clickSignUp () {
-          axios.post('http://13.209.220.1:3000/user/signup',this.info)
-            .then(response => {
-              console.log(response.data);
-                  if(response.data.status === true){
-                    localStorage.token = response.data.result.token
-                    localStorage.user_idx = response.data.result.user_idx
-                    this.$router.push("/");
-                  }else{
-                    alert("아이디,비밀번호를 확인해주세요")
-                  }
-                 })
-             .catch(e => {
-              console.log(e);    
-            })
+   async clickSignUp () {
+     
+      const result = await this.$store.dispatch('signUpAction', this.info);
+      this.$store.commit(SET_DEFAULT_CAT)
+      return result ? this.$router.push('/') : alert('check id or pw');
     }
   }
 }

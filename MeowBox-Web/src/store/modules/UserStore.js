@@ -1,18 +1,17 @@
 import axios from 'axios'
-import {SET_TOKEN, REMOVE_TOKEN} from '../constants/constants'
+import {SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
-
-
-
 
 const state = {
   token: localStorage.getItem('token') || null,
-  userInfo: {}
+  userProfile: {},
+  flag: 0
 }
 
 const getters = {
   token: state => state.token,
-  userInfo: state => state.userInfo
+  userProfile: state => state.userProfile,
+  getFlag: state => state.flag
 }
 
 const actions = {
@@ -20,9 +19,8 @@ const actions = {
     return new Promise(resolve => {
       axios.post(`${BASE_URL}/user/signin`, info)
         .then(res => {
-          if (res.data.status === true) {
+          if (res.data.status) {
             localStorage.token = res.data.result.token
-            localStorage.user_idx = res.data.result.user_idx
             localStorage.cat_idx = res.data.result.cat_idx
             context.commit(SET_TOKEN, res.data.result)
 
@@ -34,20 +32,84 @@ const actions = {
           resolve(false)
         })
     })
-  }
-}
+  },
+  signUpAction (context, info) {
+    return new Promise(resolve => {
+      axios.post(`${BASE_URL}/user/signup`, info)
+        .then(res => {
+          if (res.data.status) {
+            localStorage.token = res.data.result.token
+            console.log(res.data)
 
+            localStorage.cat_idx = -1
+
+            context.commit(SET_TOKEN, res.data.result)
+            resolve(true)
+          }
+        })
+        .catch(e => { // 500 error
+          console.log(e)
+          resolve(false)
+        })
+    })
+  },
+  fetchUserProfile (context) {
+    return new Promise((resolve) => {
+      console.log('call fetchuserprofile');
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
+        .then((res) => {
+          if (res.data.status) {
+            context.commit(FETCH_USER_PROFILE, res.data.result)
+            resolve(res.data.result);
+          }
+        })
+    })
+  },
+  editUserProfile(context, data) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
+        .then(res => {
+          console.log(res);
+          if (res.data.status) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        })
+        .catch(e => {
+          console.log(e);
+          reject();
+        })
+    })
+  }
+};
 const mutations = {
   [SET_TOKEN] (state, payload) {
     state.token = payload.token
-    state.userInfo.userIdx = payload.user_idx
   },
-
   [REMOVE_TOKEN] (state) {
     state.token = null
-    state.userInfo.userIdx = null
+    state.userProfile.userIdx = null
+  },
+  [FETCH_USER_PROFILE] (state, payload) {
+    state.userProfile.userName = payload.user_name;
+    state.userProfile.email = payload.email;
+    state.userProfile.phoneNumber = payload.phone_number;
+    state.userProfile.imageProfile = payload.image_profile;
+    state.userProfile.cat_idx = payload.cat_idx;
+    state.userProfile.caution = payload.caution;
+    state.userProfile.size = payload.size;
+    state.userProfile.catName = payload.cat_name;
+    state.userProfile.birthday = payload.birthday;
+  },
+  [UP_FLAG] (state) {
+    state.flag += 1
+  },
+  [SET_FLAG] (state) {
+    state.flag = 2
   }
 }
+
 export default {
   state,
   getters,

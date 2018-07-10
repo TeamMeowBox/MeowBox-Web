@@ -1,0 +1,81 @@
+import axios from 'axios'
+
+import {SET_CAT, SET_DEFAULT_CAT, HEADER, GET_CAT} from '../constants/constants'
+
+const BASE_URL = 'http://13.209.220.1:3000';
+
+const state = {
+  cat_idx: localStorage.getItem('cat_idx') || null,
+  catProfile: {},
+}
+
+const getters = {
+  cat_idx: state => state.cat_idx,
+  catProfile: state => state.catProfile
+}
+
+const mutations = {
+  [SET_CAT](state, payload) {
+    state.cat_idx = payload.cat_idx
+  },
+  [SET_DEFAULT_CAT](state) {
+    state.cat_idx = -1
+  },
+  [GET_CAT](state, payload) {
+    state.catProfile.name = payload.name;
+    state.catProfile.idx = payload.cat_idx;
+    state.catProfile.birthday = payload.birthday;
+    state.catProfile.state = payload.state;
+    state.catProfile.caution = payload.caution;
+  }
+}
+
+const actions = {
+  registCatAction(context, info) {
+    return new Promise(resolve => {
+      axios.post(`${BASE_URL}/user/cat_signup`, info, {headers: {authorization: localStorage.getItem('token')}})
+        .then(res => {
+          // console.log(res.data);
+
+          if (res.data.status) {
+            localStorage.cat_idx = res.data.result.cat_idx
+            // console.log(res.data.result);
+
+            context.commit(SET_CAT, res.data.result)
+            resolve(true)
+          }
+        })
+        .catch(e => { // 500 error
+          console.log('error in action regi', e);
+          resolve(false)
+        })
+    })
+  },
+  fetchCatAction(context) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/user/cat/${localStorage.getItem('cat_idx')}`, HEADER)
+        .then((res) => {
+          if (res.data.status) {
+            console.log('res', res);
+            context.commit(GET_CAT, res.data.result);
+            resolve(res.data.result);
+          }
+        });
+    })
+  },
+  updateCatAction(context, info) {
+    return new Promise((resolve) => {
+      axios.post(`${BASE_URL}/mypage/account_setting/update_cat`, info, HEADER)
+        .then(res => {
+          res.data.status ? resolve(true) : resolve(false)
+        })
+    })
+  }
+};
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

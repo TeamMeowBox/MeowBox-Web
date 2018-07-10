@@ -3,11 +3,13 @@
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
       <v-btn v-if="!isLogin" flat class="login_btn" @click="clickSignIn">
-        로그인/회원가입
+        로그인
       </v-btn>
+
       <v-btn v-if="isLogin" flat class="login_btn" @click="clickLogOut">
         로그아웃
       </v-btn>
+
       <v-btn flat v-for="item in userToolbarItems" :key="item.title" router :to="item.link">
         {{item.title}}
       </v-btn>
@@ -41,6 +43,7 @@ export default {
     clickLogOut() {
       localStorage.removeItem('token');
       localStorage.removeItem('user_idx');
+      localStorage.removeItem('cat_idx');
       this.$store.commit(REMOVE_TOKEN);
       alert("로그아웃")
       this.$router.replace('/');

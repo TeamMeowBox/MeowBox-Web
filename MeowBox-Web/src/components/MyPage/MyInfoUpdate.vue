@@ -69,31 +69,109 @@
                 <v-btn class="updateBtn" @click="updateUserInfo()">수정하기</v-btn>
             </aside>
         </section>
-    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {mapGetters} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
+
 export default {
-    data(){
-        return{
-        img:'',
-        user_idx:'',
-        phone:'',
-        name:'',
-        email:'',
-        file:'',
-        pwd:''
+  data() {
+    return {
+      img: '',
+      user_idx: '',
+      phone: '',
+      name: '',
+      email: '',
+      file: '',
+      pwd: ''
+    }
+  },
+  created() {
+    let headers = {
+      headers: {
+        authorization: localStorage.token,
+      }
+    }
+
+    axios.get('http://13.209.220.1:3000/mypage/account_setting/account/', headers)
+      .then(response => {
+        if (response.data.status === true) {
+          console.log(response);
+          this.name = response.data.result.user_name;
+          this.phone = response.data.result.phone_number;
+          this.img = response.data.result.image_profile;
+          this.email = response.data.result.email;
+
+
+        } else {
+          alert('아이디,비밀번호를 ')
+
         }
+      })
+      .catch(e => {
+        console.log(e);
+        alert('아이디,비밀번호를 확인해주세요')
+      })
+  },
+  computed: {},
+  methods: {
+    ...mapActions([
+      'editUserProfile'
+    ]),
+    onFileChange(event) {
+      if (event.target.files[0]['type'].split('/')[0] === 'image') {
+        this.file = event.target.files[0]
+
+        this.getImage(this.file);
+      }
     },
-     created() {
-             let headers = {headers: {
-                             authorization: localStorage.token,
-                             }}
-           
-    axios.get('http://13.209.220.1:3000/mypage/account_setting/account/',headers)
+    getImage(file) {
+      const fileReader = new FileReader()
+      fileReader.onload = () => {
+        this.img = fileReader.result
+
+      }
+      fileReader.readAsDataURL(file)
+    },
+    async updateUserInfo() {
+
+
+      let headers = {
+        headers: {
+          authorization: localStorage.token,
+        }
+      }
+      let data = new FormData();
+
+      data.append('user_name', this.name)
+      data.append('user_phone', this.phone)
+      if (this.file !== '') {
+        data.append('image_profile', this.file)
+      }
+      data.append('pwd', this.pwd)
+
+      // console.log(data.get('image_profile'));
+
+
+      // try {
+      //   const result = await this.editUserProfile(data);
+      //
+      //   if (result) {
+      //     this.name = result.user_name;
+      //     this.phone_number = result.phone_number
+      //   } else {
+      //     alert('아이디,비밀번호를 ');
+      //   }
+      // } catch (e) {
+      //   alert(e);
+      // }
+
+
+      axios.post('http://13.209.220.1:3000/mypage/account_setting/update_user', data, headers)
         .then(response => {
+          console.log(response);
           if (response.data.status === true) {
             console.log(response);
             this.name = response.data.result.user_name;
@@ -101,73 +179,18 @@ export default {
             this.img="";
             // this.img = response.data.result.image_profile;
             this.email = response.data.result.email;
-            
-            
           } else {
             alert('아이디,비밀번호를 ')
-            
           }
         })
         .catch(e => {
-          console.log(e);
+          console.log('myinfoupdate', e);
           alert('아이디,비밀번호를 확인해주세요')
         })
-        },
-        computed:{
-        
-        },
-methods: {
-              onFileChange (event) {
-                  if(event.target.files[0]['type'].split('/')[0] === 'image') {
-                    this.file = event.target.files[0]
-                    
-                    this.getImage(this.file);
-                  }
-              },
-              getImage(file) {
-                  const fileReader = new FileReader()
-                  fileReader.onload = () => {
-                      this.img = fileReader.result
-                      
-                  }
-                  fileReader.readAsDataURL(file)
-              },
-    updateUserInfo(){       
-                          let headers = {headers: {
-                             authorization: localStorage.token,
-                             }}
 
 
-                let data = new FormData()
-            
-                data.append('user_name', this.name)
-                data.append('user_phone', this.phone)
-                if(this.file !==''){
-                    data.append('image_profile', this.file)    
-                }
-                data.append('pwd',this.pwd)
-                
-                console.log(data.get('image_profile'));
-                
-    axios.post('http://13.209.220.1:3000/mypage/account_setting/update_user',data,headers)
-        .then(response => {
-                   console.log(response);
-                   this.name = response.data.result.user_name
-                   this.phone_number = response.data.result.phone_number
-     
-     if (response.data.status === true) {
-            console.log(response);
-          } else {
-            alert('아이디,비밀번호를 ')
-            
-          }
-        })
-        .catch(e => {
-          console.log(e);
-          alert('아이디,비밀번호를 확인해주세요')
-        })
     },
-}
+  }
 }
 </script>
 
@@ -192,5 +215,5 @@ methods: {
 .my_image{
      width: 70%;
     height: 200px;
-}
+  }
 </style>

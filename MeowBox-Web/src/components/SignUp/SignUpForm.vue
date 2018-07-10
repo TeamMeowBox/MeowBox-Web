@@ -67,6 +67,8 @@
 </template>
 
 <script>
+
+import {SET_DEFAULT_CAT} from '../../store/constants/constants';
 import axios from 'axios'
 export default {
   name: 'SignUpForm',
@@ -93,7 +95,7 @@ export default {
    async clickSignUp () {
      
       const result = await this.$store.dispatch('signUpAction', this.info);
-      
+      this.$store.commit(SET_DEFAULT_CAT)
       return result ? this.$router.push('/') : alert('check id or pw');
     }
   }

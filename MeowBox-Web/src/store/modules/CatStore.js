@@ -1,80 +1,81 @@
-// import axios from 'axios'
-// import {SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE} from '../constants/constants'
-// const BASE_URL = 'http://13.209.220.1:3000';
+import axios from 'axios'
 
+import {SET_CAT, SET_DEFAULT_CAT, HEADER, GET_CAT} from '../constants/constants'
 
+const BASE_URL = 'http://13.209.220.1:3000';
 
+const state = {
+  cat_idx: localStorage.getItem('cat_idx') || null,
+  catProfile: {},
+}
 
-// const state = {
-//   token: localStorage.getItem('token') || null,
-//   userProfile: {}
-// };
+const getters = {
+  cat_idx: state => state.cat_idx,
+  catProfile: state => state.catProfile
+}
 
+const mutations = {
+  [SET_CAT](state, payload) {
+    state.cat_idx = payload.cat_idx
+  },
+  [SET_DEFAULT_CAT](state) {
+    state.cat_idx = -1
+  },
+  [GET_CAT](state, payload) {
+    state.catProfile.name = payload.name;
+    state.catProfile.idx = payload.cat_idx;
+    state.catProfile.birthday = payload.birthday;
+    state.catProfile.state = payload.state;
+    state.catProfile.caution = payload.caution;
+  }
+}
 
-// const getters = {
-//   token: state => state.token,
-//   userProfile: state => state.userProfile
-// };
+const actions = {
+  registCatAction(context, info) {
+    return new Promise(resolve => {
+      axios.post(`${BASE_URL}/user/cat_signup`, info, {headers: {authorization: localStorage.getItem('token')}})
+        .then(res => {
+          // console.log(res.data);
 
+          if (res.data.status) {
+            localStorage.cat_idx = res.data.result.cat_idx
+            // console.log(res.data.result);
 
-// const actions = {
-//   loginAction (context, info) {
-//     return new Promise(resolve => {
-//       axios.post(`${BASE_URL}/user/signin`, info)
-//         .then(res => {
-//           if (res.data.status) {
-//             localStorage.token = res.data.result.token;
-//             localStorage.user_idx = res.data.result.user_idx;
-//             localStorage.cat_idx = res.data.result.cat_idx;
-//             context.commit(SET_TOKEN, res.data.result);
+            context.commit(SET_CAT, res.data.result)
+            resolve(true)
+          }
+        })
+        .catch(e => { // 500 error
+          console.log('error in action regi', e);
+          resolve(false)
+        })
+    })
+  },
+  fetchCatAction(context) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/user/cat/${localStorage.getItem('cat_idx')}`, HEADER)
+        .then((res) => {
+          if (res.data.status) {
+            console.log('res', res);
+            context.commit(GET_CAT, res.data.result);
+            resolve(res.data.result);
+          }
+        });
+    })
+  },
+  updateCatAction(context, info) {
+    return new Promise((resolve) => {
+      axios.post(`${BASE_URL}/mypage/account_setting/update_cat`, info, HEADER)
+        .then(res => {
+          res.data.status ? resolve(true) : resolve(false)
+        })
+    })
+  }
+};
 
-//             resolve(true)
-//           }
-//         })
-//         .catch(e => { // 500 error
-//           console.log(e);
-//           resolve(false)
-//         })
-//     })
-//   },
-//   fetchUserProfile(context, userIdx) {
-//     return new Promise(() => {
-//       axios.get(`${BASE_URL}/mypage/account/${userIdx}`, {headers: {authorization: localStorage.getItem('token')}})
-//         .then((res) => {
-//           if (res.data.status) {
-//             context.commit(FETCH_USER_PROFILE, res.data.result);
-//           }
-//         })
-//     })
-//   }
-// };
-
-
-// const mutations = {
-//   [SET_TOKEN](state, payload) {
-//     state.token = payload.token;
-//     state.userProfile.userIdx = payload.user_idx;
-//   },
-//   [REMOVE_TOKEN](state) {
-//     state.token = null;
-//     state.userProfile.userIdx = null
-//   },
-//   [FETCH_USER_PROFILE](state, payload) {
-//     state.userProfile.userName = payload[0].user_name;
-//     state.userProfile.email = payload[0].email;
-//     state.userProfile.phoneNumber = payload[0].phone_number;
-//     state.userProfile.imageProfile = payload[0].image_profile;
-//     state.userProfile.catName = payload[0].cat_name;
-//     state.userProfile.size = payload[0].size;
-//     state.userProfile.birthday = payload[0].birthday;
-//     state.userProfile.caution = payload[0].caution;
-//   }
-// };
-
-
-// export default {
-//   state,
-//   getters,
-//   mutations,
-//   actions
-// }
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

@@ -3,7 +3,7 @@
         <h3 class="title">개인정보수정</h3>
         <hr class="section-divide">
         <section class="my-info-container">
-            <table style="margin:0 auto; width:100%;">
+            <table style="margin:0 auto; width:48vw;">
                 <tr>
                     <td class="cate-td">
                         <label for="name">이름</label>
@@ -15,28 +15,6 @@
                         <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
                     </td>
                 </tr>
-                <!--<tr>-->
-                    <!--<td class="cate-td">-->
-                        <!--<label for="password">비밀번호</label>-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<v-text-field class="password" type="password" v-model="pwd"></v-text-field>-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<small class="more-info">10~16자의 영문 대소문자, 숫자, 특수문자를 조합하여 사용할 수 있습니다</small>-->
-                    <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="cate-td">-->
-                        <!--<label for="passwordConfirm">비밀번호 확인</label>-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<v-text-field class="passwordConfirm" type="password"></v-text-field>-->
-                    <!--</td>-->
-                    <!--<td style="width:40vw;">-->
-                        <!--<small class="more-info">비밀번호를 다시 한 번 입력주세요</small>-->
-                    <!--</td>-->
-                <!--</tr>-->
                 <tr>
                     <td class="cate-td">
                         <label for="phone">휴대전화</label>

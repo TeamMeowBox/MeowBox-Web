@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER, DOWN_FLAG} from '../constants/constants'
-const BASE_URL = 'http://13.209.220.1:3000';
+import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG} from '../constants/constants'
+const BASE_URL = 'http://13.209.220.1:3000'
 
 const state = {
   token: localStorage.getItem('token') || null,
@@ -19,10 +19,9 @@ const actions = {
 
   orderAction (context, info) {
     return new Promise(resolve => {
-      axios.post(`${BASE_URL}/order/order_page`, info, HEADER)
+      axios.post(`${BASE_URL}/order/order_page`, info, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
           if (res.data.status) {
-            console.log('success')
             resolve(true)
           }
         })
@@ -84,9 +83,9 @@ const actions = {
   },
   editUserProfile (context, data) {
     return new Promise((resolve, reject) => {
-      axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
+      axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
-          console.log(res);
+          console.log(res)
           if (res.data.status) {
             resolve(true);
           } else {
@@ -96,6 +95,17 @@ const actions = {
         .catch(e => {
           console.log(e)
           reject()
+        })
+    })
+  },
+  getOrder (resolve, data) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/order/order_page`, {headers: {authorization: localStorage.getItem('token')}})
+        .then((res) => {
+          if (res.data.status) {
+            console.log('res', res)
+            resolve(res.data.result)
+          }
         })
     })
   }
@@ -128,6 +138,9 @@ const mutations = {
   },
   [DOWN_FLAG] (state) {
     state.flag -= 1
+  },
+  [DEFAULT_FLAG] (state) {
+    state.flag = 0
   }
 }
 

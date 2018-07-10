@@ -9,6 +9,7 @@ export const GET_CAT = 'GET_CAT';
 export const SET_CAT = 'SET_CAT';
 export const SET_DEFAULT_CAT = 'SET_DEFAULT_CAT';
 export const SET_FLAG = 'SET_FLAG';
+
 export const HEADER = {headers: {authorization: localStorage.getItem('token')}};
 
 

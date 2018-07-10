@@ -99,7 +99,7 @@ export default {
   computed: {
     getFlag() {
 
-      if (this.$store.getters.getFlag === 1 && localStorage.cat_idx !== -1) {
+      if (this.$store.getters.getFlag === 2 && localStorage.cat_idx !== -1) {
         this.$store.dispatch('registCatAction', this.cat)
       }
       return this.$store.getters.getFlag;

@@ -1,6 +1,5 @@
 import axios from 'axios'
-import {SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER} from '../constants/constants'
-const BASE_URL = 'http://13.209.220.1:3000'
+import {SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER, BASE_URL} from '../constants/constants'
 
 const state = {
   token: localStorage.getItem('token') || null,
@@ -20,9 +19,9 @@ const actions = {
       axios.post(`${BASE_URL}/user/signin`, info)
         .then(res => {
           if (res.data.status) {
-            localStorage.token = res.data.result.token
-            localStorage.cat_idx = res.data.result.cat_idx
-            context.commit(SET_TOKEN, res.data.result)
+            localStorage.token = res.data.result.token;
+            localStorage.cat_idx = res.data.result.cat_idx;
+            context.commit(SET_TOKEN, res.data.result);
 
             resolve(true)
           }
@@ -38,17 +37,17 @@ const actions = {
       axios.post(`${BASE_URL}/user/signup`, info)
         .then(res => {
           if (res.data.status) {
-            localStorage.token = res.data.result.token
-            console.log(res.data)
+            localStorage.token = res.data.result.token;
+            console.log(res.data);
 
-            localStorage.cat_idx = -1
+            localStorage.cat_idx = -1;
 
-            context.commit(SET_TOKEN, res.data.result)
+            context.commit(SET_TOKEN, res.data.result);
             resolve(true)
           }
         })
         .catch(e => { // 500 error
-          console.log(e)
+          console.log(e);
           resolve(false)
         })
     })
@@ -59,7 +58,7 @@ const actions = {
       axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
         .then((res) => {
           if (res.data.status) {
-            context.commit(FETCH_USER_PROFILE, res.data.result)
+            context.commit(FETCH_USER_PROFILE, res.data.result);
             resolve(res.data.result);
           }
         })

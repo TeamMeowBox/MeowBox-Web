@@ -18,9 +18,9 @@
    <regist-order v-else></regist-order>
    
 
-   <v-btn class="back" v-if="flag > 0 && flag<4" @click="downFlag()">돌아가기</v-btn>
-   <v-btn class="next" v-if="flag <4 " @click="upFlag()">다음</v-btn>
-   <v-btn class="goHome" v-if="flag === 4" @click="back()">홈으로 돌아가기</v-btn>
+   <v-btn class="back" v-if="getFlag > 0 && getFlag<4" @click="downFlag()">돌아가기</v-btn>
+   <v-btn class="next" v-if="getFlag <4 " @click="upFlag()">다음</v-btn>
+   <v-btn class="goHome" v-if="getFlag === 4" @click="back()">홈으로 돌아가기</v-btn>
 </div>
 
 </template>
@@ -29,7 +29,7 @@ import axios from 'axios'
 import RegistCat from '../components/Order/RegistCat'
 import OrderBar from '../components/Order/OrderBar'
 import RegistOrder from '../components/Order/RegistOrder'
-import { UP_FLAG,SET_FLAG } from '../store/constants/constants';
+import { DOWN_FLAG,UP_FLAG,SET_FLAG } from '../store/constants/constants';
 export default {
     data() {
         return {
@@ -68,86 +68,19 @@ export default {
     methods: {
         upFlag(){
             this.$store.commit(UP_FLAG);
-            console.log(this.$store.getters.getFlag);
-            
-                // if(this.flag==4){
-                //     if(this.orderFlag===0){
-                //     this.order();
-                //     }else{
-                //         this.newOrder();
-                //     }
-                // }
-                
+            console.log(this.$store.getters.getFlag);    
         },
         downFlag(){
-            if(this.flag>0){
-                this.flag --;
-            }
+            this.$store.commit(DOWN_FLAG);
         },
         back() {
+             if (localStorage.cat_idx !== -1) {
+            console.log("--------------------");
+            
+              this.$store.commit(DEFAULT_FLAG);
+            }
             this.$router.push('/');
-            this.flag =0;
-
         },
-       loadDaum () {
-      var self = this;
-      var element_layer = window.document.getElementById('layer')
-      daum.postcode.load(function(){
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var fullAddr = ''; 
-                var extraAddr = '';
-                
-                if (data.userSelectedType === 'R') { 
-                    fullAddr = data.roadAddress;
-
-                } else { 
-                    fullAddr = data.jibunAddress;
-                }
-
-                if(data.userSelectedType === 'R'){
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
-
-            if(self.orderFlag==0){
-               self.address.one = data.zonecode; 
-               self.address.two = fullAddr;
-            }else if(self.orderFlag==1){
-               self.newAddress.one = data.zonecode; 
-               self.newAddress.two = fullAddr;
-            }
-               element_layer.style.display = 'none';
-              
-            }
-        }).embed(element_layer);
-      });
-
-        element_layer.style.display = 'block';
-        //화면 중간에 오게하기
-        this.initLayerPosition(element_layer);
-        
-       },
-       initLayerPosition(element_layer){
-           var width = 300; 
-           var height = 400; 
-           var borderWidth = 5; 
-
-        element_layer.style.width = width + 'px';
-        element_layer.style.height = height + 'px';
-        element_layer.style.border = borderWidth + 'px solid';
-        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
-        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
-           
-       },
-       closeDaumPostcode(){
-           window.document.getElementById('layer').style.display='none';
-       },
        order(){
            console.log("1");
            
@@ -253,6 +186,9 @@ export default {
                 this.$store.commit(SET_FLAG)
             }
             return this.$store.getters.cat_idx
+        },
+        getFlag(){
+            return this.$store.getters.getFlag
         }
 
     },created() {

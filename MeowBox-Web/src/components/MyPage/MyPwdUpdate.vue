@@ -26,7 +26,7 @@
                         <small class="more-info">비밀번호를 다시 한 번 입력주세요</small>
                     </td>
                 </tr>
-            </table> 
+            </table>
             <aside class="btn-space">
                 <v-btn class="updateBtn">수정하기</v-btn>
             </aside>
@@ -36,7 +36,12 @@
 
 <script>
 export default {
-
+  name: 'MyPwdUpdate',
+  data() {
+    return {
+      pwd: '',
+    };
+  }
 }
 </script>
 

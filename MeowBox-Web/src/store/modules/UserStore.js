@@ -54,12 +54,13 @@ const actions = {
     })
   },
   fetchUserProfile (context) {
-    return new Promise(() => {
+    return new Promise((resolve) => {
       console.log('call fetchuserprofile');
-      axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
         .then((res) => {
           if (res.data.status) {
             context.commit(FETCH_USER_PROFILE, res.data.result)
+            resolve(res.data.result);
           }
         })
     })
@@ -68,8 +69,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
         .then(res => {
+          console.log(res);
           if (res.data.status) {
-            resolve(res.data.result);
+            resolve(true);
           } else {
             resolve(false);
           }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER, DOWN_FLAG} from '../constants/constants'
+import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
 
 const state = {
@@ -18,10 +18,9 @@ const actions = {
 
   orderAction (context, info) {
     return new Promise(resolve => {
-      axios.post(`${BASE_URL}/order/order_page`, info, HEADER)
+      axios.post(`${BASE_URL}/order/order_page`, info, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
           if (res.data.status) {
-            console.log('success')
             resolve(true)
           }
         })
@@ -70,33 +69,24 @@ const actions = {
     })
   },
   fetchUserProfile (context) {
-<<<<<<< HEAD
     return new Promise(() => {
       console.log('call fetchuserprofile')
-=======
-    return new Promise((resolve) => {
-      console.log('call fetchuserprofile');
->>>>>>> e8174121e35c7b5c4cde3583519c3d78c4c128e9
-      axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {
             context.commit(FETCH_USER_PROFILE, res.data.result)
-            resolve(res.data.result);
+            resolve(res.data.result)
           }
         })
     })
   },
   editUserProfile (context, data) {
     return new Promise((resolve, reject) => {
-      axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
+      axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
-          console.log(res);
+          console.log(res)
           if (res.data.status) {
-<<<<<<< HEAD
-            resolve(res.data.result)
-=======
-            resolve(true);
->>>>>>> e8174121e35c7b5c4cde3583519c3d78c4c128e9
+            resolve(true)
           } else {
             resolve(false)
           }
@@ -104,6 +94,17 @@ const actions = {
         .catch(e => {
           console.log(e)
           reject()
+        })
+    })
+  },
+  getOrder (resolve, data) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/order/order_page`, {headers: {authorization: localStorage.getItem('token')}})
+        .then((res) => {
+          if (res.data.status) {
+            console.log('res', res)
+            resolve(res.data.result)
+          }
         })
     })
   }
@@ -135,6 +136,9 @@ const mutations = {
   },
   [DOWN_FLAG] (state) {
     state.flag -= 1
+  },
+  [DEFAULT_FLAG] (state) {
+    state.flag = 0
   }
 }
 

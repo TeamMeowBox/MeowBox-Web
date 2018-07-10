@@ -12,7 +12,12 @@
                     <td style="padding-right:2rem; border-right:1px solid #efefef; text-align:center;">
                         <small>정기권 > </small><br>
                         <p>3박스 중 2박스를 받았어요</p>
-                        <p>여기에 프로그레스바 넣을거임</p>
+                        <v-progress-linear
+                        height="10"
+                        value="66"
+                        background-color="pink"
+                        color="grey"
+                        ></v-progress-linear>
                     </td>
                     <td style="padding-right:2rem; text-align:center;">
                         <small>내 개인정보 > </small><br>
@@ -36,5 +41,4 @@ export default {
 </script>
 
 <style>
-
 </style>

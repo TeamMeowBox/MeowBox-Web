@@ -1,191 +1,191 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import './Variable.scss';
-
-
-.catInputTitle {
-    font-size:$title-cont-size;
-    color:$dark-gray;
-}
-
-.catName {
-    width:23vw;
-}
-.order-container{
+.order-container {
     small {
         font-size:$small-cont-size;
         color:$pink;
     }
-}
-
-.price {
-    small {
+    .catInputTitle {
+        font-size:$title-cont-size;
         color:$dark-gray;
     }
-}
-.star {
-    color: $pink;
-}
-
-.radio-inline__label {
-    display: inline-block;
-    padding: 0.5rem 0.5rem;
-    margin-right: 18px;
-    border-radius: 3px;
-    transition: all .2s;
-}
-
-.radio-inline__input {
-    clip: rect(1px, 1px, 1px, 1px);
-    position: absolute !important;
-    &:checked + .radio-inline__label{
-        outline-color: $pink;
-        box-shadow: 0px 5px 5px $baby-pink;
-        color: #fff;
+    
+    .catName {
+        width:23vw;
     }
-    &:focus + .radio-inline__label{
-        outline-color: $baby-pink;
-        outline-offset: -2px;
-        outline-style: auto;
-        outline-width: 2px;
+    
+    .price {
+        small {
+            color:$dark-gray;
+        }
     }
-}
-
-.primary--text input,
-.primary--text textarea, .error--text input, .error--text textarea {
-    caret-color: $pink !important;
-}
-.primary--text, .error--text {
-    color: $pink !important;
-}
-
-.back, .next, .goHome {
-    background:$pink !important;
-    color:white !important;
-    width:10rem;
-    margin-top:6rem;
-}
-input {
-    transition: 2s;
-}
-input:checked + .one_pay_info {
-    width:1000px
-}
-
-.v-card {
-    box-shadow : 0 2px 1px -1px rgba(230, 135, 137,.2), 0 1px 1px 0 rgba(230, 135, 137,.14), 0 1px 3px 0 rgba(230, 135, 137,.12);
-}
-
-.v-text-field__slot {
-    box-shadow:0px;
-}
-
-.v-label {
-    color:$light-gray;
-    font-size:0.8rem;
-}
-
-.pay-price {
-    color: white;
-    background-color : $pink;
-    width:18vw;
-    padding: 1rem 1rem 1rem 1rem;
-}
-
-.money-info {
-    font-weight:$kor-font-bold;
-    text-align:right;
-}
-.last-price {
-    font-size:2rem;
-}
-.pay-hr {
-    border: 0.2px solid white;
-}
-.pay-hr2 {
-    border: 0.2px solid #efeded;
-}
-.dotted-hr {
-    border: 0.1rem dotted #efeded;
-}
-.pay-price-table {
-    width:100%;
-}
-.title {
-    p {
+    .star {
+        color: $pink;
+    }
+    
+    .radio-inline__label {
+        display: inline-block;
+        padding: 0.5rem 0.5rem;
+        margin-right: 18px;
+        border-radius: 3px;
+        transition: all .2s;
+    }
+    
+    .radio-inline__input {
+        clip: rect(1px, 1px, 1px, 1px);
+        position: absolute !important;
+        &:checked + .radio-inline__label{
+            outline-color: $pink;
+            box-shadow: 0px 5px 5px $baby-pink;
+            color: #fff;
+        }
+        &:focus + .radio-inline__label{
+            outline-color: $baby-pink;
+            outline-offset: -2px;
+            outline-style: auto;
+            outline-width: 2px;
+        }
+    }
+    
+    .primary--text input,
+    .primary--text textarea, .error--text input, .error--text textarea {
+        caret-color: $pink !important;
+    }
+    .primary--text, .error--text {
+        color: $pink !important;
+    }
+    
+    .back, .next, .goHome {
+        background:$pink !important;
+        color:white !important;
+        width:10rem;
+        margin-top:6rem;
+    }
+    input {
+        transition: 2s;
+    }
+    input:checked + .one_pay_info {
+        width:1000px
+    }
+    
+    .v-card {
+        box-shadow : 0 2px 1px -1px rgba(230, 135, 137,.2), 0 1px 1px 0 rgba(230, 135, 137,.14), 0 1px 3px 0 rgba(230, 135, 137,.12);
+    }
+    
+    .v-text-field__slot {
+        box-shadow:0px;
+    }
+    
+    .v-label {
+        color:$light-gray;
+        font-size:0.8rem;
+    }
+    
+    .pay-price {
+        color: white;
+        background-color : $pink;
+        width:18vw;
+        padding: 1rem 1rem 1rem 1rem;
+    }
+    
+    .money-info {
+        font-weight:$kor-font-bold;
+        text-align:right;
+    }
+    .last-price {
         font-size:2rem;
-        font-weight:$kor-font-regular;
-
     }
-}
-
-
-v-text-field {
-    display:inline-block;
-}
-
-.address, .detail-address {
-    @extend v-text-field;
-    width:30vw;
-}
-.phone1, .phone2, .phone3 {
-    @extend v-text-field;
-    width:4vw;
-}
-.email-id, .email-domain {
-    @extend v-text-field;
-    width:11vw;
-}
-
-.post-num {
-    @extend v-text-field;
-    width:8vw;
-}
-.order-name {
-    @extend v-text-field;
-    width:10vw;
-}
-.fint-post-num {
-    @extend .next;
-    width:2.5rem;
-    font-size:0.9rem;
-    margin-top:0rem;
-}
-::placeholder {
-    font-size:0.9rem;
-    padding-left:1rem;
-}
-.layer {
-    width: 35vw !important;
-    display: none;
-    position: fixed;
-    overflow: hidden;
-    z-index: 1;
-    -webkit-overflow-scrolling: touch;
-}
-input[type='radio']:checked:after {
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
-    top: -2px;
-    left: -1px;
-    position: relative;
-    background-color: white;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 3px solid $pink;
-}
-input[type='checkbox']:checked:after {
-    @extend input[type='radio']:checked:after;
-}
-
-.label {
-    width:8vw;
-}
-
-.pay-way {
-    label {
-        font-size: 0.9rem;
+    .pay-hr {
+        border: 0.2px solid white;
     }
+    .pay-hr2 {
+        border: 0.2px solid #efeded;
+    }
+    .dotted-hr {
+        border: 0.1rem dotted #efeded;
+    }
+    .pay-price-table {
+        width:100%;
+    }
+    .title {
+        p {
+            font-size:2rem;
+            font-weight:$kor-font-regular;
+    
+        }
+    }
+    
+    
+    v-text-field {
+        display:inline-block;
+    }
+    
+    .address, .detail-address {
+        @extend v-text-field;
+        width:30vw;
+    }
+    .phone1, .phone2, .phone3 {
+        @extend v-text-field;
+        width:4vw;
+    }
+    .email-id, .email-domain {
+        @extend v-text-field;
+        width:11vw;
+    }
+    
+    .post-num {
+        @extend v-text-field;
+        width:8vw;
+    }
+    .order-name {
+        @extend v-text-field;
+        width:10vw;
+    }
+    .fint-post-num {
+        @extend .next;
+        width:2.5rem;
+        font-size:0.9rem;
+        margin-top:0rem;
+    }
+    ::placeholder {
+        font-size:0.9rem;
+        padding-left:1rem;
+    }
+    .layer {
+        width: 35vw !important;
+        display: none;
+        position: fixed;
+        overflow: hidden;
+        z-index: 1;
+        -webkit-overflow-scrolling: touch;
+    }
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: white;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 3px solid $pink;
+    }
+    input[type='checkbox']:checked:after {
+        @extend input[type='radio']:checked:after;
+    }
+    
+    .label {
+        width:8vw;
+    }
+    
+    .pay-way {
+        label {
+            font-size: 0.9rem;
+        }
+    
+}
+
 }

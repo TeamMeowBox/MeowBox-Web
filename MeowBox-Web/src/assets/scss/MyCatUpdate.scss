@@ -2,6 +2,17 @@
 
 .cat-info-update {
     width:48vw;
+    .error--text input,
+    .error--text textarea,
+    .primary--text input,
+    .primary--text textarea {
+        caret-color: #e68789 !important;
+    }
+    .error--text,
+    .primary--text {
+        color: #e68789 !important;
+    }
+
     .title {
         font-weight:$kor-font-medium;
         font-size:1rem;
@@ -58,10 +69,13 @@
     .cat-bday-table{
         padding-top:1rem;
         padding-bottom:1rem;
+        text-align:left;
+        font-size:1rem;
     }
 
     ::placeholder {
         font-size:0.9rem;
         padding-left:1rem;
     }
+    
 }

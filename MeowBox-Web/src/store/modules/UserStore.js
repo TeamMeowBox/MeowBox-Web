@@ -70,12 +70,18 @@ const actions = {
     })
   },
   fetchUserProfile (context) {
+<<<<<<< HEAD
     return new Promise(() => {
       console.log('call fetchuserprofile')
+=======
+    return new Promise((resolve) => {
+      console.log('call fetchuserprofile');
+>>>>>>> e8174121e35c7b5c4cde3583519c3d78c4c128e9
       axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
         .then((res) => {
           if (res.data.status) {
             context.commit(FETCH_USER_PROFILE, res.data.result)
+            resolve(res.data.result);
           }
         })
     })
@@ -84,8 +90,13 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
         .then(res => {
+          console.log(res);
           if (res.data.status) {
+<<<<<<< HEAD
             resolve(res.data.result)
+=======
+            resolve(true);
+>>>>>>> e8174121e35c7b5c4cde3583519c3d78c4c128e9
           } else {
             resolve(false)
           }

@@ -30,7 +30,7 @@ export default {
   },
   async created() {
     // await this.$store.dispatch('fetchUserProfile', localStorage.getItem('user_idx'));
-    await this.fetchUserProfile(localStorage.getItem('user_idx'));
+    // await this.fetchUserProfile(localStorage.getItem('user_idx'));
   }
 }
 </script>

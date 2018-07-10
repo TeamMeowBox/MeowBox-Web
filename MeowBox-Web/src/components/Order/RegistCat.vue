@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order-container">
     <section class='name' v-if="getFlag ===0">
       <aside>
         {{this.$store.getters.getFlag}}

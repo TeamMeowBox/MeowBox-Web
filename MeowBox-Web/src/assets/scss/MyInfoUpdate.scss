@@ -15,13 +15,11 @@
         color: #e68789;
     }
     label {
-        font-family: $kor-font;
         font-weight: $kor-font-medium;
         color: $dark-gray;
         font-size: 0.9rem;
     }
     small {
-        font-family: $kor-font;
         font-weight: $kor-font-regular;
         color: #999999;
     }
@@ -33,22 +31,11 @@
         display: inline-block;
     }
     .password,
-    .passwordConfirm {
+    .passwordConfirm,
+    .phone {
         @extend v-text-field;
         width: 14vw;
     }
-    .phone1,
-    .phone2,
-    .phone3 {
-        @extend v-text-field;
-        width: 4vw;
-    }
-    .email-domain,
-    .email-id {
-        @extend v-text-field;
-        width: 8vw;
-    }
-
     .btn-space {
         text-align:center;
     }
@@ -60,7 +47,13 @@
     .updateBtn {
         width:20vw !important; background:#e68789 !important; color:white !important;
     }
-    
+    .dropbox {
+        width:15vw;
+    }
+    .updateProfileBtn{
+        background:$pink !important;
+        color:white;
+    }
 }
 
 .section-divide {

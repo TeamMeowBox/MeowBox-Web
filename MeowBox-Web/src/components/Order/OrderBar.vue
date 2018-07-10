@@ -1,5 +1,5 @@
 <template>
-    <section style="text-align:right;">
+    <section class="order-container" style="text-align:right;">
         <template v-if="flag!==4">
             <span v-for="(category, index) in categorys" :key="index" style="font-size:1.2rem">
                 <b v-if="category.cate_id===flag" style="color:#e68789">

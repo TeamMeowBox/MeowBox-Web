@@ -1,23 +1,28 @@
 <template>
-    <v-layout class="container" style="width:70vw">
-            <table style="width:100%; border-top:1px solid #efefef; border-bottom:1px solid #efefef; padding:1rem 0 1rem 0;">
+    <v-layout class="container myinfo-container" >
+            <table >
                 <tr>
-                    <td style="padding-left:3rem;">
-                        <img src="https://cattoyshq.com/wp-content/uploads/2017/08/cat-playing-with-toy.jpg" alt="" height="100" width="100" style="border-radius:50px">
+                    <td class="profile-img">
+                        <img :src="userProfile.imageProfile" alt="" height="100" width="100" style="border-radius:50px">
                     </td>
-                    <td style="padding-right:2rem;border-right:1px solid #efefef;width:12vw">
+                    <td class="profile-detail" >
                         안녕하세요<br>
-                        온풍이 집사 <b>{{userProfile.userName}}</b>님!
+                        {{userProfile.catName}} 집사 <b>{{userProfile.userName}}</b>님!
                     </td>
-                    <td style="padding-right:2rem; border-right:1px solid #efefef; text-align:center;">
+                    <td class="progress-bar" >
                         <small>정기권 > </small><br>
                         <p>3박스 중 2박스를 받았어요</p>
-                        <p>여기에 프로그레스바 넣을거임</p>
+                        <v-progress-linear
+                        height="10"
+                        value="66"
+                        background-color="grey"
+                        color="pink"
+                        ></v-progress-linear>
                     </td>
-                    <td style="padding-right:2rem; text-align:center;">
+                    <td class="personal-info" >
                         <small>내 개인정보 > </small><br>
-                        <p>{{userProfile.email}}</p>
-                        <p>{{userProfile.catName}}/{{userProfile.size}}/</p>
+                        <span class="star"><i class="fas fa-envelope"></i> {{userProfile.email}}</span><br>
+                        <span class="star"><i class="far fa-grin-squint"></i> {{userProfile.catName}} / {{userProfile.size}} / {{userProfile.birthday}}</span>
                     </td>
                 </tr>
             </table>
@@ -35,6 +40,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+@import '../../assets/scss/MyInfo.scss'
 </style>

@@ -1,0 +1,19 @@
+@import 'Variable.scss';
+.setting-container {
+    width: 48vw;
+    hr {
+        border: 1px dotted $light-gray;
+    }
+    h3, p {
+        color:#707070;
+    }
+    small {
+        color: #999999;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .settind-contents {
+        padding:2rem;
+    }
+}

@@ -1,14 +1,12 @@
 @import 'Variable.scss';
 
 label {
-    font-family: $kor-font;
     font-weight: $kor-font-medium;
     color: $dark-gray;
     font-size: 0.9rem;
 }
 
 small {
-    font-family: $kor-font;
     font-weight: $kor-font-regular;
     color: #999999;
 }
@@ -45,7 +43,6 @@ small {
 .login-title {
     color: $dark-gray;
     font-weight: $kor-font-bold;
-    font-family: $kor-font;
     font-size:2rem;
 }
 

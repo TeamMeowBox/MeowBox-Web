@@ -21,8 +21,8 @@
                     </td>
                     <td class="personal-info" >
                         <small>내 개인정보 > </small><br>
-                        <span class="star">{{userProfile.email}}</span><br>
-                        <span class="star">{{userProfile.catName}} / {{userProfile.size}} / {{userProfile.birthday}}</span>
+                        <span class="star"><i class="fas fa-envelope"></i> {{userProfile.email}}</span><br>
+                        <span class="star"><i class="far fa-grin-squint"></i> {{userProfile.catName}} / {{userProfile.size}} / {{userProfile.birthday}}</span>
                     </td>
                 </tr>
             </table>

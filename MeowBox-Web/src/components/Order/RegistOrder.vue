@@ -166,17 +166,17 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    구독기간 : {{date}}
+                                    구독기간 : 
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    반려묘 크기 : {{cat.size}}
+                                    반려묘 크기 : 
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    특이사항 : {{cat.caution}}
+                                    특이사항 : 
                                 </td>
                             </tr>
                             <br/>
@@ -198,11 +198,8 @@
                         </table>
                     </div>
                 </div>
-
             </section>
         </v-layout>
-       
-       
    </div>
 
    <div  v-else-if="getFlag === 4" class='price'>
@@ -249,8 +246,88 @@ data(){
 },
 computed:{
     getFlag(){
-        return this.$store.getters.getFlag
+    if (this.$store.getters.getFlag === 4 && localStorage.cat_idx !== -1) {
+
+        if(this.orderFlag===1){
+
+           this.newInfo.address += this.newAddress.one+'@';
+           this.newInfo.address += this.newAddress.two+'@';
+           this.newInfo.address += this.adnewAddressdress.three;
+           this.newInfo.product = this.date;
+            this.$store.dispatch('orderAction', this.newInfo)
+        }else{
+
+           this.info.address += this.address.one+'@';
+           this.info.address += this.address.two+'@';
+           this.info.address += this.address.three;
+           this.info.product = this.date;
+            this.$store.dispatch('orderAction',this.info)
+        }
+        }
+      return this.$store.getters.getFlag;
     }
+},
+methods:{
+    loadDaum () {
+      var self = this;
+      var element_layer = window.document.getElementById('layer')
+      daum.postcode.load(function(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var fullAddr = ''; 
+                var extraAddr = '';
+                
+                if (data.userSelectedType === 'R') { 
+                    fullAddr = data.roadAddress;
+
+                } else { 
+                    fullAddr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+            if(self.orderFlag==0){
+               self.address.one = data.zonecode; 
+               self.address.two = fullAddr;
+            }else if(self.orderFlag==1){
+               self.newAddress.one = data.zonecode; 
+               self.newAddress.two = fullAddr;
+            }
+               element_layer.style.display = 'none';
+              
+            }
+        }).embed(element_layer);
+      });
+
+        element_layer.style.display = 'block';
+        //화면 중간에 오게하기
+        this.initLayerPosition(element_layer);
+        
+       },
+       initLayerPosition(element_layer){
+           var width = 300; 
+           var height = 400; 
+           var borderWidth = 5; 
+
+        element_layer.style.width = width + 'px';
+        element_layer.style.height = height + 'px';
+        element_layer.style.border = borderWidth + 'px solid';
+        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+           
+       },
+       closeDaumPostcode(){
+           window.document.getElementById('layer').style.display='none';
+       },
+       
 }
 
 }

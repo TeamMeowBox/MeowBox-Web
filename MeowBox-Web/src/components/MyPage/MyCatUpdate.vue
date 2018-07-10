@@ -9,29 +9,30 @@
                     <label for="catName" style="color:#4c4e51">고양이 이름</label><br>
                 </td>
                 <td colspan="2">
-
                     <v-text-field class="catName" type="text" style="width:14vw" v-model="catInfo.name"></v-text-field>
-
                 </td>
                 </tr>
                 <tr>
                 <td style="width:10rem; text-align:left">
                     <label for="catSize" style="color:#4c4e51">크기</label>
                 </td>
-                <td colspan="2">
+                <td class="cat-size-table" colspan="2">
                     <div class="cat-size" >
-                        <input id="small" class="catSize" type="radio" name="accessible-radio" checked="checked" v-model="catInfo.size" value="1"/> 조금 마른
+                        <input id="small" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="1"/> 조금 마른
                     </div>
-                    <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="2"/> 보통
-                    <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="3" /> 과체중
+                    <div class="cat-size">
+                      <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="2"/> 보통
+                    </div>
+                    <div class="cat-size">
+                      <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="3" /> 과체중
+                    </div>
                </td>
                 </tr>
                 <tr>
                 <td style="width:10rem; text-align:left">
                     <label for="bdaytime" style="color:#4c4e51">생일</label>
                 </td>
-                <td colspan="2">
-
+                <td class="cat-bday-table" colspan="2">
                     <input type="date" name="bdaytime" v-model="catInfo.birthday">
                </td>
                 </tr>
@@ -43,7 +44,7 @@
                     <v-textarea
                 solo
                 name="input-7-4"
-                label="Solo textarea"
+                label="알레르기가 있는 재료나 좋아하는 재료에 대해 적어주세요."
                 v-model="catInfo.caution"></v-textarea>
                 </td>
                 </tr>

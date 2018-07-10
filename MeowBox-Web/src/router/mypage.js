@@ -5,6 +5,7 @@ import MyOrderList from '@/components/MyPage/MyOrderList'
 import MySuggestion from '@/components/MyPage/MySuggestion'
 import MySetting from '@/components/MyPage/MySetting'
 import MyCatInfoUpdate from '@/components/MyPage/MyCatUpdate'
+import MyPwdUpdate from '@/components/MyPage/MyPwdUpdate'
 export default {
     path: '/Mypage',
     name: 'Mypage',
@@ -13,6 +14,10 @@ export default {
         {
             path: 'updateUser',
             component: MyInfoUpdate
+        },
+        {
+            path: 'updatePwd',
+            component: MyPwdUpdate
         },
         {
             path: 'updateCat',

@@ -1,15 +1,23 @@
 @import 'Variable.scss';
-
-.application .theme--light.v-card,
-.theme--light .v-card {
+.theme--light .v-card,
+.theme--light.v-card {
     width: 15vw !important;
 }
-.application .theme--light.v-list, .theme--light .v-list {
-    background:#e68789;
+.theme--light .v-list,
+.theme--light.v-list {
+    text-align: left;
+    min-width: 15vw;
 }
-.toobar-item > .v-btn__content {
-    justify-content: left;
-    margin-left:4vw;
+.toobar-item {
+    font-size: 0.9rem;
+}
+.v-list__tile--active {
+    font-weight: bold;
     color: #fff !important;
-
+    background: #e68789;
+}
+.v-list__tile--active:hover {
+    font-weight: bold;
+    color: #fff !important;
+    background: #efb1b1 !important;
 }

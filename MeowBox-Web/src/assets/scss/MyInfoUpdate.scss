@@ -31,22 +31,11 @@
         display: inline-block;
     }
     .password,
-    .passwordConfirm {
+    .passwordConfirm,
+    .phone {
         @extend v-text-field;
         width: 14vw;
     }
-    .phone1,
-    .phone2,
-    .phone3 {
-        @extend v-text-field;
-        width: 4vw;
-    }
-    .email-domain,
-    .email-id {
-        @extend v-text-field;
-        width: 8vw;
-    }
-
     .btn-space {
         text-align:center;
     }
@@ -58,7 +47,9 @@
     .updateBtn {
         width:20vw !important; background:#e68789 !important; color:white !important;
     }
-    
+    .dropbox {
+        width:15vw;
+    }
 }
 
 .section-divide {

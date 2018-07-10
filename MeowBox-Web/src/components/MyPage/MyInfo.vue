@@ -1,6 +1,6 @@
 <template>
     <v-layout class="container myinfo-container" >
-            <table >
+            <table xs12 sm6 md4 lg3 >
                 <tr>
                     <td class="profile-img">
                         <img :src="userProfile.imageProfile" alt="" height="100" width="100" style="border-radius:50px">
@@ -41,5 +41,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/MyInfo.scss'
+@import '../../assets/scss/MyInfo.scss';
 </style>

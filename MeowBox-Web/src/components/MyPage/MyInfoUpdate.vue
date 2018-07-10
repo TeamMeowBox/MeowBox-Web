@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h3 class="title">개인정보수정</h3>
-    <hr class="section-divide">
-    <section class="my-info-container">
-      <table style="margin:0 auto; width:48vw;">
-        <tr>
+    <div xs12 sm6 md4 lg3>
+        <h3 class="title">개인정보수정</h3>
+        <hr class="section-divide">
+        <section class="my-info-container">
+            <table style="margin:0 auto; width:48vw;">
+            <tr>
           <td class="cate-td">
             <label for="name">이름</label>
           </td>

@@ -100,6 +100,7 @@ const actions = {
     })
   }
 }
+
 const mutations = {
   [SET_TOKEN] (state, payload) {
     state.token = payload.token

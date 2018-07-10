@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER} from '../constants/constants'
+import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, HEADER, DOWN_FLAG} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
 
 const state = {
@@ -15,6 +15,22 @@ const getters = {
 }
 
 const actions = {
+
+  orderAction (context, info) {
+    return new Promise(resolve => {
+      axios.post(`${BASE_URL}/order/order_page`, info, HEADER)
+        .then(res => {
+          if (res.data.status) {
+            console.log('success')
+            resolve(true)
+          }
+        })
+        .catch(e => { // 500 error
+          console.log(e)
+          resolve(false)
+        })
+    })
+  },
   loginAction (context, info) {
     return new Promise(resolve => {
       axios.post(`${BASE_URL}/user/signin`, info)
@@ -55,8 +71,8 @@ const actions = {
   },
   fetchUserProfile (context) {
     return new Promise(() => {
-      console.log('call fetchuserprofile');
-      axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
+      console.log('call fetchuserprofile')
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
         .then((res) => {
           if (res.data.status) {
             context.commit(FETCH_USER_PROFILE, res.data.result)
@@ -64,23 +80,23 @@ const actions = {
         })
     })
   },
-  editUserProfile(context, data) {
+  editUserProfile (context, data) {
     return new Promise((resolve, reject) => {
       axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, HEADER)
         .then(res => {
           if (res.data.status) {
-            resolve(res.data.result);
+            resolve(res.data.result)
           } else {
-            resolve(false);
+            resolve(false)
           }
         })
         .catch(e => {
-          console.log(e);
-          reject();
+          console.log(e)
+          reject()
         })
     })
   }
-};
+}
 const mutations = {
   [SET_TOKEN] (state, payload) {
     state.token = payload.token
@@ -90,21 +106,24 @@ const mutations = {
     state.userProfile.userIdx = null
   },
   [FETCH_USER_PROFILE] (state, payload) {
-    state.userProfile.userName = payload.user_name;
-    state.userProfile.email = payload.email;
-    state.userProfile.phoneNumber = payload.phone_number;
-    state.userProfile.imageProfile = payload.image_profile;
-    state.userProfile.cat_idx = payload.cat_idx;
-    state.userProfile.caution = payload.caution;
-    state.userProfile.size = payload.size;
-    state.userProfile.catName = payload.cat_name;
-    state.userProfile.birthday = payload.birthday;
+    state.userProfile.userName = payload.user_name
+    state.userProfile.email = payload.email
+    state.userProfile.phoneNumber = payload.phone_number
+    state.userProfile.imageProfile = payload.image_profile
+    state.userProfile.cat_idx = payload.cat_idx
+    state.userProfile.caution = payload.caution
+    state.userProfile.size = payload.size
+    state.userProfile.catName = payload.cat_name
+    state.userProfile.birthday = payload.birthday
   },
   [UP_FLAG] (state) {
     state.flag += 1
   },
   [SET_FLAG] (state) {
     state.flag = 2
+  },
+  [DOWN_FLAG] (state) {
+    state.flag -= 1
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div xs12 sm6 md4 lg3>
         <h3 class="title">개인정보수정</h3>
         <hr class="section-divide">
         <section class="my-info-container">

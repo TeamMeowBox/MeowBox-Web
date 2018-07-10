@@ -1,6 +1,6 @@
 <template>
-    <v-layout row>
-        <v-flex>
+    <v-layout xs12 sm6 md4 lg3 row>
+        <v-flex >
             <v-card class="toolbar-items">
                 <v-list>
                 <template v-for="item in mypageToolbarItems">

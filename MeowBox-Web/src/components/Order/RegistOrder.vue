@@ -6,7 +6,7 @@
                 <td class="one_pay">
                     <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
                     <label for="one">
-                        한번만받기
+                        한 번만 받기
                     </label>
                     <br>
                     <span> 39900원</span>

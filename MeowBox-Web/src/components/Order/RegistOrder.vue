@@ -166,17 +166,17 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    구독기간 : 
+                                    구독기간 : {{date}}
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    반려묘 크기 : 
+                                    반려묘 크기 : {{catSize}}
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    특이사항 : 
+                                    특이사항 : {{catEtc}}
                                 </td>
                             </tr>
                             <br/>
@@ -209,9 +209,13 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
 data(){
         return{
+
+            catSize:'',
+            catEtc:'',
             date:'',
             box:'',
             boxprice:0,
@@ -233,7 +237,6 @@ data(){
                 email:'',
                 address:'',
                 product:'',
-                payment_method:''
             },
             newInfo :{
                 name:'',
@@ -246,14 +249,30 @@ data(){
 },
 computed:{
     getFlag(){
+        if(this.$store.getters.getFlag ===3){
+            if(this.date ===1 || this.date ===2){
+            this.boxprice = 39900
+        }
+        if(this.date ===3 ){
+            this.boxprice = 37000
+        }
+        if(this.date === 6){
+            this.boxprice = 35000
+        }
+        if(this.date === 7){
+            this.boxprice = 32500
+        }
+        }
     if (this.$store.getters.getFlag === 4 && localStorage.cat_idx !== -1) {
-
         if(this.orderFlag===1){
 
            this.newInfo.address += this.newAddress.one+'@';
            this.newInfo.address += this.newAddress.two+'@';
-           this.newInfo.address += this.adnewAddressdress.three;
+           this.newInfo.address += this.newAddress.three;
            this.newInfo.product = this.date;
+           this.newInfo.price = this.boxprice;
+           console.log(this.newInfo);
+           
             this.$store.dispatch('orderAction', this.newInfo)
         }else{
 
@@ -261,6 +280,9 @@ computed:{
            this.info.address += this.address.two+'@';
            this.info.address += this.address.three;
            this.info.product = this.date;
+           this.info.price = this.boxprice;
+           console.log(this.info);
+           
             this.$store.dispatch('orderAction',this.info)
         }
         }
@@ -268,6 +290,9 @@ computed:{
     }
 },
 methods:{
+    ...mapActions([
+        'fetchCatAction','getOrder'
+    ]),
     loadDaum () {
       var self = this;
       var element_layer = window.document.getElementById('layer')
@@ -327,8 +352,25 @@ methods:{
        closeDaumPostcode(){
            window.document.getElementById('layer').style.display='none';
        },
-       
-}
+      async getCatProfile() {
+           const cat = await this.fetchCatAction();
+           const order = await this.getOrder();
+           
+           
+           if( order.order_idx !==-1){
+           this.catSize = cat.size;
+           this.catEtc = cat.caution;
+           this.info.name = order.name;
+           this.info.phone_number = order.phone_number;
+           this.address.one = order.address.split('@')[0]
+           this.address.two = order.address.split('@')[1]
+           this.address.three = order.address.split('@')[2]
+           }
+       }
+},
+ async created() {
+       await this.getCatProfile();
+},
 
 }
 </script>

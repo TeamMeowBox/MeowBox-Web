@@ -86,7 +86,8 @@ export default {
   methods: {
     ...mapActions([
       'registCatAction',
-      'fetchCatAction'
+      'fetchCatAction',
+      'updateCatAction'
     ]),
     async clickEdit() {
       try {

@@ -9,5 +9,5 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   modules: {User, Cat, Home},
-  plugins: [createPersistedState()]
+  // plugins: [createPersistedState()]
 });

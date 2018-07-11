@@ -16,7 +16,6 @@ import WhatIsMeowbox from '../components/Home/WhatIsMeowbox'
 import ThisMonthInfo from '../components/Home/ThisMonthInfo'
 import BoxInfo from '../components/Home/BoxInfo'
 import FooterStart from '../components/Home/FooterStart'
-
 export default {
   name: 'Home',
   components: {

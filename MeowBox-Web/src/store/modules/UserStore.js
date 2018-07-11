@@ -1,18 +1,32 @@
 import axios from 'axios'
 
-import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG} from '../constants/constants'
+import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG, GET_MYPAGE_INFO} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
+
+const HEADER = {headers: {authorization: localStorage.getItem('token')}}
 
 const state = {
   token: localStorage.getItem('token') || null,
-  userProfile: {},
-  flag: 0
+  userProfile: {
+    userName: null,
+    email: null,
+    phoneNumber: null,
+    imageProfile: null,
+    cat_idx: null,
+    caution : null,
+    size: null,
+    catName: null,
+    birthday: null
+  },
+  flag: 0,
+  usedTicket: null
 }
 
 const getters = {
   token: state => state.token,
   userProfile: state => state.userProfile,
-  getFlag: state => state.flag
+  getFlag: state => state.flag,
+  usedTicket: state => state.usedTicket
 }
 
 const actions = {
@@ -72,7 +86,7 @@ const actions = {
   fetchUserProfile (context) {
     return new Promise((resolve) => {
       console.log('call fetchuserprofile');
-      axios.get(`${BASE_URL}/mypage/account_setting/account/`, HEADER)
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`,  {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {
             context.commit(FETCH_USER_PROFILE, res.data.result);
@@ -108,6 +122,20 @@ const actions = {
           }
         })
     })
+  },
+  fetchMyPageInfoAction(context) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/mypage/mypageinfo`, HEADER)
+        .then((res) => {
+          if (res.data.status) {
+            context.commit(GET_MYPAGE_INFO, res.data.result);
+            resolve(res.data.result);
+          } else {
+            const _err = new Error("fetchMyPage Error");
+            reject(_err);
+          }
+        })
+    })
   }
 }
 
@@ -120,6 +148,8 @@ const mutations = {
     state.userProfile.userIdx = null
   },
   [FETCH_USER_PROFILE] (state, payload) {
+    // state.userProfile = payload
+
     state.userProfile.userName = payload.user_name
     state.userProfile.email = payload.email
     state.userProfile.phoneNumber = payload.phone_number
@@ -141,6 +171,9 @@ const mutations = {
   },
   [DEFAULT_FLAG] (state) {
     state.flag = 0
+  },
+  [GET_MYPAGE_INFO](state, payload) {
+    state.usedTicket = payload;
   }
 }
 

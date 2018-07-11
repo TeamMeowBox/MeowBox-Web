@@ -3,6 +3,8 @@ import axios from 'axios'
 import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG} from '../constants/constants'
 const BASE_URL = 'http://13.209.220.1:3000'
 
+const HEADER = {headers: {authorization: localStorage.getItem('token')}}
+
 const state = {
   token: localStorage.getItem('token') || null,
   userProfile: {},

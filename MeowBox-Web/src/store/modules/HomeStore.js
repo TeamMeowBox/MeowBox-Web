@@ -19,11 +19,22 @@ const actions = {
           }
         })
     })
+  },
+  fetchInstaAction() {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/home/monthlyBox_detail/crawling`)
+        .then((res) => {
+          if (res.data.status) {
+            resolve(res.data.result);
+          } else {
+            reject();
+          }
+        })
+    })
   }
 };
 
 const mutations = {
-
 };
 
 

@@ -17,3 +17,5 @@ export const GET_REVIEW = 'GET_REVIEW';
 
 export const DEFAULT_FLAG = 'DEFAULT_FLAG';
 
+export const GET_MYPAGE_INFO = 'GET_MYPAGE_INFO';
+

@@ -10,7 +10,7 @@ const getters = {
 const actions = {
   fetchReviewAction(context) {
     return new Promise((resolve, reject) => {
-      axios.get(`${BASE_URL}/home/review`)
+      axios.get(`${BASE_URL}/home/review_web`)
         .then((res) => {
           if (res.data.status) {
             resolve(res.data.result);

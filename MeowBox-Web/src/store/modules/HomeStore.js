@@ -74,5 +74,6 @@ const isEmptyObject = (obj) => {
 };
 
 const isEmptyArray = (arr) => {
-  return !arr.length
+  console.log(arr.length === 0);
+  return arr.length === 0
 };

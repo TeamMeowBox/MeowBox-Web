@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG, GET_MYPAGE_INFO} from '../constants/constants'
-const BASE_URL = 'http://13.209.220.1:3000'
+import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG, GET_MYPAGE_INFO, BASE_URL} from '../constants/constants'
+
 
 const HEADER = {headers: {authorization: localStorage.getItem('token')}}
 

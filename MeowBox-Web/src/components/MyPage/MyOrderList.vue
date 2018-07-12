@@ -4,6 +4,19 @@
     <section class="my-order-container">
       <table class="order-table">
         <!-- 기간 남은 티켓 -->
+
+        <template v-if="ticket">
+          기간남음
+        </template>
+
+        <tepmlate v-else>
+          없음
+        </tepmlate>
+
+        <template>
+
+        </template>
+
         <tr>
           <td class="ticket-active-td">
             <div class="active-ticket">
@@ -148,7 +161,40 @@
 </template>
 
 <script>
-  export default {}
+import {mapActions} from 'vuex';
+
+export default {
+  name: 'MyOrderList',
+  data() {
+    return {
+      ticket: null,
+      ticketed: null,
+    };
+  },
+  methods: {
+    ...mapActions([
+      'fetchOrderList'
+    ]),
+    async getOrderList() {
+      const result = await this.fetchOrderList();
+      this.ticket = {
+        idx: result.ticket.idx,
+        product: result.ticket.product,
+        term: result.ticket.term,
+        flag: result.ticket.flag,
+      };
+      this.ticketed = {
+        idx: result.ticketed.idx,
+        product: result.ticketed.product,
+        term: result.ticketed.term,
+        flag: result.ticketed.flag,
+      };
+    }
+  },
+  created() {
+    this.getOrderList()
+  }
+}
 </script>
 
 <style lang="scss">

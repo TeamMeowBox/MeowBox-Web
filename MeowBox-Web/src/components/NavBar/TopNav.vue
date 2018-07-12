@@ -1,17 +1,18 @@
 <template>
-  <v-toolbar style="box-shadow:none; background-color:#ffffff;height:7vh;padding-right:15vw;">
+  <v-toolbar hidden-md-only style="box-shadow:none; background-color:#ffffff;height:7vh;padding-right:15vw;">
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
       <v-btn v-if="!isLogin" flat class="login_btn" @click="clickSignIn">
         로그인
       </v-btn>
-
       <v-btn v-if="isLogin" flat class="login_btn" @click="clickLogOut">
         로그아웃
       </v-btn>
-
-      <v-btn flat v-for="item in userToolbarItems" :key="item.title" router :to="item.link">
-        {{item.title}}
+      <v-btn v-if="isLogin" flat router to="/mypage/updateUser">
+        마이페이지
+      </v-btn>
+      <v-btn flat router to="/faq">
+        자주묻는질문
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -23,14 +24,6 @@ import {REMOVE_TOKEN} from '../../store/constants/constants';
 export default {
   name: 'TopNav',
   props: ['loginData'],
-  data() {
-    return {
-      userToolbarItems: [
-        {title: '마이페이지', link: '/mypage/updateUser'},
-        {title: '자주 묻는 질문', link: '/faq'}
-      ]
-    }
-  },
   computed: {
     isLogin() {
       return this.$store.getters.token

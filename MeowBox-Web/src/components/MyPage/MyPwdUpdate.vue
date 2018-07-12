@@ -28,24 +28,36 @@
                 </tr>
             </table>
             <aside class="btn-space">
-                <v-btn class="updateBtn">수정하기</v-btn>
+                <v-btn class="updateBtn" @click="editPwd">수정하기</v-btn>
             </aside>
         </section>
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
   name: 'MyPwdUpdate',
   data() {
     return {
       pwd: '',
     };
+  },
+  methods: {
+    ...mapActions([
+      'editUserProfile'
+    ]),
+    editPwd() {
+      const result = this.editUserProfile(this.pwd);
+
+      console.log(result);
+      return result ? alert('goood') : alert('baad')
+    }
   }
 }
 </script>
 
 <style lang="scss">
     @import '../../assets/scss/MyInfoUpdate.scss';
-
 </style>

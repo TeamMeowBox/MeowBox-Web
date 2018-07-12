@@ -19,7 +19,8 @@ export default {
     return {
       toolbarItems: [
         {title: '미유박스이야기', link: '/story'},
-        {title: '생일축하해! 박스', link: '/birthbox'},
+        {title: '이달의 박스', link:'/thismonthbox'},
+        {title: '생일축하해! 박스', link: '/happyBirthday'},
         {title: '주문하기', link: '/order'},
         {title: '집사들의 후기', link: '/review'}
       ]
@@ -27,3 +28,15 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  @import '../../assets/scss/Header.scss';
+  .v-btn--active:before, .v-btn:focus:before, .v-btn:hover:before {
+    background-color: rgba(0,0,0,0) !important;
+  }
+  .v-btn--active, .v-btn--router::after {
+    color:#e68789 !important;
+  }
+  .application .theme--light.v-btn, .theme--light .v-btn {
+    color:#4c4e51;
+  }
+</style>

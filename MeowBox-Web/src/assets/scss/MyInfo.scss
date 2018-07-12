@@ -16,9 +16,19 @@
         .personal-info{
             padding-right:2rem; text-align:center;
         }
+        
     }
     
 }
 .star {
     color: $pink;
+}
+
+.pink {
+    background-color: #e68789 !important;
+    border-color: #e68789 !important;
+}
+.grey {
+    background-color: #efeded !important;
+    border-color: #efeded !important;
 }

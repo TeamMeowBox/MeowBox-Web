@@ -1,46 +1,107 @@
 <template>
-    <section v-if="getFlag === 2" class='date'>
-    <aside>
-        <table>
-            <tr>
-                <td class="one_pay">
-                    <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
-                    <label for="one">
-                        한번만받기
-                    </label>
-                    <br>
-                    <span> 39900원</span>
-                </td>
-                <td class="one_pay_info" v-if="date===1" style="transition:2s">
-                    <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
-                    <label for="box">7월 패키지 박스</label>
-                    <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
-                    <label for="box">고양이는 처음이지? 박스</label>
-                    <br>
-                    <span>체크한 이름: 39900</span>원
-                </td>
-            </tr>
-        </table>
-    </aside>
+    <v-layout v-if="getFlag === 2" class='date'>
+        <input id="one" class="radio-inline__input" type="radio" name="month" checked="checked" v-model="date" v-bind:value=1 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label" for="one">
+            <table>
+                <tr>
+                    <td class="one_pay">
+                        <v-card>
+                            <img src="../../assets/images/one-period-img.png" alt=""/>
+                            <v-card-title primary-title>
+                                <h4>한 번만 받기</h4>
+                                <p>39,900 원</p>
+                            </v-card-title>
+                        </v-card>
+                    </td>
+                    <td class="one_pay_info" v-if="date===1" style="transition:2s; color:#000">
+                        <div>
+                            <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
+                            <label for="box">7월 패키지 박스</label><br>
+                            <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
+                            <label for="box">고양이는 처음이지? 박스</label>
+                            <br>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </label>
 
-    <aside class="three_pay">
-        <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=3 />
-        <label for="huey">3개월 정기 배송 / 월</label><br>
-        <span>37,000원</span>
-    </aside>
+        <input id="three_months" class="radio-inline__input" type="radio" name="accessible-radio" v-model="date" v-bind:value=3 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label" for="three_months">
+          <v-card>
+            <img src="../../assets/images/three-period-img.png" alt=""/>
+            <v-card-title primary-title>
+                <h4>3개월 정기 배송 / 월</h4>
+                <p>37,000원</p>
+            </v-card-title>
+          </v-card>
+        </label>
 
-    <aside class="six_pay">
-        <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=6  />
-        <label for="dewey">6개월 정기 배송 / 월</label><br>
-        <span>35,000원</span>
-    </aside>
+        <input id="six_months" class="radio-inline__input" type="radio" name="accessible-radio" v-model="date" v-bind:value=6 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label" for="six_months">
+          <v-card>
+            <img src="../../assets/images/six-period-img.png" alt=""/>
+            <v-card-title primary-title>
+                <h4>6개월 정기 배송 / 월</h4>
+                <p>35,000원</p>
+            </v-card-title>
+          </v-card>
+        </label>
 
-    <aside class="twelve_pay">
-        <input type="radio" id="brith_box" name="month"  v-model="date" v-bind:value=7  />
-        <label for="louie">생일 박스</label><br>
-        <span>32,500 원</span>
-    </aside>
-   </section>
+        <input id="brith_box" class="radio-inline__input" type="radio" name="accessible-radio" v-model="date" v-bind:value=7 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label" for="brith_box">
+          <v-card>
+            <img src="../../assets/images/birthday-period-img.png" alt=""/>
+            <v-card-title primary-title>
+                <h4>생일 박스</h4><br/>
+                <p>32,500 원</p>
+            </v-card-title>
+          </v-card>
+        </label>
+
+        <!-- <aside>
+            <table>
+                <tr>
+                    <td class="one_pay">
+                        <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
+                        <label for="one">
+                            한 번만 받기
+                        </label>
+                        <br>
+                        <span> 39900원</span>
+                    </td>
+                    <td class="one_pay_info" v-if="date===1" style="transition:2s">
+                        <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
+                        <label for="box">7월 패키지 박스</label>
+                        <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
+                        <label for="box">고양이는 처음이지? 박스</label>
+                        <br>
+                        <span>체크한 이름: 39900</span>원
+                    </td>
+                </tr>
+            </table>
+        </aside> -->
+
+        <!-- <aside class="three_pay">
+            <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=3 />
+            <label for="huey">
+                3개월 정기 배송 / 월
+            </label><br>
+            <span>37,000원</span>
+        </aside> -->
+
+        <!-- <aside class="six_pay">
+            <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=6  />
+            <label for="dewey">6개월 정기 배송 / 월</label><br>
+            <span>35,000원</span>
+        </aside> -->
+
+        <!-- <aside class="twelve_pay">
+            <input type="radio" id="brith_box" name="month"  v-model="date" v-bind:value=7  />
+            <label for="louie">생일 박스</label><br>
+            <span>32,500 원</span>
+        </aside> -->
+   </v-layout>
 
    
    
@@ -413,5 +474,10 @@ methods:{
 
 <style lang="scss">
 @import '../../assets/scss/Order.scss';
-
+.date {
+        background: url("../../assets/images/meow_box_order_step_3_img.png") no-repeat;
+        background-position:right bottom;
+        background-size: 45%;
+        height:80vh;
+    }
 </style>

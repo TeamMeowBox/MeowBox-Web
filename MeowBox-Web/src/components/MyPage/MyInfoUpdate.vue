@@ -1,65 +1,64 @@
 <template>
-    <div>
+    <div xs12 sm6 md4 lg3>
         <h3 class="title">개인정보수정</h3>
         <hr class="section-divide">
         <section class="my-info-container">
             <table style="margin:0 auto; width:48vw;">
+            <tr>
+          <td class="cate-td">
+            <label for="name">이름</label>
+          </td>
+          <td>
+            <v-text-field class="name" v-model="name"></v-text-field>
+          </td>
+          <td>
+            <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
+          </td>
+        </tr>
+        <tr>
+          <td class="cate-td">
+            <label for="phone">휴대전화</label>
+          </td>
+          <td colspan="2">
+            <v-text-field class="phone" type="text" v-model="phone"/>
+          </td>
+        </tr>
+        <tr>
+          <td class="cate-td">
+            <label for="profile-img">프로필 이미지</label>
+          </td>
+          <td colspan="2" style="text-align:left;">
+            <div class="img-upload-cont">
+              <table>
                 <tr>
-                    <td class="cate-td">
-                        <label for="name">이름</label>
-                    </td>
-                    <td>
-                        <v-text-field class="name" v-model="name"></v-text-field>
-                    </td>
-                    <td>
-                        <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
-                    </td>
+                  <td>
+                    <div class="dropbox" v-if="!img">
+                      <input
+                        type="file"
+                        class="input-image"
+                        :multiple="false"
+                        @change="onFileChange"
+                        accept="image/*">
+                    </div>
+                    <img class="my_image" :src="img" v-if="img" alt="">
+                  </td>
+                  <td>
+                    <v-btn class="updateProfileBtn">이미지 업로드</v-btn>
+                  </td>
                 </tr>
-                <tr>
-                    <td class="cate-td">
-                        <label for="phone">휴대전화</label>
-                    </td>
-                    <td colspan="2">
-                        <v-text-field class="phone" type="text" v-model="phone"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cate-td">
-                        <label for="profile-img">프로필 이미지</label>
-                    </td>
-                    <td colspan="2" style="text-align:left;">
-                        <div class="img-upload-cont">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div class="dropbox" v-if="!img">
-                                            <input
-                                                type="file"
-                                                class="input-image"
-                                                :multiple="false"
-                                                @change="onFileChange"
-                                                accept="image/*">
-                                        </div>
-                                        <img class="my_image" :src="img" v-if="img" alt="">
-                                    </td>
-                                    <td>
-                                        <v-btn class="updateProfileBtn">이미지 업로드</v-btn>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <aside class="btn-space">
-                <v-btn class="updateBtn" @click="updateUserInfo()">수정하기</v-btn>
-            </aside>
-        </section>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <aside class="btn-space">
+        <v-btn class="updateBtn" @click="updateUserInfo()">수정하기</v-btn>
+      </aside>
+    </section>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import {mapActions, mapGetters} from 'vuex';
 
 export default {
@@ -118,7 +117,7 @@ export default {
       }
       return result ? alert('변경 성공') : alert('변경 실패')
     },
-    async init () {
+    async init() {
       const result = await this.fetchUserProfile();
       this.phone = this.userProfile.phoneNumber;
       this.name = this.userProfile.userName;
@@ -132,25 +131,29 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '../../assets/scss/MyInfoUpdate.scss';
-    .dropbox{
-//  background-color: grey;
-    background: url('../../assets/images/camera.png') no-repeat ;
-    background-size:contain;
-    min-width:10vw;
-    min-height:10vh;
-}
-.dropbox p{
+  @import '../../assets/scss/MyInfoUpdate.scss';
+
+  .dropbox {
+    //  background-color: grey;
+    background: url('../../assets/images/camera.png') no-repeat;
+    background-size: contain;
+    min-width: 10vw;
+    min-height: 10vh;
+  }
+
+  .dropbox p {
     text-align: center;
     line-height: 20vh;
-}
-.input-image{
+  }
+
+  .input-image {
     opacity: 0;
     width: 15vw;
     height: 20vh;
-}
-.my_image{
-    width:10rem;
-    height:10rem;
-    }
+  }
+
+  .my_image {
+    width: 10rem;
+    height: 10rem;
+  }
 </style>

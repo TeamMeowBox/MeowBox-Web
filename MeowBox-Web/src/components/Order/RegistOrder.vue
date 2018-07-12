@@ -266,15 +266,11 @@
    <div  v-else-if="getFlag === 4" class='price'>
        <p class="catInputTitle">미유박스<br><b>주문이 완료</b>되었습니다<br></p>
        <small>기다리는 반려묘들을 위해 빨리 배송할게요. <br>조금만 더 기다려주세요!</small>
-        <button @click="requestPay">결dsfdfsdfds제하기</button>
    </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex';
-const IMP = window.IMP; // 생략해도 괜찮습니다.
-IMP.init("imp68124833"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-
 export default {
 data(){
         return{
@@ -407,32 +403,6 @@ methods:{
         this.initLayerPosition(element_layer);
         
        },
-         requestPay: function () {
-             console.log(IMP);
-             
-            // IMP.request_pay(param, callback) 호출
-            IMP.request_pay({ // param
-                pg : 'html5_inicis',
-                pay_method : 'card',
-                merchant_uid : 'merchant_' + new Date().getTime(),
-                name : '주문명:결제테스트',
-                amount : 100,
-                buyer_email : 'iamport@siot.do',
-                buyer_name : '구매자이름',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456',
-                kakaoOpenApp : true
-            }, (rsp) => { // callback
-                if (rsp.success) {
-                   console.log(rsp);
-                   
-                } else {
-                   console.log(rsp.error_msg);
-                   
-                   }
-            })
-        },
        initLayerPosition(element_layer){
            var width = 300; 
            var height = 400; 

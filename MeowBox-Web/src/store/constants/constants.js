@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://13.209.220.1:3000'
+export const BASE_URL = 'http://13.124.92.40:3000'
 
 export const SET_TOKEN = 'SET_TOKEN';
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';

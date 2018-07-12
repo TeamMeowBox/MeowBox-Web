@@ -1,9 +1,20 @@
 import axios from 'axios'
 
 import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG, GET_MYPAGE_INFO} from '../constants/constants'
-const BASE_URL = 'http://13.209.220.1:3000'
-
+const BASE_URL = 'http://13.124.92.40:3000'
 const HEADER = {headers: {authorization: localStorage.getItem('token')}}
+const IMP = window.IMP // 생략해도 괜찮습니다.
+IMP.init('imp68124833') // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+
+
+window.onload = function () {
+  var s = document.createElement('script')
+  s.type = 'text/javascript'
+  s.async = true
+  s.src = 'https://service.iamport.kr/js/iamport.payment-1.1.5.js'
+  var x = document.getElementsByTagName('script')[0]
+  x.parentNode.insertBefore(s, x)
+};
 
 const state = {
   token: localStorage.getItem('token') || null,
@@ -13,7 +24,7 @@ const state = {
     phoneNumber: null,
     imageProfile: null,
     cat_idx: null,
-    caution : null,
+    caution: null,
     size: null,
     catName: null,
     birthday: null
@@ -36,6 +47,20 @@ const actions = {
       axios.post(`${BASE_URL}/order/order_page`, info, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
           if (res.data.status) {
+            console.log(res.data)
+            IMP.request_pay({ // param
+              pg: 'html5_inicis',
+              merchant_uid: res.data.order_idx,
+              name: info.name,
+              amount: info.price,
+              kakaoOpenApp: true
+            }, (rsp) => { // callback
+              if (rsp.success) {
+                console.log(rsp)
+              } else {
+                console.log(rsp.error_msg)
+              }
+            })
             resolve(res.data.resulte)
           }
         })
@@ -50,9 +75,9 @@ const actions = {
       axios.post(`${BASE_URL}/user/signin`, info)
         .then(res => {
           if (res.data.status) {
-            localStorage.token = res.data.result.token;
-            localStorage.cat_idx = res.data.result.cat_idx;
-            context.commit(SET_TOKEN, res.data.result);
+            localStorage.token = res.data.result.token
+            localStorage.cat_idx = res.data.result.cat_idx
+            context.commit(SET_TOKEN, res.data.result)
 
             resolve(true)
           }
@@ -68,29 +93,29 @@ const actions = {
       axios.post(`${BASE_URL}/user/signup`, info)
         .then(res => {
           if (res.data.status) {
-            localStorage.token = res.data.result.token;
-            console.log(res.data);
+            localStorage.token = res.data.result.token
+            console.log(res.data)
 
-            localStorage.cat_idx = -1;
+            localStorage.cat_idx = -1
 
-            context.commit(SET_TOKEN, res.data.result);
+            context.commit(SET_TOKEN, res.data.result)
             resolve(true)
           }
         })
         .catch(e => { // 500 error
-          console.log(e);
+          console.log(e)
           resolve(false)
         })
     })
   },
   fetchUserProfile (context) {
     return new Promise((resolve) => {
-      console.log('call fetchuserprofile');
-      axios.get(`${BASE_URL}/mypage/account_setting/account/`,  {headers: {authorization: localStorage.getItem('token')}})
+      console.log('call fetchuserprofile')
+      axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {
-            context.commit(FETCH_USER_PROFILE, res.data.result);
-            resolve(res.data.result);
+            context.commit(FETCH_USER_PROFILE, res.data.result)
+            resolve(res.data.result)
           }
         })
     })
@@ -101,7 +126,7 @@ const actions = {
         .then(res => {
           console.log(res)
           if (res.data.status) {
-            resolve(true);
+            resolve(true)
           } else {
             resolve(false)
           }
@@ -123,16 +148,16 @@ const actions = {
         })
     })
   },
-  fetchMyPageInfoAction(context) {
+  fetchMyPageInfoAction (context) {
     return new Promise((resolve, reject) => {
       axios.get(`${BASE_URL}/mypage/mypageinfo`, HEADER)
         .then((res) => {
           if (res.data.status) {
-            context.commit(GET_MYPAGE_INFO, res.data.result);
-            resolve(res.data.result);
+            context.commit(GET_MYPAGE_INFO, res.data.result)
+            resolve(res.data.result)
           } else {
-            const _err = new Error("fetchMyPage Error");
-            reject(_err);
+            const _err = new Error('fetchMyPage Error')
+            reject(_err)
           }
         })
     })
@@ -172,8 +197,8 @@ const mutations = {
   [DEFAULT_FLAG] (state) {
     state.flag = 0
   },
-  [GET_MYPAGE_INFO](state, payload) {
-    state.usedTicket = payload;
+  [GET_MYPAGE_INFO] (state, payload) {
+    state.usedTicket = payload
   }
 }
 

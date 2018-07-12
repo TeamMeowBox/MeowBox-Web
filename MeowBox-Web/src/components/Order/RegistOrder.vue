@@ -58,49 +58,6 @@
             </v-card-title>
           </v-card>
         </label>
-
-        <!-- <aside>
-            <table>
-                <tr>
-                    <td class="one_pay">
-                        <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
-                        <label for="one">
-                            한 번만 받기
-                        </label>
-                        <br>
-                        <span> 39900원</span>
-                    </td>
-                    <td class="one_pay_info" v-if="date===1" style="transition:2s">
-                        <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
-                        <label for="box">7월 패키지 박스</label>
-                        <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
-                        <label for="box">고양이는 처음이지? 박스</label>
-                        <br>
-                        <span>체크한 이름: 39900</span>원
-                    </td>
-                </tr>
-            </table>
-        </aside> -->
-
-        <!-- <aside class="three_pay">
-            <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=3 />
-            <label for="huey">
-                3개월 정기 배송 / 월
-            </label><br>
-            <span>37,000원</span>
-        </aside> -->
-
-        <!-- <aside class="six_pay">
-            <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=6  />
-            <label for="dewey">6개월 정기 배송 / 월</label><br>
-            <span>35,000원</span>
-        </aside> -->
-
-        <!-- <aside class="twelve_pay">
-            <input type="radio" id="brith_box" name="month"  v-model="date" v-bind:value=7  />
-            <label for="louie">생일 박스</label><br>
-            <span>32,500 원</span>
-        </aside> -->
    </v-layout>
 
    
@@ -259,6 +216,7 @@
                         </table>
                     </div>
                 </div>
+                <img src="../../assets/images/meow_box_order_final_img.png">
             </section>
         </v-layout>
    </div>

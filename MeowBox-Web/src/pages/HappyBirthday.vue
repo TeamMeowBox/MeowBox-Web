@@ -1,6 +1,6 @@
 <template>
     <div class="container" style="width:70vw">
-        생일축하페이지
+        <img>
     </div>
 </template>
 

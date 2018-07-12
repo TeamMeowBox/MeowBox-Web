@@ -2,13 +2,13 @@
   <div class="order-container">
     <section class='name' v-if="getFlag ===0">
       <aside>
-        {{this.$store.getters.getFlag}}
         <p class="catInputTitle">반려묘의<br><b>이름</b>은 무엇인가요?
           <small>필수항목(*)은 꼭 입력해주세요.</small>
         </p>
         <p>이름<span class="star">*</span></p>
         <v-text-field class="catName" v-model="cat.name" placeholder="반려묘 이름" required/>
       </aside>
+       <img src="../../assets/images/meow_box_order_step_1_img.png" alt=""/>
     </section>
     <section class='etc' v-if="getFlag ===1">
       <aside>
@@ -75,6 +75,7 @@
           label="알레르기가 있는 재료나 좋아하는 재료에 대해 적어주세요."
         ></v-textarea>
       </aside>
+      <img src="../../assets/images/meow_box_order_step_2_img.png" alt="">
     </section>
   </div>
 

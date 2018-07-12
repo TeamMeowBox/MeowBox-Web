@@ -9,7 +9,7 @@
             <label for="name">이름</label>
           </td>
           <td>
-            <v-text-field class="name" v-model="userProfile.user_name"></v-text-field>
+            <v-text-field class="name" v-model="name"></v-text-field>
           </td>
           <td>
             <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
@@ -20,7 +20,7 @@
             <label for="phone">휴대전화</label>
           </td>
           <td colspan="2">
-            <v-text-field class="phone" type="text" v-model="userProfile.phone_number"/>
+            <v-text-field class="phone" type="text" v-model="phone"/>
           </td>
         </tr>
         <tr>
@@ -84,7 +84,7 @@ export default {
       'fetchUserProfile'
     ]),
     removeImg(){
-      this.img ='' 
+      this.img =''
     },
     onFileChange(event) {
       if (event.target.files[0]['type'].split('/')[0] === 'image') {
@@ -122,8 +122,10 @@ export default {
     },
     async init() {
       const result = await this.fetchUserProfile();
-      this.phone = this.userProfile.phoneNumber;
-      this.name = this.userProfile.userName;
+      // this.phone = this.userProfile.phoneNumber;
+      // this.name = this.userProfile.userName;
+      this.phone = result.phone_number;
+      this.name = result.user_name;
       this.img = result.image_profile;
     }
   },
@@ -134,29 +136,29 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../../assets/scss/MyInfoUpdate.scss';
+@import '../../assets/scss/MyInfoUpdate.scss';
 
-  .dropbox {
-    //  background-color: grey;
-    background: url('../../assets/images/camera.png') no-repeat;
-    background-size: contain;
-    min-width: 10vw;
-    min-height: 10vh;
-  }
+.dropbox {
+  //  background-color: grey;
+  background: url('../../assets/images/camera.png') no-repeat;
+  background-size: contain;
+  min-width: 10vw;
+  min-height: 10vh;
+}
 
-  .dropbox p {
-    text-align: center;
-    line-height: 20vh;
-  }
+.dropbox p {
+  text-align: center;
+  line-height: 20vh;
+}
 
-  .input-image {
-    opacity: 0;
-    width: 15vw;
-    height: 20vh;
-  }
+.input-image {
+  opacity: 0;
+  width: 15vw;
+  height: 20vh;
+}
 
-  .my_image {
-    width: 10rem;
-    height: 10rem;
-  }
+.my_image {
+  width: 10rem;
+  height: 10rem;
+}
 </style>

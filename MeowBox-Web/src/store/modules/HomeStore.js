@@ -55,6 +55,16 @@ const actions = {
         })
     })
   },
+  fetchCatCountAction() {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}//home/monthlyBox_detail/catCount`)
+        .then((res) => {
+          if (res.data.status) {
+            resolve(res.data.result);
+          }
+        })
+    })
+  }
 };
 
 const mutations = {

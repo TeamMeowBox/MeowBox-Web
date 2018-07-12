@@ -146,7 +146,6 @@ const actions = {
   },
   fetchUserProfile(context) {
     return new Promise((resolve) => {
-      console.log('call fetchuserprofile')
       axios.get(`${BASE_URL}/mypage/account_setting/account/`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {

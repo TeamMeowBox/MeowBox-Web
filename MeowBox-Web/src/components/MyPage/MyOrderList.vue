@@ -136,43 +136,32 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex';
+import {mapActions} from 'vuex';
 
-  export default {
-    name: 'MyOrderList',
-    data() {
-      return {
-        ticket: null,
-        ticketed: null,
-      };
-    },
-    methods: {
-      ...mapActions([
-        'fetchOrderList'
-      ]),
-      async getOrderList() {
-        const result = this.fetchOrderList();
-        // this.ticket = {
-        //   idx: result.ticket.idx,
-        //   product: result.ticket.product,
-        //   term: result.ticket.term,
-        //   flag: result.ticket.flag,
-        // };
-        // this.ticketed = {
-        //   idx: result.ticketed.idx,
-        //   product: result.ticketed.product,
-        //   term: result.ticketed.term,
-        //   flag: result.ticketed.flag,
-        // };
+export default {
+  name: 'MyOrderList',
+  data() {
+    return {
+      ticket: null,
+      ticketed: null,
+    };
+  },
+  methods: {
+    ...mapActions([
+      'fetchOrderList'
+    ]),
+    async getOrderList() {
+      const result = await this.fetchOrderList();
 
-        this.ticket = result.ticket;
-        this.ticketed = result.ticketed;
-      }
-    },
-    created() {
-      this.getOrderList()
+      this.ticket = result.ticket;
+      this.ticketed = result.ticketed;
+
     }
+  },
+  created() {
+    this.getOrderList()
   }
+}
 </script>
 
 <style lang="scss">

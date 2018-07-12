@@ -6,7 +6,7 @@ import {SET_CAT, SET_DEFAULT_CAT, GET_CAT, BASE_URL} from '../constants/constant
 
 const state = {
   cat_idx: localStorage.getItem('cat_idx') || null,
-  catProfile: {},
+  catProfile: null,
 }
 
 const getters = {
@@ -22,11 +22,13 @@ const mutations = {
     state.cat_idx = -1
   },
   [GET_CAT](state, payload) {
-    state.catProfile.name = payload.name;
-    state.catProfile.idx = payload.cat_idx;
-    state.catProfile.birthday = payload.birthday;
-    state.catProfile.state = payload.state;
-    state.catProfile.caution = payload.caution;
+    state.catProfile = payload;
+
+    // state.catProfile.name = payload.name;
+    // state.catProfile.idx = payload.cat_idx;
+    // state.catProfile.birthday = payload.birthday;
+    // state.catProfile.state = payload.state;
+    // state.catProfile.caution = payload.caution;
   }
 }
 

@@ -127,8 +127,8 @@
         </aside> -->
    </v-layout>
 
-   
-   
+
+
    <div class="price" v-else-if="getFlag === 3">
        <div class="title container">
            <p>미유박스를 받기 위한</p>
@@ -210,9 +210,9 @@
                         </div>
                     </table>
                 </div>
-                
+
                 <br><br><br>
-                
+
                 <br>
                 <hr class="dotted-hr">
                 <br>
@@ -294,189 +294,190 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import axios from 'axios';
-export default {
-data(){
-        return{
+  import {mapActions} from 'vuex';
+  import axios from 'axios';
 
-            catSize:'',
-            catEtc:'',
-            date:'',
-            box:'',
-            boxprice:0,
-            checkedNames:'',
-            address:{
-                one:'',
-                two:'',
-                three:''
-            },
-            newAddress:{
-                one:'',
-                two:'',
-                three:''
-            },
-            orderFlag:0,
-            info : {
-                name:'',
-                phone_number:'',
-                email:'',
-                address:'',
-                product:'',
-            },
-            newInfo :{
-                name:'',
-                phone_number:'',
-                email:'',
-                address:'',
-                product:''
-            }
+  export default {
+    data() {
+      return {
+
+        catSize: '',
+        catEtc: '',
+        date: '',
+        box: '',
+        boxprice: 0,
+        checkedNames: '',
+        address: {
+          one: '',
+          two: '',
+          three: ''
+        },
+        newAddress: {
+          one: '',
+          two: '',
+          three: ''
+        },
+        orderFlag: 0,
+        info: {
+          name: '',
+          phone_number: '',
+          email: '',
+          address: '',
+          product: '',
+        },
+        newInfo: {
+          name: '',
+          phone_number: '',
+          email: '',
+          address: '',
+          product: ''
         }
-},
-computed:{
-     getFlag(){
-        if(this.$store.getters.getFlag ===3){
-            if(this.date ===1 || this.date ===2){
+      }
+    },
+    computed: {
+      getFlag() {
+        if (this.$store.getters.getFlag === 3) {
+          if (this.date === 1 || this.date === 2) {
             this.boxprice = 399
-        }
-        if(this.date ===3 ){
-            this.boxprice = 370
-        }
-        if(this.date === 6){
-            this.boxprice = 350
-        }
-        if(this.date === 7){
-            this.boxprice = 325
-        }
-
-        axios.get(`http://13.124.92.40:3000/order/order_page/product/`+this.date, {headers: {authorization: localStorage.getItem('token')}})
-        .then((res) => {
-          if (res.data.result === 1) {
-              console.log(res.data.status);
-              
-              console.log("go");
-          }else{
-              console.log("fail");
-              alert("이미 정기권을 구매했습니다.")
-              this.$router.push("/")
           }
-        })
-        }
-    if (this.$store.getters.getFlag === 4 && localStorage.cat_idx !== -1) {
-        if(this.orderFlag===1){
+          if (this.date === 3) {
+            this.boxprice = 370
+          }
+          if (this.date === 6) {
+            this.boxprice = 350
+          }
+          if (this.date === 7) {
+            this.boxprice = 325
+          }
 
-           this.newInfo.address += this.newAddress.one+'@';
-           this.newInfo.address += this.newAddress.two+'@';
-           this.newInfo.address += this.newAddress.three;
-           this.newInfo.product = this.date;
-           this.newInfo.price = this.boxprice;
-           console.log(this.newInfo);
-           
-             this.$store.dispatch('orderAction', this.newInfo)
+          axios.get(`http://13.124.92.40:3000/order/order_page/product/` + this.date, {headers: {authorization: localStorage.getItem('token')}})
+            .then((res) => {
+              if (res.data.result === 1) {
+                console.log(res.data.status);
+
+                console.log("go");
+              } else {
+                console.log("fail");
+                alert("이미 정기권을 구매했습니다.")
+                this.$router.push("/")
+              }
+            })
+        }
+        if (this.$store.getters.getFlag === 4 && localStorage.cat_idx !== -1) {
+          if (this.orderFlag === 1) {
+
+            this.newInfo.address += this.newAddress.one + '@';
+            this.newInfo.address += this.newAddress.two + '@';
+            this.newInfo.address += this.newAddress.three;
+            this.newInfo.product = this.date;
+            this.newInfo.price = this.boxprice;
+            console.log(this.newInfo);
+
+            this.$store.dispatch('orderAction', this.newInfo)
             console.log(result);
-            
+
             const IMP = window.IMP; // 생략해도 괜찮습니다.
-        
-        }else{
 
-           this.info.address += this.address.one+'@';
-           this.info.address += this.address.two+'@';
-           this.info.address += this.address.three;
-           this.info.product = this.date;
-           this.info.price = this.boxprice;
-           console.log(this.info);
-           
-            this.$store.dispatch('orderAction',this.info)
-           
+          } else {
+
+            this.info.address += this.address.one + '@';
+            this.info.address += this.address.two + '@';
+            this.info.address += this.address.three;
+            this.info.product = this.date;
+            this.info.price = this.boxprice;
+            console.log(this.info);
+
+            this.$store.dispatch('orderAction', this.info)
+
+          }
         }
-        }
-      return this.$store.getters.getFlag;
-    }
-},
-methods:{
-    ...mapActions([
-        'fetchCatAction','getOrder'
-    ]),
-    loadDaum () {
-      var self = this;
-      var element_layer = window.document.getElementById('layer')
-      daum.postcode.load(function(){
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var fullAddr = ''; 
-                var extraAddr = '';
-                
-                if (data.userSelectedType === 'R') { 
-                    fullAddr = data.roadAddress;
+        return this.$store.getters.getFlag;
+      }
+    },
+    methods: {
+      ...mapActions([
+        'fetchCatAction', 'getOrder'
+      ]),
+      loadDaum() {
+        var self = this;
+        var element_layer = window.document.getElementById('layer')
+        daum.postcode.load(function () {
+          new daum.Postcode({
+            oncomplete: function (data) {
+              var fullAddr = '';
+              var extraAddr = '';
 
-                } else { 
-                    fullAddr = data.jibunAddress;
+              if (data.userSelectedType === 'R') {
+                fullAddr = data.roadAddress;
+
+              } else {
+                fullAddr = data.jibunAddress;
+              }
+
+              if (data.userSelectedType === 'R') {
+                if (data.bname !== '') {
+                  extraAddr += data.bname;
                 }
-
-                if(data.userSelectedType === 'R'){
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                if (data.buildingName !== '') {
+                  extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
+                fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+              }
 
-            if(self.orderFlag==0){
-               self.address.one = data.zonecode; 
-               self.address.two = fullAddr;
-            }else if(self.orderFlag==1){
-               self.newAddress.one = data.zonecode; 
-               self.newAddress.two = fullAddr;
+              if (self.orderFlag == 0) {
+                self.address.one = data.zonecode;
+                self.address.two = fullAddr;
+              } else if (self.orderFlag == 1) {
+                self.newAddress.one = data.zonecode;
+                self.newAddress.two = fullAddr;
+              }
+              element_layer.style.display = 'none';
+
             }
-               element_layer.style.display = 'none';
-              
-            }
-        }).embed(element_layer);
-      });
+          }).embed(element_layer);
+        });
 
         element_layer.style.display = 'block';
         //화면 중간에 오게하기
         this.initLayerPosition(element_layer);
-        
-       },
-       initLayerPosition(element_layer){
-           var width = 300; 
-           var height = 400; 
-           var borderWidth = 5; 
+
+      },
+      initLayerPosition(element_layer) {
+        var width = 300;
+        var height = 400;
+        var borderWidth = 5;
 
         element_layer.style.width = width + 'px';
         element_layer.style.height = height + 'px';
         element_layer.style.border = borderWidth + 'px solid';
-        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
-        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
-           
-       },
-       closeDaumPostcode(){
-           window.document.getElementById('layer').style.display='none';
-       },
-      async getCatProfile() {
-           const cat = await this.fetchCatAction();
-           const order = await this.getOrder();
-           
-           
-           if( order.order_idx !==-1){
-           this.catSize = cat.size;
-           this.catEtc = cat.caution;
-           this.info.name = order.name;
-           this.info.phone_number = order.phone_number;
-           this.address.one = order.address.split('@')[0]
-           this.address.two = order.address.split('@')[1]
-           this.address.three = order.address.split('@')[2]
-           }
-       }
-},
- async created() {
-       await this.getCatProfile();
-},
+        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width) / 2 - borderWidth) + 'px';
+        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height) / 2 - borderWidth) + 'px';
 
-}
+      },
+      closeDaumPostcode() {
+        window.document.getElementById('layer').style.display = 'none';
+      },
+      async getCatProfile() {
+        const cat = await this.fetchCatAction();
+        const order = await this.getOrder();
+
+
+        if (order.order_idx !== -1) {
+          this.catSize = cat.size;
+          this.catEtc = cat.caution;
+          this.info.name = order.name;
+          this.info.phone_number = order.phone_number;
+          this.address.one = order.address.split('@')[0]
+          this.address.two = order.address.split('@')[1]
+          this.address.three = order.address.split('@')[2]
+        }
+      }
+    },
+    async created() {
+      await this.getCatProfile();
+    },
+
+  }
 </script>
 
 

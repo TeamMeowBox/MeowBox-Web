@@ -38,7 +38,7 @@
                     <span class="star">결제 금액</span>
                   </td>
                   <td class="detail-content">
-                    <span class="star">109,500원</span>
+                    <span class="star">{{ticket.price}}원</span>
                   </td>
                 </tr>
               </table>

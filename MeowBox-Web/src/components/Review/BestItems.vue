@@ -8,8 +8,30 @@
           <!--<template v-for="item index in items" :key="item">-->
             <!--<p>{{item}}</p>-->
           <!--</template>-->
+          <h2>{{items.title.brithday}}</h2>
+          <p>{{items.comment.birthday}}</p>
+            <span v-for="(item, index) in items.birthday" :key="index" style="font-size:1.2rem">
+              <img :src="item.image">
+              <p>{{item.hash}}</p>
+              <p>{{item.insta}}</p>
+            </span>
 
-        {{items}}
+          <h2>{{items.title.best_image_7}}</h2>
+          <p>{{items.comment.best_image_7}}</p>
+            <span v-for="(item, index) in items.birthday" :key="index" style="font-size:1.2rem">
+              <img :src="item.image">
+              <p>{{item.hash}}</p>
+              <p>{{item.insta}}</p>
+            </span>
+
+          <h2>{{items.title.best_image_6}}</h2>
+          <p>{{items.comment.best_image_6}}</p>
+            <span v-for="(item, index) in items.birthday" :key="index" style="font-size:1.2rem">
+              <img :src="item.image">
+              <p>{{item.hash}}</p>
+              <p>{{item.insta}}</p>
+            </span>
+      
       </section>
 
       <section class="this-month-best" style="text-align:left">

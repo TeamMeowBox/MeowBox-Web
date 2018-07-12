@@ -43,7 +43,7 @@
                     <img class="my_image" :src="img" v-if="img" alt="">
                   </td>
                   <td>
-                    <v-btn class="updateProfileBtn">이미지 업로드</v-btn>
+                    <v-btn class="updateProfileBtn" @click="removeImg()">이미지 업로드</v-btn>
                   </td>
                 </tr>
               </table>
@@ -83,6 +83,9 @@ export default {
       'editUserProfile',
       'fetchUserProfile'
     ]),
+    removeImg(){
+      this.img ='' 
+    },
     onFileChange(event) {
       if (event.target.files[0]['type'].split('/')[0] === 'image') {
         this.file = event.target.files[0];

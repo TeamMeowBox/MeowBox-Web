@@ -6,12 +6,18 @@
     label {
         font-weight: $kor-font-medium;
         color: $dark-gray;
-        font-size: 0.9rem;
+        font-size: 1vw;
     }
     small {
         font-weight: $kor-font-regular;
         color: #999999;
     }
+    @media screen and (max-width: 1050px) {
+        .term {
+            font-size:1vw;
+        }
+    }
+
     .more-info {
         @extend small;
         margin-left:1rem;
@@ -19,19 +25,8 @@
     v-text-field {
         display: inline-block;
     }
-    .password,
-    .passwordConfirm,
-    .phone {
-        @extend v-text-field;
-        width: 14vw;
-    }
     .btn-space {
         text-align:center;
-    }
-    .cate-td {
-        width:10rem; text-align:left;
-        font-weight:$kor-font-medium;
-        font-size:0.9rem;
     }
     .cancleActiveTicket {
         background:#e68789 !important; color:white !important;
@@ -56,11 +51,22 @@
     }
 
     .active-ticket, .inactive-ticket {
-        padding-left:2vw; padding-top:3vh;
+        padding-left:2vw; padding-top:2.5vh;
+    }
+    @media screen and (max-width: 1050px) {
+        .active-ticket, .inactive-ticket {
+            padding-left:1vw; padding-top:1vh;
+        }
     }
 
+
     .active-flag {
-        font-size:0.9rem; margin-bottom:-0.2vh; padding:0 0.2vw 0 0.2vw; background-color:#e68789; color:white;
+        font-size:0.9vw; margin-bottom:-0.2vh; padding:0 0.2vw 0 0.2vw; background-color:#e68789; color:white;
+    }
+    @media screen and (max-width: 1050px) {
+        .active-flag {
+            font-size:0.5vw;
+        }
     }
 
     .inactive-flag {
@@ -69,8 +75,14 @@
     }
     
     .product {
-        font-size:1.5rem; margin-bottom:-0.1vh
+        font-size:1.5vw; margin-bottom:-0.1vh
     }
+    @media screen and (max-width: 1050px) {
+        .product {
+            font-size:1vw;
+        }
+    }
+    
 
     .ticket-detail > table {
         border-right: 1px solid #edefef; font-size:0.9rem; padding-left:1vw; padding-right:1vw;

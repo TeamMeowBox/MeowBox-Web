@@ -1,5 +1,7 @@
 import axios from 'axios';
-import {GET_REVIEW, BASE_URL} from '../constants/constants';
+import {GET_REVIEW, BASE_URL, GET_ORDER_LIST} from '../constants/constants';
+
+const HEADER = {headers: {authorization: localStorage.getItem('token')}};
 
 const state = {
 };
@@ -31,6 +33,27 @@ const actions = {
           }
         })
     })
+  },
+  fetchOrderList() {
+    return new Promise((resolve, reject) => {
+      axios.get(`${BASE_URL}/order/order_list`, HEADER)
+        .then((res) => {
+          console.log('res', res);
+          if (res.data.status) {
+
+            if (isEmptyObject(res.data.result.ticket)) {
+              res.data.result.ticket = null;
+            }
+            if (isEmptyArray(res.data.result.ticketed)) {
+              res.data.result.ticketed = null;
+            }
+            console.log('resul', res.data.result);
+            resolve(res.data.result);
+          } else {
+            reject();
+          }
+        })
+    })
   }
 };
 
@@ -44,3 +67,13 @@ export default {
   mutations,
   actions
 }
+
+const isEmptyObject = (obj) => {
+  // return JSON.stringify(obj) === '{}'
+  return Object.keys(obj).length === 0
+};
+
+const isEmptyArray = (arr) => {
+  console.log(arr.length === 0);
+  return arr.length === 0
+};

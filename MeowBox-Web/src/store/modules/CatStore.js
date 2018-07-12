@@ -1,9 +1,8 @@
 import axios from 'axios'
 
 
-import {SET_CAT, SET_DEFAULT_CAT, HEADER, GET_CAT} from '../constants/constants'
+import {SET_CAT, SET_DEFAULT_CAT, GET_CAT, BASE_URL} from '../constants/constants'
 
-const BASE_URL = 'http://13.124.92.40:3000';
 
 const state = {
   cat_idx: localStorage.getItem('cat_idx') || null,

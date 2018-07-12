@@ -4,12 +4,13 @@
     <section class="my-order-container">
       <table class="order-table">
         <!-- 기간 남은 티켓 -->
-        <tr>
+
+        <tr v-if="ticket">
           <td class="ticket-active-td">
             <div class="active-ticket">
               <span class="active-flag">정기권</span>
-              <p class="product">3개월 정기권</p>
-              <small class="term">2018. 04. 26 - 2018. 06. 26</small>
+              <p class="product">{{ticket.product}}</p>
+              <small class="term">{{ticket.term}}</small>
             </div>
           </td>
           <td class="ticket-td">
@@ -20,7 +21,7 @@
                     <span>상품명</span>
                   </td>
                   <td class="detail-content">
-                    <span>[뮤박스]3개월 이용권</span>
+                    <span>{{ticket.product}}</span>
                   </td>
                 </tr>
                 <tr>
@@ -28,17 +29,10 @@
                     <span>기간</span>
                   </td>
                   <td class="detail-content">
-                    <span>2018.04.26-2018.07.29</span>
+                    <span>{{ticket.term}}</span>
                   </td>
                 </tr>
-                <tr>
-                  <td class="detail-title">
-                    <span>비고</span>
-                  </td>
-                  <td class="detail-content">
-                    <span>패키지 박스</span>
-                  </td>
-                </tr>
+
                 <tr>
                   <td class="detail-title">
                     <span class="star">결제 금액</span>
@@ -69,13 +63,15 @@
             </div>
           </td>
         </tr>
+
+
         <!-- 기간 안남은 티켓 -->
-        <tr>
+        <tr v-for="item in ticketed" :key="item.idx">
           <td class="ticket-inactive-td">
             <div class="inactive-ticket">
               <span class="inactive-flag">정기권</span>
-              <p class="product">3개월 정기권</p>
-              <small class="term">2018. 04. 26 - 2018. 06. 26</small>
+              <p class="product">{{item.product}}</p>
+              <small class="term">{{item.term}}</small>
             </div>
           </td>
           <td class="ticket-td">
@@ -86,7 +82,7 @@
                     <span>상품명</span>
                   </td>
                   <td class="detail-content">
-                    <span>[뮤박스]3개월 이용권</span>
+                    <span>{{item.product}}</span>
                   </td>
                 </tr>
                 <tr>
@@ -94,15 +90,7 @@
                     <span>기간</span>
                   </td>
                   <td class="detail-content">
-                    <span>2018.04.26-2018.07.29</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="detail-title">
-                    <span>비고</span>
-                  </td>
-                  <td class="detail-content">
-                    <span>패키지 박스</span>
+                    <span>{{item.term}}</span>
                   </td>
                 </tr>
                 <tr>
@@ -136,7 +124,7 @@
           </td>
         </tr>
         <!-- 정기권 데이터 없을 경우 -->
-        <tr>
+        <tr v-if="!(ticket && ticketed)">
           <td colspan="3" class="no-data-ticket">
             <span>주문내역이 존재하지 않습니다.</span><br>
             <v-btn class="goOrderBtn" router to="/order">미유박스 시작하기</v-btn>
@@ -148,7 +136,43 @@
 </template>
 
 <script>
-  export default {}
+  import {mapActions} from 'vuex';
+
+  export default {
+    name: 'MyOrderList',
+    data() {
+      return {
+        ticket: null,
+        ticketed: null,
+      };
+    },
+    methods: {
+      ...mapActions([
+        'fetchOrderList'
+      ]),
+      async getOrderList() {
+        const result = this.fetchOrderList();
+        // this.ticket = {
+        //   idx: result.ticket.idx,
+        //   product: result.ticket.product,
+        //   term: result.ticket.term,
+        //   flag: result.ticket.flag,
+        // };
+        // this.ticketed = {
+        //   idx: result.ticketed.idx,
+        //   product: result.ticketed.product,
+        //   term: result.ticketed.term,
+        //   flag: result.ticketed.flag,
+        // };
+
+        this.ticket = result.ticket;
+        this.ticketed = result.ticketed;
+      }
+    },
+    created() {
+      this.getOrderList()
+    }
+  }
 </script>
 
 <style lang="scss">

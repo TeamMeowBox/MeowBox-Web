@@ -1,12 +1,11 @@
 import axios from 'axios'
+import router from 'vue-router'
 
 import {DEFAULT_FLAG, SET_FLAG, SET_TOKEN, REMOVE_TOKEN, FETCH_USER_PROFILE, UP_FLAG, DOWN_FLAG, GET_MYPAGE_INFO} from '../constants/constants'
 const BASE_URL = 'http://13.124.92.40:3000'
 const HEADER = {headers: {authorization: localStorage.getItem('token')}}
 const IMP = window.IMP // 생략해도 괜찮습니다.
 IMP.init('imp68124833') // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-
-
 window.onload = function () {
   var s = document.createElement('script')
   s.type = 'text/javascript'
@@ -14,8 +13,7 @@ window.onload = function () {
   s.src = 'https://service.iamport.kr/js/iamport.payment-1.1.5.js'
   var x = document.getElementsByTagName('script')[0]
   x.parentNode.insertBefore(s, x)
-};
-
+}
 const state = {
   token: localStorage.getItem('token') || null,
   userProfile: {
@@ -56,8 +54,29 @@ const actions = {
               kakaoOpenApp: true
             }, (rsp) => { // callback
               if (rsp.success) {
-                console.log(rsp)
+                axios.post(`${BASE_URL}/user/signin`, info)
+                  .then(res => {
+                    if (res.data.status) {
+                      axios.post(`${BASE_URL}/order/order_result/web`, {'imp_uid':rsp.imp_uid,'token':localStorage.token,'merchant_uid':rsp.merchant_uid,})
+                        .then(res => {
+                          if (res.data.status) {
+                            console.log(res.data)
+                            resolve(true)
+                          }
+                        })
+                        .catch(e => { // 500 error
+                          console.log(e)
+                          resolve(false)
+                        })
+                      resolve(true)
+                    }
+                  })
+                  .catch(e => { // 500 error
+                    console.log(e)
+                    resolve(false)
+                  })
               } else {
+                window.alert('결제가 실패했습니다. 다시 요청해 주세요')
                 console.log(rsp.error_msg)
               }
             })

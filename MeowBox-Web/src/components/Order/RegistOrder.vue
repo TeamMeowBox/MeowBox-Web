@@ -271,6 +271,7 @@
 
 <script>
 import {mapActions} from 'vuex';
+import axios from 'axios';
 export default {
 data(){
         return{
@@ -312,17 +313,30 @@ computed:{
      getFlag(){
         if(this.$store.getters.getFlag ===3){
             if(this.date ===1 || this.date ===2){
-            this.boxprice = 39900
+            this.boxprice = 399
         }
         if(this.date ===3 ){
-            this.boxprice = 37000
+            this.boxprice = 370
         }
         if(this.date === 6){
-            this.boxprice = 35000
+            this.boxprice = 350
         }
         if(this.date === 7){
-            this.boxprice = 32500
+            this.boxprice = 325
         }
+
+        axios.get(`http://13.124.92.40:3000/order/order_page/product/`+this.date, {headers: {authorization: localStorage.getItem('token')}})
+        .then((res) => {
+          if (res.data.result === 1) {
+              console.log(res.data.status);
+              
+              console.log("go");
+          }else{
+              console.log("fail");
+              alert("이미 정기권을 구매했습니다.")
+              this.$router.push("/")
+          }
+        })
         }
     if (this.$store.getters.getFlag === 4 && localStorage.cat_idx !== -1) {
         if(this.orderFlag===1){

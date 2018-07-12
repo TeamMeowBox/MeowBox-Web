@@ -1,24 +1,13 @@
 <template>
 <div class="order-container container" style="width:70vw;">
     <br>
-    <!-- <section style="text-align:right;">
-        <template v-if="flag!==4">
-            <span v-for="(category, index) in categorys" :key="index" style="font-size:1.2rem">
-                <b v-if="category.cate_id===flag" style="color:#e68789">
-                    {{category.numberCircle}}{{category.cateName}}&nbsp;&nbsp;
-                </b>
-                <template v-if="category.cate_id!==flag">
-                    {{category.cateName}}&nbsp;
-                </template>
-            </span>
-        </template>
-    </section> -->
+    <order-bar></order-bar>
     <br><br>
     <regist-cat v-if="hasCat==-1"></regist-cat>
     <regist-order v-else></regist-order>
    
 
-   <v-btn class="back" v-if="getFlag > 0 && getFlag<4" @click="downFlag()">돌아가기</v-btn>
+   <v-btn class="back" v-if="getFlag > 0 && getFlag<4 && hasCat==-1 || getFlag==3" @click="downFlag()">돌아가기</v-btn>
    <v-btn class="next" v-if="getFlag <4 " @click="upFlag()">다음</v-btn>
    <v-btn class="goHome" v-if="getFlag === 4" @click="back()">홈으로 돌아가기</v-btn>
 </div>

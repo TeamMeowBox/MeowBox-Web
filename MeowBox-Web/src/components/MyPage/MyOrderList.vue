@@ -5,17 +5,25 @@
       <table class="order-table">
         <!-- 기간 남은 티켓 -->
 
+        <div>
         <template v-if="ticket">
-          기간남음
+          기간남은 티켓 노출
         </template>
 
         <tepmlate v-else>
-          없음
+          기간남은 티켓 없음
         </tepmlate>
+        </div>
 
-        <template>
-
+        <div>
+        <template v-if="ticketed">
+          기간안남은 티켓 노출
         </template>
+
+        <template v-else>
+          기간안남은 티켓 없음
+        </template>
+        </div>
 
         <tr>
           <td class="ticket-active-td">

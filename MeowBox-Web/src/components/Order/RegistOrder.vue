@@ -309,7 +309,7 @@ data(){
         }
 },
 computed:{
-    getFlag(){
+     getFlag(){
         if(this.$store.getters.getFlag ===3){
             if(this.date ===1 || this.date ===2){
             this.boxprice = 39900
@@ -334,7 +334,11 @@ computed:{
            this.newInfo.price = this.boxprice;
            console.log(this.newInfo);
            
-            this.$store.dispatch('orderAction', this.newInfo)
+             this.$store.dispatch('orderAction', this.newInfo)
+            console.log(result);
+            
+            const IMP = window.IMP; // 생략해도 괜찮습니다.
+        
         }else{
 
            this.info.address += this.address.one+'@';
@@ -345,6 +349,7 @@ computed:{
            console.log(this.info);
            
             this.$store.dispatch('orderAction',this.info)
+           
         }
         }
       return this.$store.getters.getFlag;

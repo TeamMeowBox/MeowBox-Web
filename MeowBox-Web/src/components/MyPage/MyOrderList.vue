@@ -151,7 +151,7 @@
         'fetchOrderList'
       ]),
       async getOrderList() {
-        const result = await this.fetchOrderList();
+        const result = this.fetchOrderList();
         // this.ticket = {
         //   idx: result.ticket.idx,
         //   product: result.ticket.product,

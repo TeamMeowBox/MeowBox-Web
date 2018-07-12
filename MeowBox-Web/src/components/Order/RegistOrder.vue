@@ -1,46 +1,131 @@
 <template>
-    <section v-if="getFlag === 2" class='date'>
-    <aside>
-        <table>
-            <tr>
-                <td class="one_pay">
-                    <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
-                    <label for="one">
-                        한 번만 받기
-                    </label>
-                    <br>
-                    <span> 39900원</span>
-                </td>
-                <td class="one_pay_info" v-if="date===1" style="transition:2s">
-                    <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
-                    <label for="box">7월 패키지 박스</label>
-                    <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
-                    <label for="box">고양이는 처음이지? 박스</label>
-                    <br>
-                    <span>체크한 이름: 39900</span>원
-                </td>
-            </tr>
-        </table>
-    </aside>
+    <v-layout v-if="getFlag === 2" class='date'>
+        <input id="one" class="radio-inline__input" type="radio" name="month" checked="checked" v-model="date" v-bind:value=1 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label only_one" for="one">
+            <table>
+                <tr>
+                    <td class="one_pay">
+                        <v-card class="one_pay_card">
+                            <img src="../../assets/images/one-period-img.png" alt=""/>
+                            <v-card-title primary-title>
+                                <table style="margin:auto; width:100%">
+                                    <tr>
+                                        <td><h4>한 번만 받기</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p>39,900 원</p></td>
+                                    </tr>
+                                </table>
+                            </v-card-title>
+                        </v-card>
+                    </td>
+                    <td class="one_pay_info" v-if="date===1" style="transition:2s; color:#000; width:14vw">
+                        <div>
+                            <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
+                            <label for="box">7월 패키지 박스</label><br>
+                            <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
+                            <label for="box">고양이는 처음이지? 박스</label>
+                            <br>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </label>
 
-    <aside class="three_pay">
-        <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=3 />
-        <label for="huey">3개월 정기 배송 / 월</label><br>
-        <span>37,000원</span>
-    </aside>
+        <input id="three_months" class="radio-inline__input" type="radio" name="accessible-radio" v-model="date" v-bind:value=3 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label three_months_box" for="three_months">
+          <v-card>
+            <img src="../../assets/images/three-period-img.png" alt=""/>
+            <v-card-title primary-title>
+                <table style="margin:auto">
+                    <tr>
+                        <td><h4>3개월 정기 배송 <br>/ 월</h4></td>
+                    </tr>
+                    <tr>
+                        <td><p>37,000원</p></td>
+                    </tr>
+                </table>
+            </v-card-title>
+          </v-card>
+        </label>
 
-    <aside class="six_pay">
-        <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=6  />
-        <label for="dewey">6개월 정기 배송 / 월</label><br>
-        <span>35,000원</span>
-    </aside>
+        <input id="six_months" class="radio-inline__input" type="radio" name="accessible-radio" v-model="date" v-bind:value=6 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label six_months_box" for="six_months">
+          <v-card>
+            <img src="../../assets/images/six-period-img.png" alt=""/>
+            <v-card-title primary-title>
+                <table style="margin:auto">
+                    <tr>
+                        <td><h4>6개월 정기 배송 <br>/ 월</h4></td>
+                    </tr>
+                    <tr>
+                        <td><p>35,000원</p></td>
+                    </tr>
+                </table>
+            </v-card-title>
+          </v-card>
+        </label>
 
-    <aside class="twelve_pay">
-        <input type="radio" id="brith_box" name="month"  v-model="date" v-bind:value=7  />
-        <label for="louie">생일 박스</label><br>
-        <span>32,500 원</span>
-    </aside>
-   </section>
+        <input id="brith_box" class="radio-inline__input" type="radio" name="accessible-radio" v-model="date" v-bind:value=7 />
+        <label xs12 sm6 md4 lg3 class="radio-inline__label birth_boxes" for="brith_box">
+          <v-card>
+            <img src="../../assets/images/birthday-period-img.png" alt=""/>
+            <v-card-title primary-title>
+                <table style="margin:auto">
+                    <tr>
+                        <td><h4>생일 박스</h4></td>
+                    </tr>
+                    <tr>
+                        <td><p>32,500 원</p></td>
+                    </tr>
+                </table>
+            </v-card-title>
+          </v-card>
+        </label>
+
+        <!-- <aside>
+            <table>
+                <tr>
+                    <td class="one_pay">
+                        <input type="radio" id="huey" name="month" v-model="date" v-bind:value=1 />
+                        <label for="one">
+                            한 번만 받기
+                        </label>
+                        <br>
+                        <span> 39900원</span>
+                    </td>
+                    <td class="one_pay_info" v-if="date===1" style="transition:2s">
+                        <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
+                        <label for="box">7월 패키지 박스</label>
+                        <input type="radio" id="box" v-model="checkedNames" v-bind:value=2>
+                        <label for="box">고양이는 처음이지? 박스</label>
+                        <br>
+                        <span>체크한 이름: 39900</span>원
+                    </td>
+                </tr>
+            </table>
+        </aside> -->
+
+        <!-- <aside class="three_pay">
+            <input type="radio" id="three_months" name="month"  v-model="date" v-bind:value=3 />
+            <label for="huey">
+                3개월 정기 배송 / 월
+            </label><br>
+            <span>37,000원</span>
+        </aside> -->
+
+        <!-- <aside class="six_pay">
+            <input type="radio" id="six_months" name="month"  v-model="date" v-bind:value=6  />
+            <label for="dewey">6개월 정기 배송 / 월</label><br>
+            <span>35,000원</span>
+        </aside> -->
+
+        <!-- <aside class="twelve_pay">
+            <input type="radio" id="brith_box" name="month"  v-model="date" v-bind:value=7  />
+            <label for="louie">생일 박스</label><br>
+            <span>32,500 원</span>
+        </aside> -->
+   </v-layout>
 
    
    
@@ -210,6 +295,7 @@
 
 <script>
 import {mapActions} from 'vuex';
+import axios from 'axios';
 export default {
 data(){
         return{
@@ -248,20 +334,33 @@ data(){
         }
 },
 computed:{
-    getFlag(){
+     getFlag(){
         if(this.$store.getters.getFlag ===3){
             if(this.date ===1 || this.date ===2){
-            this.boxprice = 39900
+            this.boxprice = 399
         }
         if(this.date ===3 ){
-            this.boxprice = 37000
+            this.boxprice = 370
         }
         if(this.date === 6){
-            this.boxprice = 35000
+            this.boxprice = 350
         }
         if(this.date === 7){
-            this.boxprice = 32500
+            this.boxprice = 325
         }
+
+        axios.get(`http://13.124.92.40:3000/order/order_page/product/`+this.date, {headers: {authorization: localStorage.getItem('token')}})
+        .then((res) => {
+          if (res.data.result === 1) {
+              console.log(res.data.status);
+              
+              console.log("go");
+          }else{
+              console.log("fail");
+              alert("이미 정기권을 구매했습니다.")
+              this.$router.push("/")
+          }
+        })
         }
     if (this.$store.getters.getFlag === 4 && localStorage.cat_idx !== -1) {
         if(this.orderFlag===1){
@@ -273,7 +372,11 @@ computed:{
            this.newInfo.price = this.boxprice;
            console.log(this.newInfo);
            
-            this.$store.dispatch('orderAction', this.newInfo)
+             this.$store.dispatch('orderAction', this.newInfo)
+            console.log(result);
+            
+            const IMP = window.IMP; // 생략해도 괜찮습니다.
+        
         }else{
 
            this.info.address += this.address.one+'@';
@@ -284,6 +387,7 @@ computed:{
            console.log(this.info);
            
             this.$store.dispatch('orderAction',this.info)
+           
         }
         }
       return this.$store.getters.getFlag;
@@ -378,5 +482,10 @@ methods:{
 
 <style lang="scss">
 @import '../../assets/scss/Order.scss';
-
+.date {
+        // background: url("../../assets/images/meow_box_order_step_3_img.png") no-repeat;
+        // background-position:right bottom;
+        // background-size: 45%;
+        // height:70vh;
+    }
 </style>

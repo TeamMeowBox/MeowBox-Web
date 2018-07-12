@@ -27,10 +27,32 @@
     .radio-inline__label {
         display: inline-block;
         padding: 0.5rem 0.5rem;
-        margin-right: 18px;
+        margin-right: 10px;
         border-radius: 3px;
         transition: all .2s;
+        height:33vh;
     }
+
+    .one_pay_card {
+        @extend .radio-inline__label;
+        width:13vw;
+    }
+
+    .birth_boxes, .six_months_box, .three_months_box {
+        @extend .radio-inline__label;
+        width:13vw;
+    }
+
+    // .radio-inline__label, .birth_boxes, .six_months_box, .three_months_box 
+    //     display: inline-block;
+    //     padding: 0.5rem 0.5rem;
+    //     margin-right: 10px;
+    //     border-radius: 3px;
+    //     transition: all .2s;
+    //     height:33vh;
+    //     width:13vw;
+    // 
+
     
     .radio-inline__input {
         clip: rect(1px, 1px, 1px, 1px);
@@ -71,8 +93,11 @@
     
     .v-card {
         box-shadow : 0 2px 1px -1px rgba(230, 135, 137,.2), 0 1px 1px 0 rgba(230, 135, 137,.14), 0 1px 3px 0 rgba(230, 135, 137,.12);
+        padding:0.2rem;
+        height:30vh;
+        text-align:center;
     }
-    
+
     .v-text-field__slot {
         box-shadow:0px;
     }

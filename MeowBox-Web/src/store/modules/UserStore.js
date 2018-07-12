@@ -16,12 +16,12 @@ const getters = {
 
 const actions = {
 
-  orderAction (context, info) {
+  orderAction (resolve, info) {
     return new Promise(resolve => {
       axios.post(`${BASE_URL}/order/order_page`, info, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
           if (res.data.status) {
-            resolve(true)
+            resolve(res.data.resulte)
           }
         })
         .catch(e => { // 500 error

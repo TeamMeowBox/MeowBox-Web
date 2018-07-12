@@ -47,7 +47,6 @@ const actions = {
             if (isEmptyArray(res.data.result.ticketed)) {
               res.data.result.ticketed = null;
             }
-            console.log('resul', res.data.result);
             resolve(res.data.result);
           } else {
             reject();
@@ -57,7 +56,7 @@ const actions = {
   },
   fetchCatCountAction() {
     return new Promise((resolve, reject) => {
-      axios.get(`${BASE_URL}//home/monthlyBox_detail/catCount`)
+      axios.get(`${BASE_URL}/home/monthlyBox_detail/catCount`)
         .then((res) => {
           if (res.data.status) {
             resolve(res.data.result);

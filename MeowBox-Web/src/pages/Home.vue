@@ -5,6 +5,7 @@
     <box-info></box-info>
     <!-- <what-is-meowbox></what-is-meowbox>
     <this-month-info></this-month-info> -->
+    <count-cat></count-cat>
     <!-- <footer-start></footer-start> -->
   </v-container>
 </template>
@@ -16,6 +17,8 @@ import WhatIsMeowbox from '../components/Home/WhatIsMeowbox'
 import ThisMonthInfo from '../components/Home/ThisMonthInfo'
 import BoxInfo from '../components/Home/BoxInfo'
 import FooterStart from '../components/Home/FooterStart'
+import CountCat from '../components/Home/CountCat';
+
 export default {
   name: 'Home',
   components: {
@@ -24,6 +27,7 @@ export default {
     BoxInfo,
     WhatIsMeowbox,
     ThisMonthInfo,
+    CountCat,
     FooterStart
   }
 }

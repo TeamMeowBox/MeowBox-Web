@@ -71,8 +71,11 @@
     
     .v-card {
         box-shadow : 0 2px 1px -1px rgba(230, 135, 137,.2), 0 1px 1px 0 rgba(230, 135, 137,.14), 0 1px 3px 0 rgba(230, 135, 137,.12);
+        padding:0.2rem;
+        width:12vw;
+        text-align:center;
     }
-    
+
     .v-text-field__slot {
         box-shadow:0px;
     }

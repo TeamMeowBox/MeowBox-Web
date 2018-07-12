@@ -15,7 +15,7 @@
     </section> -->
     <br><br>
     <regist-cat v-if="hasCat==-1"></regist-cat>
-   <regist-order v-else></regist-order>
+    <regist-order v-else></regist-order>
    
 
    <v-btn class="back" v-if="getFlag > 0 && getFlag<4" @click="downFlag()">돌아가기</v-btn>

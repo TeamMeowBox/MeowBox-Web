@@ -23,14 +23,8 @@ const mutations = {
   },
   [GET_CAT](state, payload) {
     state.catProfile = payload;
-
-    // state.catProfile.name = payload.name;
-    // state.catProfile.idx = payload.cat_idx;
-    // state.catProfile.birthday = payload.birthday;
-    // state.catProfile.state = payload.state;
-    // state.catProfile.caution = payload.caution;
   }
-}
+};
 
 const actions = {
   registCatAction(context, info) {

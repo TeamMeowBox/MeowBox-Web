@@ -9,7 +9,7 @@
             <label for="name">이름</label>
           </td>
           <td>
-            <v-text-field class="name" v-model="name"></v-text-field>
+            <v-text-field class="name" v-model="userProfile.user_name"></v-text-field>
           </td>
           <td>
             <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
@@ -20,7 +20,7 @@
             <label for="phone">휴대전화</label>
           </td>
           <td colspan="2">
-            <v-text-field class="phone" type="text" v-model="phone"/>
+            <v-text-field class="phone" type="text" v-model="userProfile.phone_number"/>
           </td>
         </tr>
         <tr>

@@ -54,7 +54,7 @@ const actions = {
           }
         })
     })
-  }
+  },
 };
 
 const mutations = {

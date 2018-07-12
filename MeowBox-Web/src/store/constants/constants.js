@@ -12,6 +12,8 @@ export const SET_FLAG = 'SET_FLAG';
 
 export const GET_ORDER_LIST = 'GET_ORDER_LIST';
 
+export const REMOVE_TICKET = 'REMOVE_TICKET';
+
 export const HEADER = {headers: {authorization: localStorage.getItem('token')}};
 
 

@@ -10,7 +10,8 @@ import {
   UP_FLAG,
   DOWN_FLAG,
   GET_MYPAGE_INFO,
-  BASE_URL
+  BASE_URL,
+  REMOVE_TICKET
 } from '../constants/constants'
 
 const HEADER = {headers: {authorization: localStorage.getItem('token')}}
@@ -131,8 +132,6 @@ const actions = {
         .then(res => {
           if (res.data.status) {
             localStorage.token = res.data.result.token
-            console.log(res.data)
-
             localStorage.cat_idx = -1
 
             context.commit(SET_TOKEN, res.data.result)
@@ -161,7 +160,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.post(`${BASE_URL}/mypage/account_setting/update_user`, data, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
-          console.log(res)
           if (res.data.status) {
             resolve(true)
           } else {
@@ -179,7 +177,6 @@ const actions = {
       axios.get(`${BASE_URL}/order/order_page`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {
-            console.log('res', res)
             resolve(res.data.result)
           }
         })
@@ -198,6 +195,17 @@ const actions = {
           }
         })
     })
+  },
+  deleteOrderAction(context, idx) {
+    return new Promise((resolve, rejecct) => {
+      axios.delete(`${BASE_URL}/order/order_list/${idx}`, HEADER)
+        .then((res) => {
+          if (res.data.status) {
+            context.commit(REMOVE_TOKEN, res.data.result);
+            resolve(res.data.result);
+          }
+        })
+    })
   }
 }
 
@@ -211,17 +219,6 @@ const mutations = {
   },
   [FETCH_USER_PROFILE](state, payload) {
     state.userProfile = payload
-
-    // state.userProfile.userName = payload.user_name
-    // state.userProfile.email = payload.email
-    // state.userProfile.phoneNumber = payload.phone_number
-    // state.userProfile.imageProfile = payload.image_profile
-    // state.userProfile.cat_idx = payload.cat_idx
-    // state.userProfile.caution = payload.caution
-    // state.userProfile.size = payload.size
-    // state.userProfile.catName = payload.cat_name
-    // state.userProfile.birthday = payload.birthday
-
   },
   [UP_FLAG](state) {
     state.flag += 1
@@ -236,6 +233,9 @@ const mutations = {
     state.flag = 0
   },
   [GET_MYPAGE_INFO](state, payload) {
+    state.usedTicket = payload
+  },
+  [REMOVE_TICKET](state, payload) {
     state.usedTicket = payload
   }
 }

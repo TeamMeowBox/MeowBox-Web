@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <v-btn class="cancleActiveTicket">정기권 취소</v-btn>
+                    <v-btn class="cancleActiveTicket" @click="clickCancel(ticket.idx)">정기권 취소</v-btn>
                   </td>
                 </tr>
               </table>
@@ -98,7 +98,7 @@
                     <span class="star">결제 금액</span>
                   </td>
                   <td class="detail-content">
-                    <span class="star">109,500원</span>
+                    <span class="star">{{item.price}}원</span>
                   </td>
                 </tr>
               </table>
@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <v-btn class="cancleInactiveTicket">정기권 취소</v-btn>
+                    <v-btn-toggle disable="true" class="cancleInactiveTicket">정기권 취소</v-btn-toggle>
                   </td>
                 </tr>
               </table>
@@ -148,7 +148,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchOrderList'
+      'fetchOrderList',
+      'deleteOrderAction'
     ]),
     async getOrderList() {
       const result = await this.fetchOrderList();
@@ -156,6 +157,11 @@ export default {
       this.ticket = result.ticket;
       this.ticketed = result.ticketed;
 
+    },
+    clickCancel(idx) {
+      alert(idx);
+      this.deleteOrderAction(idx);
+      alert(idx);
     }
   },
   created() {

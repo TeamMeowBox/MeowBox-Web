@@ -26,6 +26,5 @@ export default {
     width:100%;
     height:40vh;
     background-size:contain;
-    // vertical-align: middle;
 }
 </style>

@@ -111,10 +111,6 @@ table {
     table {
         @extend table;
     }
-    .cat-info {
-        text-align:center; padding-top:6rem; padding-bottom:3rem;
-        font-size:1.8rem;
-    }
     .insta-card {
         text-align:left;
         padding:0.4rem;
@@ -134,4 +130,8 @@ table {
     .insta-footer {
         text-align:center; padding-top:3rem; padding-bottom:5rem;
     }
+}
+.cat-info {
+    text-align:center; padding-top:6rem; padding-bottom:3rem;
+    font-size:1.8rem;
 }

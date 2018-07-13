@@ -52,7 +52,7 @@ export default {
         }
 
     },created() {
-       if(this.$store.getters.cat_idx !==-1){
+       if(this.$store.getters.cat_idx !=-1){
            this.$store.commit(SET_FLAG)
        }else{
            this.$store.commit(DEFAULT_FLAG)

@@ -59,12 +59,12 @@ export default {
     ...mapActions([
       'fetchMyPageInfoAction'
     ]),
-    async getMyPage() {
-      await this.fetchMyPageInfoAction();
-    }
+    // async getMyPage() {
+    //   await this.fetchMyPageInfoAction();
+    // }
   },
   async created() {
-    await this.getMyPage();
+    await this.fetchMyPageInfoAction();
   }
 }
 </script>

@@ -25,12 +25,17 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchUserProfile'
-    ])
+      'fetchUserProfile',
+      'fetchMyPageInfoAction'
+    ]),
+    getMyPage() {
+      this.fetchMyPageInfoAction();
+    }
   },
   async created() {
     // await this.$store.dispatch('fetchUserProfile', localStorage.getItem('user_idx'));
     await this.fetchUserProfile();
+    await this.getMyPage();
   }
 }
 </script>

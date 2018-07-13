@@ -1,0 +1,53 @@
+@import 'Variable.scss';
+.header {
+    font-size:2rem;
+    color:$dark-gray;
+}    
+.second {
+    padding-top:5rem;
+    table {
+        width:100%;
+    }
+    .story_small {
+        color: $dark-gray;
+    }
+    img {
+        text-align:left;
+    }
+}
+.col_pink {
+    color: $pink;
+    font-weight: bold;
+}
+.bolder_font {
+    color:$dark-gray;
+    font-weight:$kor-font-bold;
+    font-size:1.5rem;
+}
+.three {
+    padding-top:5rem;
+    padding-bottom:5rem;
+}
+.box-order-go{
+    background:$pink !important;
+    color:white !important;
+}
+.four {
+    height:40vh;
+    background: #FCF3F3;
+    td {
+        width:20vw;
+    }
+    table {
+        padding-top:2rem;
+        padding-bottom:2rem;
+        height:40vh;
+    }
+}
+.six {
+    height:80vh;
+    padding-top:2rem;
+}
+.underline-pink {
+    border-bottom: 10px solid rgba(230, 135, 137, 0.6);
+}

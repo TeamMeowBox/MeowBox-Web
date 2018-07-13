@@ -1,12 +1,6 @@
 <template>
     <div class="insta-info">
       <table>
-        <tr>
-            <td class="cat-info" colspan="4" >
-                <span>132 마리의 고양이가</span><br>
-                <span>상자 안에 들어왔어요</span>
-            </td>
-        </tr>
         <tr >
         <td class="insta-card" v-for="(item, index) in items" :key="index" >
           <v-card >

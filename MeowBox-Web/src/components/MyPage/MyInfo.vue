@@ -23,7 +23,7 @@
           </template>
 
           <template v-else-if="usedTicket.flag === '-1'">
-            <img :src="item.sendImage" alt="">
+            <img :src="item.sendImage" alt="" style="width:14vw;">
           </template>
 
         </td>

@@ -2,6 +2,7 @@
   <v-container grid-list-md text-xs-center style="width:70vw;">
     <section class="review-title">
       <p><b>미유박스와</b><br><b>2018년</b>을 함께 보낸 아이들</p>
+      <br>
       <hr class="review-hr">
     </section>
     <best-items></best-items>
@@ -26,5 +27,6 @@ export default {
     width: 100%;
     height: 40vh;
     background-size:contain;
+    padding-left:1rem;
 }
 </style>

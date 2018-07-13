@@ -13,7 +13,7 @@
             <v-card-title primary-title>
               <div >
                 <div class="insta-head">
-                  <img :src="item.profile" alt="" height="50" width="50" style="border-radius:25px">
+                  <img :src="item.profile" alt="" height="50" width="50" style="border-radius:25zpx">
                   <span >{{item.nickname}}</span>
                   <!-- {{item.profile}} -->
                 </div>

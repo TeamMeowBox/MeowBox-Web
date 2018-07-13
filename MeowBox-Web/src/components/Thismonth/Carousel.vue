@@ -5,14 +5,14 @@
           <table style="margin:auto;">
             <tr>
               <td style="padding-left:2rem">
-                <img :src="prod.src" alt="" style="width:15vw">
+                <img :src="prod.src" alt="" style="width:13vw">
               </td>
               <td style="width:20vw; height:20vh; padding-left:3rem; padding-bottom:1rem;">
                 <hr class="carousel-hr">
                 <p class="title">{{prod.product}}</p><br>
-                <pre class="content">
-                  {{prod.detail}}
-                </pre>
+                <span class="content">
+                  <pre>{{prod.detail}}</pre>
+                </span>
               </td>
             </tr>
           </table>
@@ -30,6 +30,10 @@
               </v-carousel-item>
           </v-carousel>
         </div>
+      </div>
+      <br>
+      <div style="text-align:center">
+        <v-btn class="meow-btn" router to="/order">미유박스 주문하기</v-btn>
       </div>
       </div>
 </template>
@@ -143,7 +147,7 @@
 
 <style lang="scss">
 .content-title {
-    background: url('../../assets/images/thismonthbox/this_box_detail_background.png') no-repeat;
+    background: url('../../assets/images/thismonthbox/this_box_detail_background@2x.png') no-repeat;
     width:100%;
     height:30vh;
     background-size:contain;

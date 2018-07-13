@@ -7,6 +7,7 @@
         color:$pink;
     }
     .catInputTitle {
+        width:10vw;
         font-size:$title-cont-size;
         color:$dark-gray;
     }
@@ -33,14 +34,15 @@
         height:33vh;
     }
 
-    .one_pay_card {
-        @extend .radio-inline__label;
-        width:13vw;
+    .one_pay, .birth_box {
+        td {
+            width:8vw;
+        }
     }
 
-    .birth_boxes, .six_months_box, .three_months_box {
-        @extend .radio-inline__label;
-        width:13vw;
+    .one_pay_info {
+        color:$dark-gray;
+        padding:1rem;
     }
 
     // .radio-inline__label, .birth_boxes, .six_months_box, .three_months_box 

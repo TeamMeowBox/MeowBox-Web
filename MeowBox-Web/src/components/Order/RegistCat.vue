@@ -2,7 +2,7 @@
   <div class="order-container">
     <section class='name' v-if="getFlag ===0">
       <aside>
-        <p class="catInputTitle">반려묘의<br><b>이름</b>은 무엇인가요?
+        <p class="catInputTitle">반려묘의<br><b>이름</b>은 무엇인가요?<br>
           <small>필수항목(*)은 꼭 입력해주세요.</small>
         </p>
         <p>이름<span class="star">*</span></p>

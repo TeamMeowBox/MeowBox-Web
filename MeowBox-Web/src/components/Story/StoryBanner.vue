@@ -90,5 +90,13 @@ export default {
     text-align:center;
 }
 
+.first {
+    background: url('../../assets/images/meow_box_story_main.png') no-repeat;
+    width:100%;
+    height:40vh;
+    background-size:cover;
+    background-position:right;
+    vertical-align: middle;
+}
 
 </style>

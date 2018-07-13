@@ -4,7 +4,7 @@
     <hr class="section-divide">
     <section class="my-info-container">
       <table style="margin:0 auto; width:48vw;">
-        <tr>
+          <tr>
           <td class="cate-td">
             <label for="profile-img">프로필 이미지</label>
           </td>
@@ -13,24 +13,24 @@
               <table>
                 <tr>
                   <td>
-                    <div class="dropbox" v-if="!img">
+                    <div class="dropbox" v-if="!img" style="border-radius:50px; width:100px; height:100px">
                       <input
                         type="file"
                         class="input-image"
                         :multiple="false"
                         @change="onFileChange"
-                        accept="image/*">
+                        accept="image/*"
+                        style="border-radius:50px; width:100px; height:100px">
                     </div>
-                    <img class="my_image" :src="img" v-if="img" alt="">
-                  </td>
-                  <td>
-                    <v-btn class="updateProfileBtn" @click="removeImg()">지우기</v-btn>
+                    <img class="my_image" :src="img" v-if="img" alt="" style="border-radius:80px; width:100px; height:100px"><br>
+                    <v-btn class="updateProfileBtn" @click="removeImg()"><i class="fas fa-trash-alt"></i></v-btn>
                   </td>
                 </tr>
               </table>
             </div>
           </td>
         </tr>
+
         <tr>
           <td class="cate-td">
             <label for="name">이름</label>
@@ -50,7 +50,6 @@
             <v-text-field class="phone" type="text" v-model="phone"/>
           </td>
         </tr>
-
       </table>
       <aside class="btn-space">
         <v-btn class="updateBtn" @click="updateUserInfo()">수정하기</v-btn>
@@ -144,7 +143,7 @@
 
   .dropbox {
     //  background-color: grey;
-    background: url('../../assets/images/camera.png') no-repeat;
+    background: url('../../assets/images/camera_default.png') no-repeat;
     background-size: contain;
     min-width: 10vw;
     min-height: 10vh;

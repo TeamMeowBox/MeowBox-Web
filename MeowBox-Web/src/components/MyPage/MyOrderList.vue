@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <v-btn-toggle disable="true" class="cancleInactiveTicket">정기권 취소</v-btn-toggle>
+                    <v-btn disable="true" class="cancleInactiveTicket">정기권 취소</v-btn>
                   </td>
                 </tr>
               </table>
@@ -126,7 +126,7 @@
         <!-- 정기권 데이터 없을 경우 -->
         <tr v-if="!(orderList.ticket && orderList.ticketed)">
           <td colspan="3" class="no-data-ticket">
-            <span>주문내역이 존재하지 않습니다.</span><br>
+            <span>현재 이용중인 정기권이 없습니다.</span><br>
             <v-btn class="goOrderBtn" router to="/order">미유박스 시작하기</v-btn>
           </td>
         </tr>

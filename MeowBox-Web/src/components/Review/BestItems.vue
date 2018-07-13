@@ -3,12 +3,13 @@
     <v-flex>
       <section class="this-month-birth" >
         <table>
-          <tr>
+          <tr class="title-tr">
             <td class="title" colspan="3">
               <h2>이달의 소중한 탄생</h2>
               <p>{{items.comment.birthday}}</p>
             </td>
           </tr>
+          <br>
           <tr>
             <td class="review" v-for="(item, index) in items.birthday" :key="index">
               <img :src="item.image">
@@ -20,13 +21,14 @@
       </section>
       <section class="july-box" >
         <table>
-          <tr>
+          <tr class="title-tr">
             <td class="title" colspan="3">
               <h2>{{items.title.best_image_7}}</h2>
               <p>{{items.comment.best_image_7}}</p>
             </td>
           </tr>
-          <tr>
+          <br>
+          <tr >
             <td class="review" v-for="(item, index) in items.birthday" :key="index" >
               <img :src="item.image">
               <p>#{{item.hash}}</p>
@@ -37,12 +39,13 @@
       </section>
       <section class="june-box" >
         <table>
-          <tr>
+          <tr class="title-tr">
             <td class="title" colspan="3">
               <h2>{{items.title.best_image_6}}</h2>
               <p>{{items.comment.best_image_6}}</p>
             </td>
           </tr>
+          <br>
           <tr>
             <td class="review" v-for="(item, index) in items.birthday" :key="index" >
               <img :src="item.image">
@@ -89,5 +92,35 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
+.this-month-birth {
+  .title-tr {
+    background: url('../../assets/images/review/review_yellow_background.png') no-repeat;
+    width:100%;
+    height:20vh;
+    td {
+      padding-left:1rem;
+    }
+  }
+
+}
+.july-box {
+  .title-tr {
+    background-color:rgb(249,242,242);
+    height:20vh;
+    td{
+      padding-left:1rem;
+    }
+  }
+}
+.june-box {
+  .title-tr {
+    background-color:rgb(249,242,242);
+    height:20vh;
+    td{
+      padding-left:1rem;
+    }
+  }
+}
+
 </style>

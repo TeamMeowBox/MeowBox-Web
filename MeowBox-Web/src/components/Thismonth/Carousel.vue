@@ -1,6 +1,6 @@
 <template>
     <div class="carousel-container">
-      <div v-for="(prod, i) in thisMonthItems" :key="i" >
+      <div v-for="(prod, i) in thisMonthItems" :key="i" style="margin-top:8rem;">
         <div class="content-title">
           <table style="margin:auto;">
             <tr>
@@ -17,7 +17,7 @@
             </tr>
           </table>
         </div>
-        <div class="carousel-cont" style="display:block; margin-top:2rem;">
+        <div class="carousel-cont" style="display:block; margin-top:1rem;">
           <v-carousel hide-delimiters style="width:100%; margin:auto; position:relative;">
               <v-carousel-item
               v-for="(item,i) in prod.items"
@@ -25,7 +25,7 @@
               :src="item.src"
               >
               <div style="background:rgba(255,255,255,0.7); position:absolute; bottom:0px; width:100%; text-align:center; padding:1rem 0 1rem 0">
-                <span >{{item.content}}</span>
+                <span style="font-weight:bold">{{item.content}}</span>
               </div>
               </v-carousel-item>
           </v-carousel>

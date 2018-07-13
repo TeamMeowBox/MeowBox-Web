@@ -29,7 +29,7 @@
           </tr>
           <br>
           <tr >
-            <td class="review" v-for="(item, index) in items.birthday" :key="index" >
+            <td class="review" v-for="(item, index) in items.best_image_7" :key="index" >
               <img :src="item.image">
               <p>#{{item.hash}}</p>
               <p>@{{item.insta}}</p>
@@ -47,7 +47,7 @@
           </tr>
           <br>
           <tr>
-            <td class="review" v-for="(item, index) in items.birthday" :key="index" >
+            <td class="review" v-for="(item, index) in items.best_image_6" :key="index" >
               <img :src="item.image">
               <p>#{{item.hash}}</p>
               <p>@{{item.insta}}</p>

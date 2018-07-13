@@ -22,9 +22,9 @@ export default {
 <style lang="scss">
 @import '../assets/scss/Review.scss';
 .review-title{
-    background: url('../assets/images/review/review_main.png') no-repeat;
-    width:100%;
-    height:40vh;
+    background: url('../assets/images/review/review_main_img_v02.png') no-repeat;
+    width: 100%;
+    height: 40vh;
     background-size:contain;
 }
 </style>

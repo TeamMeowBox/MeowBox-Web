@@ -3,7 +3,7 @@
       <table>
         <tr>
             <td class="cat-info" colspan="4" >
-                <span>{{catCount}} 마리의 고양이가</span><br>
+                <span><b>{{catCount}}</b> 마리의 고양이가</span><br>
                 <span>상자 안에 들어왔어요</span>
             </td>
         </tr>

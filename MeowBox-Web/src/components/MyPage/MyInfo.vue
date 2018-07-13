@@ -22,7 +22,7 @@
             </v-progress-linear>
           </template>
 
-          <template v-else>
+          <template v-else-if="usedTicket.flag === '-1'">
             <img :src="item.sendImage" alt="">
           </template>
 

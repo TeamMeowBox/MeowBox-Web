@@ -4,9 +4,11 @@ import {GET_REVIEW, BASE_URL, GET_ORDER_LIST} from '../constants/constants';
 const HEADER = {headers: {authorization: localStorage.getItem('token')}};
 
 const state = {
+  orderList: null
 };
 
 const getters = {
+  orderList: state => state.orderList
 };
 
 const actions = {
@@ -34,19 +36,21 @@ const actions = {
         })
     })
   },
-  fetchOrderList() {
+  fetchOrderList(context) {
     return new Promise((resolve, reject) => {
       axios.get(`${BASE_URL}/order/order_list`, HEADER)
         .then((res) => {
-          console.log('res', res);
           if (res.data.status) {
 
             if (isEmptyObject(res.data.result.ticket)) {
               res.data.result.ticket = null;
             }
+
             if (isEmptyArray(res.data.result.ticketed)) {
               res.data.result.ticketed = null;
             }
+
+            context.commit(GET_ORDER_LIST, res.data.result);
             resolve(res.data.result);
           } else {
             reject();
@@ -67,6 +71,9 @@ const actions = {
 };
 
 const mutations = {
+  [GET_ORDER_LIST](state, payload) {
+    state.orderList = payload
+  }
 };
 
 

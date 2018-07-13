@@ -1,10 +1,10 @@
 <template>
-    <div xs12 sm6 md4 lg3>
-        <h3 class="title">개인정보수정</h3>
-        <hr class="section-divide">
-        <section class="my-info-container">
-            <table style="margin:0 auto; width:48vw;">
-            <tr>
+  <div xs12 sm6 md4 lg3>
+    <h3 class="title">개인정보수정</h3>
+    <hr class="section-divide">
+    <section class="my-info-container">
+      <table style="margin:0 auto; width:48vw;">
+        <tr>
           <td class="cate-td">
             <label for="name">이름</label>
           </td>
@@ -43,7 +43,7 @@
                     <img class="my_image" :src="img" v-if="img" alt="">
                   </td>
                   <td>
-                    <v-btn class="updateProfileBtn" @click="removeImg()">이미지 업로드</v-btn>
+                    <v-btn class="updateProfileBtn" @click="removeImg()">지우기</v-btn>
                   </td>
                 </tr>
               </table>
@@ -59,106 +59,106 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex';
+  import {mapActions, mapGetters} from 'vuex';
 
-export default {
-  data() {
-    return {
-      img: '',
-      user_idx: '',
-      phone: '',
-      name: '',
-      email: '',
-      file: '',
-      pwd: ''
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'userProfile'
-    ])
-  },
-  methods: {
-    ...mapActions([
-      'editUserProfile',
-      'fetchUserProfile'
-    ]),
-    removeImg(){
-      this.img =''
-    },
-    onFileChange(event) {
-      if (event.target.files[0]['type'].split('/')[0] === 'image') {
-        this.file = event.target.files[0];
-
-        this.getImage(this.file);
+  export default {
+    data() {
+      return {
+        img: '',
+        user_idx: '',
+        phone: '',
+        name: '',
+        email: '',
+        file: '',
+        pwd: ''
       }
     },
-    getImage(file) {
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        this.img = fileReader.result
-      };
-
-      fileReader.readAsDataURL(file)
+    computed: {
+      ...mapGetters([
+        'userProfile'
+      ])
     },
-    async updateUserInfo() {
+    methods: {
+      ...mapActions([
+        'editUserProfile',
+        'fetchUserProfile'
+      ]),
+      removeImg() {
+        this.img = ''
+      },
+      onFileChange(event) {
+        if (event.target.files[0]['type'].split('/')[0] === 'image') {
+          this.file = event.target.files[0];
 
-      let result;
-      try {
-
-        const data = new FormData();
-        data.append('name', this.name);
-        data.append('phone_number', this.phone);
-        if (this.file !== '') {
-          data.append('image_profile', this.file);
+          this.getImage(this.file);
         }
+      },
+      getImage(file) {
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          this.img = fileReader.result
+        };
 
-        result = await this.editUserProfile(data);
+        fileReader.readAsDataURL(file)
+      },
+      async updateUserInfo() {
 
-      } catch (e) {
-        alert(e);
+        let result;
+        try {
+
+          const data = new FormData();
+          data.append('name', this.name);
+          data.append('phone_number', this.phone);
+          if (this.file !== '') {
+            data.append('image_profile', this.file);
+          }
+
+          result = await this.editUserProfile(data);
+
+        } catch (e) {
+          alert(e);
+        }
+        return result ? alert('변경 성공') : alert('변경 실패')
+      },
+      async init() {
+        const result = await this.fetchUserProfile();
+        // this.phone = this.userProfile.phoneNumber;
+        // this.name = this.userProfile.userName;
+        this.phone = result.phone_number;
+        this.name = result.user_name;
+        this.img = result.image_profile;
       }
-      return result ? alert('변경 성공') : alert('변경 실패')
     },
-    async init() {
-      const result = await this.fetchUserProfile();
-      // this.phone = this.userProfile.phoneNumber;
-      // this.name = this.userProfile.userName;
-      this.phone = result.phone_number;
-      this.name = result.user_name;
-      this.img = result.image_profile;
-    }
-  },
-  created() {
-    this.init();
-  },
-}
+    created() {
+      this.init();
+    },
+  }
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/MyInfoUpdate.scss';
+  @import '../../assets/scss/MyInfoUpdate.scss';
 
-.dropbox {
-  //  background-color: grey;
-  background: url('../../assets/images/camera.png') no-repeat;
-  background-size: contain;
-  min-width: 10vw;
-  min-height: 10vh;
-}
+  .dropbox {
+    //  background-color: grey;
+    background: url('../../assets/images/camera.png') no-repeat;
+    background-size: contain;
+    min-width: 10vw;
+    min-height: 10vh;
+  }
 
-.dropbox p {
-  text-align: center;
-  line-height: 20vh;
-}
+  .dropbox p {
+    text-align: center;
+    line-height: 20vh;
+  }
 
-.input-image {
-  opacity: 0;
-  width: 15vw;
-  height: 20vh;
-}
+  .input-image {
+    opacity: 0;
+    width: 15vw;
+    height: 20vh;
+  }
 
-.my_image {
-  width: 10rem;
-  height: 10rem;
-}
+  .my_image {
+    width: 10rem;
+    height: 10rem;
+  }
 </style>

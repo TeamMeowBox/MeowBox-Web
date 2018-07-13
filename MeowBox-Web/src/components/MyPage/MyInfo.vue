@@ -13,17 +13,17 @@
           <small>정기권 ></small>
           <br>
           <template v-if="usedTicket.flag === '1'">
-            <p>{{item.ticket}}박스 중 {{item.use}}박스를 받았어요</p>
+            <p>{{usedTicket.ticket}} 중 {{usedTicket.use}}를 받았어요</p>
             <v-progress-linear
               height="10"
-              :value="item.percent"
+              :value="usedTicket.percent"
               background-color="grey"
               color="pink">
             </v-progress-linear>
           </template>
 
           <template v-else-if="usedTicket.flag === '-1'">
-            <img :src="item.sendImage" alt="" style="width:14vw;">
+            <img :src="usedTicket.sendImage" alt="" style="width:14vw;">
           </template>
 
         </td>
@@ -60,10 +60,7 @@ export default {
       'fetchMyPageInfoAction'
     ]),
     async getMyPage() {
-      const result = await this.fetchMyPageInfoAction();
-      console.log('result', result);
-      this.item = result;
-
+      await this.fetchMyPageInfoAction();
     }
   },
   async created() {

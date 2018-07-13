@@ -1,6 +1,12 @@
 <template>
     <div class="insta-info">
       <table>
+        <tr>
+            <td class="cat-info" colspan="4" >
+                <span>{{catCount}} 마리의 고양이가</span><br>
+                <span>상자 안에 들어왔어요</span>
+            </td>
+        </tr>
         <tr >
         <td class="insta-card" v-for="(item, index) in items" :key="index" >
           <v-card >
@@ -39,7 +45,8 @@ export default {
   name: 'InstaInfo',
   data() {
     return {
-      items: null
+      items: null,
+      catCount: null
     };
   },
   computed: {
@@ -48,15 +55,21 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchInstaAction'
+      'fetchInstaAction',
+      'fetchCatCountAction'
     ]),
     async getInsta() {
       const result = await this.fetchInstaAction();
       this.items = result;
+    },
+    async getCatCount() {
+      this.catCount = await this.fetchCatCountAction();
+
     }
   },
   created() {
     this.getInsta();
+    this.getCatCount();
   }
 }
 </script>

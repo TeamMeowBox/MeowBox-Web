@@ -6,25 +6,6 @@
       <table style="margin:0 auto; width:48vw;">
         <tr>
           <td class="cate-td">
-            <label for="name">이름</label>
-          </td>
-          <td>
-            <v-text-field class="name" v-model="name"></v-text-field>
-          </td>
-          <td>
-            <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
-          </td>
-        </tr>
-        <tr>
-          <td class="cate-td">
-            <label for="phone">휴대전화</label>
-          </td>
-          <td colspan="2">
-            <v-text-field class="phone" type="text" v-model="phone"/>
-          </td>
-        </tr>
-        <tr>
-          <td class="cate-td">
             <label for="profile-img">프로필 이미지</label>
           </td>
           <td colspan="2" style="text-align:left;">
@@ -50,6 +31,26 @@
             </div>
           </td>
         </tr>
+        <tr>
+          <td class="cate-td">
+            <label for="name">이름</label>
+          </td>
+          <td>
+            <v-text-field class="name" v-model="name"></v-text-field>
+          </td>
+          <td>
+            <small class="more-info">영문 소문자/영문 소문자 + 숫자, 4-16자</small>
+          </td>
+        </tr>
+        <tr>
+          <td class="cate-td">
+            <label for="phone">휴대전화</label>
+          </td>
+          <td colspan="2">
+            <v-text-field class="phone" type="text" v-model="phone"/>
+          </td>
+        </tr>
+
       </table>
       <aside class="btn-space">
         <v-btn class="updateBtn" @click="updateUserInfo()">수정하기</v-btn>
@@ -118,6 +119,7 @@
         } catch (e) {
           alert(e);
         }
+        await this.fetchUserProfile();
         return result ? alert('변경 성공') : alert('변경 실패')
       },
       async init() {

@@ -31,17 +31,18 @@ window.onload = function () {
 
 const state = {
   token: localStorage.getItem('token') || null,
-  userProfile: {
-    userName: null,
-    email: null,
-    phoneNumber: null,
-    imageProfile: null,
-    cat_idx: null,
-    caution: null,
-    size: null,
-    catName: null,
-    birthday: null
-  },
+  // userProfile: {
+  //   userName: null,
+  //   email: null,
+  //   phoneNumber: null,
+  //   imageProfile: null,
+  //   cat_idx: null,
+  //   caution: null,
+  //   size: null,
+  //   catName: null,
+  //   birthday: null
+  // },
+  userProfile: null,
   flag: 0,
   usedTicket: null
 }

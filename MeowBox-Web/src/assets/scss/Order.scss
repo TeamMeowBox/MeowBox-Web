@@ -7,7 +7,6 @@
         color:$pink;
     }
     .catInputTitle {
-        width:10vw;
         font-size:$title-cont-size;
         color:$dark-gray;
     }
@@ -31,7 +30,17 @@
         margin-right: 10px;
         border-radius: 3px;
         transition: all .2s;
-        height:33vh;
+        height:37vh;
+    }
+    .date {
+        .radio-inline__label {
+            display: inline-block;
+            padding: 0.5rem 0.5rem;
+            margin-right: 10px;
+            border-radius: 3px;
+            transition: all .2s;
+            height:33vh;
+        }    
     }
 
     .one_pay, .birth_box {

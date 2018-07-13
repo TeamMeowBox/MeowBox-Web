@@ -17,7 +17,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>일러스트?</td>
+                    <td></td>
                     <td class="suggestTd2">
                         <label for="suggestContent" class="titleLabel" >자세히 알려주세요</label>
                         <br>

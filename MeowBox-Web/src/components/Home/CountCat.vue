@@ -1,6 +1,7 @@
 <template>
-  <div>
-    {{count}}마리의 고양이가 태어났다
+  <div class="cat-info">
+    <span><b>{{count}}</b> 마리의 고양이가</span><br>
+    <span>상자 안에 들어왔어요</span>
   </div>
 </template>
 

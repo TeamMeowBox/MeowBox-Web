@@ -1,0 +1,58 @@
+@import 'Variable.scss';
+.review-title {
+    text-align:left;
+    p {
+        font-size:2rem;
+        margin-bottom:-0.1rem;
+    }
+}
+.review-hr{
+    border:0.5px solid $dark-gray !important;
+    width:15vw;
+}
+
+.this-month-birth {
+    text-align:center;
+    .title {
+        text-align:left;
+        p{
+            font-size:1rem;
+            font-weight:$kor_font_regular;
+            padding:2rem 0 2rem 0;
+        }
+    }
+    h2 {
+        font-weight:bold;
+        font-size:2rem;
+    }
+    table{
+        width:100%;
+        margin:auto;
+    }
+    img {
+        width:15vw;
+        height:25vh;
+    }
+    .review {
+        p {
+            text-align:left;
+            padding-left:4rem;
+            color:$dark-gray;
+        }
+    }
+}
+.july-box {
+    @extend .this-month-birth;
+}
+.june-box {
+    @extend .this-month-birth;
+}
+.meow_btn {
+    background: $pink !important;
+    color: white !important;
+    width:15vw;
+}
+.foot-msg {
+    color: #999999;
+    font-weight:bold;
+}

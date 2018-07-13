@@ -5,8 +5,8 @@
     <event-info></event-info>
     <detail-info></detail-info>
     <food-info></food-info>
-    <insta-info></insta-info>
     <count-cat></count-cat>
+    <insta-info></insta-info>
 
   </v-container>
 </template>

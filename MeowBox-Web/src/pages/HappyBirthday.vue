@@ -2,7 +2,7 @@
     <div class="container" style="width:70vw; text-align:center">
         <img src="../assets/images/webtoon_img.png" alt="" style="width:50vw">
         <br><br>
-        <v-btn class="birthday-info" >생일박스 상세보기</v-btn>
+        <v-btn class="birthday-info" router to="/happyBirthday/detail" >생일박스 상세보기</v-btn>
     </div>
 </template>
 

@@ -1,0 +1,28 @@
+@import 'Variable.scss';
+.carousel-container {
+    .carousel-hr {
+        border:2px solid $baby-pink !important;
+        width:4rem;
+    }
+    .title {
+        margin-top:1rem;
+        font-size:4rem;
+        color:white;
+    }
+    .content{
+        color:white;
+    }
+}
+.base-info {
+    .content-info {
+        width:70vw;
+        text-align:center;
+        display:table-cell;
+        vertical-align: middle;
+        padding-bottom:4rem;
+        p {
+            font-size:2rem;
+            color:$dark-gray;
+        }
+    }
+}

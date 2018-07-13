@@ -7,9 +7,9 @@
     <regist-order v-else></regist-order>
 
 
-   <v-btn class="back" v-if="getFlag > 0 && getFlag<4 && hasCat==-1 || getFlag==3" @click="downFlag()">돌아가기</v-btn>
-   <v-btn class="next" v-if="getFlag <4 " @click="upFlag()">다음</v-btn>
-   <v-btn class="goHome" v-if="getFlag === 4" @click="back()">홈으로 돌아가기</v-btn>
+   <v-btn class="back" v-if="getFlag > 0 && getFlag<4 && hasCat==-1 || getFlag==3" @click="downFlag()" style="position:relative; bottom:10vh; margin-bottom:-10vh;">돌아가기</v-btn>
+   <v-btn class="next" v-if="getFlag <4 " @click="upFlag()" style="position:relative; bottom:10vh; margin-bottom:-10vh;">다음</v-btn>
+   <v-btn class="goHome" v-if="getFlag === 4" @click="back()" style="position:relative; bottom:10vh; margin-bottom:-10vh;">홈으로 돌아가기</v-btn>
 </div>
 
 </template>

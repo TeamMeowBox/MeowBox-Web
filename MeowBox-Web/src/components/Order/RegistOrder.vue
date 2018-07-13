@@ -8,12 +8,22 @@
             <v-card>
               <img src="../../assets/images/one-period-img.png" alt=""/>
               <v-card-title primary-title>
-                <h4>한 번만 받기</h4>
-                <p>39,900 원</p>
+                <table>
+                  <tr>
+                    <td>
+                      <h4>한 번만 받기</h4>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>39,900 원</p>
+                    </td>
+                  </tr>
+                </table>
               </v-card-title>
             </v-card>
           </td>
-          <td class="one_pay_info" v-if="date===1" style="transition:2s; color:#000">
+          <td class="one_pay_info" v-if="date===1">
             <div>
               <input type="radio" id="box" v-model="checkedNames" v-bind:value=1>
               <label for="box">7월 패키지 박스</label><br>
@@ -31,8 +41,18 @@
       <v-card>
         <img src="../../assets/images/three-period-img.png" alt=""/>
         <v-card-title primary-title>
-          <h4>3개월 정기 배송 / 월</h4>
-          <p>37,000원</p>
+          <table>
+            <tr>
+              <td>
+                <h4>3개월 정기 배송 / 월</h4>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>37,000 원</p>
+              </td>
+            </tr>
+          </table>
         </v-card-title>
       </v-card>
     </label>
@@ -42,8 +62,18 @@
       <v-card>
         <img src="../../assets/images/six-period-img.png" alt=""/>
         <v-card-title primary-title>
-          <h4>6개월 정기 배송 / 월</h4>
-          <p>35,000원</p>
+          <table>
+            <tr>
+              <td>
+                <h4>6개월 정기 배송 / 월</h4>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>35,000 원</p>
+              </td>
+            </tr>
+          </table>
         </v-card-title>
       </v-card>
     </label>
@@ -53,8 +83,18 @@
       <v-card>
         <img src="../../assets/images/birthday-period-img.png" alt=""/>
         <v-card-title primary-title>
-          <h4>생일 박스</h4><br/>
-          <p>32,500 원</p>
+          <table class="brith_box">
+            <tr>
+              <td style="width:8vw">
+                <h4>생일 박스</h4>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>32,500 원</p>
+              </td>
+            </tr>
+          </table>
         </v-card-title>
       </v-card>
     </label>
@@ -216,7 +256,7 @@
             </table>
           </div>
         </div>
-        <img src="../../assets/images/meow_box_order_final_img.png">
+        <img src="../../assets/images/meow_box_order_final_img.png" style="width:20vw; height:40vh">
       </section>
     </v-layout>
   </div>

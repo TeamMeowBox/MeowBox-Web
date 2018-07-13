@@ -59,3 +59,16 @@ small {
 .signUpTitle {
     font-size:2rem; color:$dark-gray;
 }
+
+.sign-up-success-cont {
+    margin-top:3rem;
+    .success-noti {
+        font-size:1.7rem;
+        color:$dark-gray;
+    }
+    .meow_btn {
+        background: $pink !important;
+        color: white !important;
+        width:20vw;
+    }
+}

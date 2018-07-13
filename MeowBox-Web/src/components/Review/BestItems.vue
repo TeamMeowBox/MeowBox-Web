@@ -1,53 +1,63 @@
 <template>
   <v-layout row wrap>
     <v-flex>
-
-      <section class="this-month-birth" style="text-align:left">
-        <h1>이달의 소중한 탄생</h1>
-        <p>7월에 태어난 아이들을 함께 축하해줘요! 짝짝짝</p>
-          <!--<template v-for="item index in items" :key="item">-->
-            <!--<p>{{item}}</p>-->
-          <!--</template>-->
-          <h2>{{items.title.brithday}}</h2>
-          <p>{{items.comment.birthday}}</p>
-            <span v-for="(item, index) in items.birthday" :key="index" style="font-size:1.2rem">
+      <section class="this-month-birth" >
+        <table>
+          <tr>
+            <td class="title" colspan="3">
+              <h2>이달의 소중한 탄생</h2>
+              <p>{{items.comment.birthday}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="review" v-for="(item, index) in items.birthday" :key="index">
               <img :src="item.image">
-              <p>{{item.hash}}</p>
-              <p>{{item.insta}}</p>
-            </span>
-
-          <h2>{{items.title.best_image_7}}</h2>
-          <p>{{items.comment.best_image_7}}</p>
-            <span v-for="(item, index) in items.birthday" :key="index" style="font-size:1.2rem">
+              <p>#{{item.hash}}</p>
+              <p>@{{item.insta}}</p>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section class="july-box" >
+        <table>
+          <tr>
+            <td class="title" colspan="3">
+              <h2>{{items.title.best_image_7}}</h2>
+              <p>{{items.comment.best_image_7}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="review" v-for="(item, index) in items.birthday" :key="index" >
               <img :src="item.image">
-              <p>{{item.hash}}</p>
-              <p>{{item.insta}}</p>
-            </span>
-
-          <h2>{{items.title.best_image_6}}</h2>
-          <p>{{items.comment.best_image_6}}</p>
-            <span v-for="(item, index) in items.birthday" :key="index" style="font-size:1.2rem">
+              <p>#{{item.hash}}</p>
+              <p>@{{item.insta}}</p>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section class="june-box" >
+        <table>
+          <tr>
+            <td class="title" colspan="3">
+              <h2>{{items.title.best_image_6}}</h2>
+              <p>{{items.comment.best_image_6}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="review" v-for="(item, index) in items.birthday" :key="index" >
               <img :src="item.image">
-              <p>{{item.hash}}</p>
-              <p>{{item.insta}}</p>
-            </span>
-      
+              <p>#{{item.hash}}</p>
+              <p>@{{item.insta}}</p>
+            </td>
+          </tr>
+        </table>
       </section>
 
-      <section class="this-month-best" style="text-align:left">
-        <h1>7월의 베스트 컷</h1>
-        <p>트로피컬 나이트를 한껏 즐긴 아이들을 소개합니다.</p>
+      <br><br><br>
+      <section>
+        <p class="foot-msg">베스트 컷을 기대해주세요!</p>
+        <v-btn class="meow_btn" href="#" title=Top >맨위로 가기</v-btn>
       </section>
-
-      <!--<section v-for="(item, index) in items" :key="index">-->
-        <!--<p>{{item.month}}월의 베스트</p>-->
-        <!--<p>{{item.description}}</p>-->
-        <!--<article v-for="(image, idx) in item.images" :key="idx" style="display: inline-block">-->
-          <!--<img :src="image.url" alt="" height="300" width="300">-->
-          <!--<p>{{image.instaNick}}</p>-->
-          <!--<p>{{image.instaId}}</p>-->
-        <!--</article>-->
-      <!--</section>-->
     </v-flex>
   </v-layout>
 </template>
@@ -79,3 +89,5 @@ export default {
   }
 }
 </script>
+<style>
+</style>

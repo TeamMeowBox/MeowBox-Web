@@ -2,7 +2,8 @@
     <article class="StoryBanner">
         <section class="first">
             <span class="header">내 고양이에게</span><br>
-            <span class="header">꼭 필요한 특별 선물</span><br>
+            <span class="header">꼭 필요한 특별 선물</span><br><br>
+            <img src="../../assets/images/home/meow_text_logo.png" alt="" style="width:20vw;"><br><br>
             <v-btn class="box-order-go" >박스 주문하기</v-btn>
         </section>
         <section class="second">
@@ -89,5 +90,13 @@ export default {
     text-align:center;
 }
 
+.first {
+    background: url('../../assets/images/meow_box_story_main.png') no-repeat;
+    width:100%;
+    height:40vh;
+    background-size:cover;
+    background-position:right;
+    vertical-align: middle;
+}
 
 </style>

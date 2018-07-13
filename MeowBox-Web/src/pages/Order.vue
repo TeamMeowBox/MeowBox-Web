@@ -5,7 +5,7 @@
     <br><br>
     <regist-cat v-if="hasCat==-1"></regist-cat>
     <regist-order v-else></regist-order>
-   
+
 
    <v-btn class="back" v-if="getFlag > 0 && getFlag<4 && hasCat==-1 || getFlag==3" @click="downFlag()">돌아가기</v-btn>
    <v-btn class="next" v-if="getFlag <4 " @click="upFlag()">다음</v-btn>
@@ -14,27 +14,27 @@
 
 </template>
 <script>
-import axios from 'axios'
 import RegistCat from '../components/Order/RegistCat'
 import OrderBar from '../components/Order/OrderBar'
 import RegistOrder from '../components/Order/RegistOrder'
 import { DOWN_FLAG,UP_FLAG,SET_FLAG, DEFAULT_FLAG } from '../store/constants/constants';
+
 export default {
     data() {
         return {
-            
+
         }
     },
     methods: {
         upFlag(){
             this.$store.commit(UP_FLAG);
-            console.log(this.$store.getters.getFlag);    
+            console.log(this.$store.getters.getFlag);
         },
         downFlag(){
             this.$store.commit(DOWN_FLAG);
         },
         back() {
-             if (localStorage.cat_idx != -1) {
+             if (localStorage.cat_idx !== -1) {
               this.$store.commit(SET_FLAG);
             }
             this.$router.push('/');
@@ -63,7 +63,7 @@ export default {
     RegistCat,
     RegistOrder
   },
-  
+
 
 }
 </script>

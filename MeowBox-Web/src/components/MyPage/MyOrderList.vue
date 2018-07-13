@@ -5,12 +5,12 @@
       <table class="order-table">
         <!-- 기간 남은 티켓 -->
 
-        <tr v-if="ticket">
+        <tr v-if="orderList.ticket">
           <td class="ticket-active-td">
             <div class="active-ticket">
               <span class="active-flag">정기권</span>
-              <p class="product">{{ticket.product}}</p>
-              <small class="term">{{ticket.term}}</small>
+              <p class="product">{{orderList.ticket.product}}</p>
+              <small class="term">{{orderList.ticket.term}}</small>
             </div>
           </td>
           <td class="ticket-td">
@@ -21,7 +21,7 @@
                     <span>상품명</span>
                   </td>
                   <td class="detail-content">
-                    <span>{{ticket.product}}</span>
+                    <span>{{orderList.ticket.product}}</span>
                   </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                     <span>기간</span>
                   </td>
                   <td class="detail-content">
-                    <span>{{ticket.term}}</span>
+                    <span>{{orderList.ticket.term}}</span>
                   </td>
                 </tr>
 
@@ -38,7 +38,7 @@
                     <span class="star">결제 금액</span>
                   </td>
                   <td class="detail-content">
-                    <span class="star">109,500원</span>
+                    <span class="star">{{orderList.ticket.price}}원</span>
                   </td>
                 </tr>
               </table>
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <v-btn class="cancleActiveTicket">정기권 취소</v-btn>
+                    <v-btn class="cancleActiveTicket" @click="clickCancel(orderList.ticket.idx)">정기권 취소</v-btn>
                   </td>
                 </tr>
               </table>
@@ -66,7 +66,7 @@
 
 
         <!-- 기간 안남은 티켓 -->
-        <tr v-for="item in ticketed" :key="item.idx">
+        <tr v-for="item in orderList.ticketed" :key="item.idx">
           <td class="ticket-inactive-td">
             <div class="inactive-ticket">
               <span class="inactive-flag">정기권</span>
@@ -98,7 +98,7 @@
                     <span class="star">결제 금액</span>
                   </td>
                   <td class="detail-content">
-                    <span class="star">109,500원</span>
+                    <span class="star">{{item.price}}원</span>
                   </td>
                 </tr>
               </table>
@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <v-btn class="cancleInactiveTicket">정기권 취소</v-btn>
+                    <v-btn-toggle disable="true" class="cancleInactiveTicket">정기권 취소</v-btn-toggle>
                   </td>
                 </tr>
               </table>
@@ -124,7 +124,7 @@
           </td>
         </tr>
         <!-- 정기권 데이터 없을 경우 -->
-        <tr v-if="!(ticket && ticketed)">
+        <tr v-if="!(orderList.ticket && orderList.ticketed)">
           <td colspan="3" class="no-data-ticket">
             <span>주문내역이 존재하지 않습니다.</span><br>
             <v-btn class="goOrderBtn" router to="/order">미유박스 시작하기</v-btn>
@@ -136,43 +136,43 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
-  export default {
-    name: 'MyOrderList',
-    data() {
-      return {
-        ticket: null,
-        ticketed: null,
-      };
-    },
-    methods: {
-      ...mapActions([
-        'fetchOrderList'
-      ]),
-      async getOrderList() {
-        const result = this.fetchOrderList();
-        // this.ticket = {
-        //   idx: result.ticket.idx,
-        //   product: result.ticket.product,
-        //   term: result.ticket.term,
-        //   flag: result.ticket.flag,
-        // };
-        // this.ticketed = {
-        //   idx: result.ticketed.idx,
-        //   product: result.ticketed.product,
-        //   term: result.ticketed.term,
-        //   flag: result.ticketed.flag,
-        // };
+export default {
+  name: 'MyOrderList',
+  data() {
+    return {
+      ticket: null,
+      ticketed: null,
+    };
+  },
+  computed: {
+    ...mapGetters([
+      'orderList'
+      ]
+    )
+  },
+  methods: {
+    ...mapActions([
+      'fetchOrderList',
+      'deleteOrderAction'
+    ]),
+    async getOrderList() {
+      const result = await this.fetchOrderList();
 
-        this.ticket = result.ticket;
-        this.ticketed = result.ticketed;
-      }
+      this.ticket = result.ticket;
+      this.ticketed = result.ticketed;
+
     },
-    created() {
-      this.getOrderList()
+    clickCancel(idx) {
+      this.deleteOrderAction(idx);
+      alert('cancel');
     }
+  },
+  created() {
+    this.getOrderList()
   }
+}
 </script>
 
 <style lang="scss">

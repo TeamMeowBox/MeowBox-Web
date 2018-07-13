@@ -103,5 +103,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/SignUp.scss'
+@import '../../assets/scss/SignUp.scss';
 </style>

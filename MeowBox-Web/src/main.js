@@ -6,11 +6,13 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import {store} from './store/index'
+import VeeValidate from 'vee-validate';
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify, {
   iconfont: 'fa4'
 });
+Vue.use(VeeValidate);
 
 /* eslint-disable no-new */
 new Vue({

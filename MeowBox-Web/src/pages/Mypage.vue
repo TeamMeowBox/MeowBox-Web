@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <my-info></my-info>
+    <my-info v-if="userProfile && usedTicket "></my-info>
     <v-layout class="container" style="width:70vw;">
       <section xs12 sm6 md4 lg3>
         <vertical-toolbar></vertical-toolbar>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import VerticalToolbar from '../components/MyPage/VerticalToolbar'
 import MyInfo from '../components/MyPage/MyInfo'
 
@@ -23,14 +23,25 @@ export default {
     VerticalToolbar,
     MyInfo
   },
+  computed: {
+    ...mapGetters([
+      'userProfile',
+      'usedTicket'
+    ])
+  },
   methods: {
     ...mapActions([
-      'fetchUserProfile'
-    ])
+      'fetchUserProfile',
+      'fetchMyPageInfoAction'
+    ]),
+    getMyPage() {
+      this.fetchMyPageInfoAction();
+    }
   },
   async created() {
     // await this.$store.dispatch('fetchUserProfile', localStorage.getItem('user_idx'));
     await this.fetchUserProfile();
+    await this.getMyPage();
   }
 }
 </script>

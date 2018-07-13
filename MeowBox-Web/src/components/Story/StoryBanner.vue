@@ -2,7 +2,8 @@
     <article class="StoryBanner">
         <section class="first">
             <span class="header">내 고양이에게</span><br>
-            <span class="header">꼭 필요한 특별 선물</span><br>
+            <span class="header">꼭 필요한 특별 선물</span><br><br>
+            <img src="../../assets/images/home/meow_text_logo.png" alt="" style="width:20vw;"><br><br>
             <v-btn class="box-order-go" >박스 주문하기</v-btn>
         </section>
         <section class="second">

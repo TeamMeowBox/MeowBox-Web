@@ -17,7 +17,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>일러스트?</td>
+                    <td></td>
                     <td class="suggestTd2">
                         <label for="suggestContent" class="titleLabel" >자세히 알려주세요</label>
                         <br>
@@ -56,7 +56,7 @@ export default {
       this.suggestion.user_idx = localStorage.getItem('user_idx');
 
       try {
-        const result = await axios.post('http://13.209.220.1:3000/mypage/feedback', this.suggestion, {headers: {authorization: localStorage.getItem('token')}});
+        const result = await axios.post('http://13.124.92.40:3000/mypage/feedback', this.suggestion, {headers: {authorization: localStorage.getItem('token')}});
         if (result.data.status) {
           alert('success');
         }

@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-import {SET_CAT, SET_DEFAULT_CAT, HEADER, GET_CAT} from '../constants/constants'
 
-const BASE_URL = 'http://13.209.220.1:3000';
+import {SET_CAT, SET_DEFAULT_CAT, GET_CAT, BASE_URL} from '../constants/constants'
+
 
 const state = {
   cat_idx: localStorage.getItem('cat_idx') || null,
-  catProfile: {},
+  catProfile: null,
 }
 
 const getters = {
@@ -22,13 +22,9 @@ const mutations = {
     state.cat_idx = -1
   },
   [GET_CAT](state, payload) {
-    state.catProfile.name = payload.name;
-    state.catProfile.idx = payload.cat_idx;
-    state.catProfile.birthday = payload.birthday;
-    state.catProfile.state = payload.state;
-    state.catProfile.caution = payload.caution;
+    state.catProfile = payload;
   }
-}
+};
 
 const actions = {
   registCatAction(context, info) {
@@ -53,7 +49,7 @@ const actions = {
   },
   fetchCatAction(context) {
     return new Promise((resolve, reject) => {
-      axios.get(`${BASE_URL}/user/cat/${localStorage.getItem('cat_idx')}`, HEADER)
+      axios.get(`${BASE_URL}/user/cat/${localStorage.getItem('cat_idx')}`, {headers: {authorization: localStorage.getItem('token')}})
         .then((res) => {
           if (res.data.status) {
             console.log('res', res);
@@ -65,7 +61,7 @@ const actions = {
   },
   updateCatAction(context, info) {
     return new Promise((resolve) => {
-      axios.post(`${BASE_URL}/mypage/account_setting/update_cat`, info, HEADER)
+      axios.post(`${BASE_URL}/mypage/account_setting/update_cat`, info, {headers: {authorization: localStorage.getItem('token')}})
         .then(res => {
           res.data.status ? resolve(true) : resolve(false)
         })

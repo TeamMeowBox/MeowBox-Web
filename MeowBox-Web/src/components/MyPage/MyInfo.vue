@@ -1,40 +1,74 @@
 <template>
-    <v-layout class="container" style="width:70vw">
-            <table style="width:100%; border-top:1px solid #efefef; border-bottom:1px solid #efefef; padding:1rem 0 1rem 0;">
-                <tr>
-                    <td style="padding-left:3rem;">
-                        <img src="https://cattoyshq.com/wp-content/uploads/2017/08/cat-playing-with-toy.jpg" alt="" height="100" width="100" style="border-radius:50px">
-                    </td>
-                    <td style="padding-right:2rem;border-right:1px solid #efefef;width:12vw">
-                        안녕하세요<br>
-                        온풍이 집사 <b>{{userProfile.userName}}</b>님!
-                    </td>
-                    <td style="padding-right:2rem; border-right:1px solid #efefef; text-align:center;">
-                        <small>정기권 > </small><br>
-                        <p>3박스 중 2박스를 받았어요</p>
-                        <p>여기에 프로그레스바 넣을거임</p>
-                    </td>
-                    <td style="padding-right:2rem; text-align:center;">
-                        <small>내 개인정보 > </small><br>
-                        <p>{{userProfile.email}}</p>
-                        <p>{{userProfile.catName}}/{{userProfile.size}}/</p>
-                    </td>
-                </tr>
-            </table>
-        </v-layout>
+  <v-layout class="container myinfo-container">
+    <table xs12 sm6 md4 lg3>
+      <tr>
+        <td class="profile-img">
+          <img :src="userProfile.image_profile" alt="" height="100" width="100" style="border-radius:50px">
+        </td>
+        <td class="profile-detail">
+          안녕하세요<br>
+          {{userProfile.cat_name}} 집사 <b>{{userProfile.user_name}}</b>님!
+        </td>
+        <td class="progress-bar">
+          <small>정기권 ></small>
+          <br>
+          <template v-if="usedTicket.flag === '1'">
+            <p>{{usedTicket.ticket}} 중 {{usedTicket.use}}를 받았어요</p>
+            <v-progress-linear
+              height="10"
+              :value="usedTicket.percent"
+              background-color="grey"
+              color="pink">
+            </v-progress-linear>
+          </template>
+
+          <template v-else-if="usedTicket.flag === '-1'">
+            <img :src="usedTicket.sendImage" alt="" style="width:14vw;">
+          </template>
+
+        </td>
+
+        <td class="personal-info">
+          <small>내 개인정보 ></small>
+          <br>
+          <span class="star"><i class="fas fa-envelope"></i> {{userProfile.email}}</span><br>
+          <span class="star"><i class="far fa-grin-squint"></i> {{userProfile.cat_name}} / {{userProfile.size}} / {{userProfile.birthday}}</span>
+        </td>
+      </tr>
+    </table>
+  </v-layout>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
+  name: 'MyInfo',
+  data() {
+    return {
+      item: ''
+    };
+  },
   computed: {
     ...mapGetters([
-      'userProfile'
+      'userProfile',
+      'usedTicket'
     ])
+  },
+  methods: {
+    ...mapActions([
+      'fetchMyPageInfoAction'
+    ]),
+    async getMyPage() {
+      await this.fetchMyPageInfoAction();
+    }
+  },
+  async created() {
+    await this.getMyPage();
   }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  @import '../../assets/scss/MyInfo.scss';
 </style>

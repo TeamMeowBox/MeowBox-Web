@@ -1,11 +1,11 @@
 <template>
-    <section style="text-align:right;">
-        <template v-if="flag!==4">
+    <section class="order-container" style="text-align:right;">
+        <template v-if="getFlag!==4">
             <span v-for="(category, index) in categorys" :key="index" style="font-size:1.2rem">
-                <b v-if="category.cate_id===flag" style="color:#e68789">
+                <b v-if="category.cate_id===getFlag" style="color:#e68789">
                     {{category.numberCircle}}{{category.cateName}}&nbsp;&nbsp;
                 </b>
-                <template v-if="category.cate_id!==flag">
+                <template v-if="category.cate_id!==getFlag">
                     {{category.cateName}}&nbsp;
                 </template>
             </span>
@@ -25,7 +25,16 @@ data(){
             ]
     }
 },
-
+computed:{
+    hasCat(){
+            return this.$store.getters.cat_idx
+        },
+    getFlag() {
+        console.log('aaaaaaa');
+        
+      return this.$store.getters.getFlag;
+    }
+}
 
 }
 </script>

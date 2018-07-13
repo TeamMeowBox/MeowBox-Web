@@ -1,0 +1,34 @@
+@import 'Variable.scss';
+
+.myinfo-container {
+    width:70vw;
+    table {
+        width:100%; border-top:1px solid #efefef; border-bottom:1px solid #efefef; padding:1rem 0 1rem 0;
+        .profile-img {
+            padding-left:3rem;width:12vw;
+        }    
+        .profile-detail {
+            padding-right:2rem;border-right:1px solid #efefef;width:13vw;
+        }
+        .progress-bar {
+            padding-right:2rem; padding-left:2rem;border-right:1px solid #efefef; text-align:center;width:20vw;
+        }
+        .personal-info{
+            padding-right:2rem; text-align:center;
+        }
+        
+    }
+    
+}
+.star {
+    color: $pink;
+}
+
+.pink {
+    background-color: #e68789 !important;
+    border-color: #e68789 !important;
+}
+.grey {
+    background-color: #efeded !important;
+    border-color: #efeded !important;
+}

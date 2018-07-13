@@ -1,0 +1,109 @@
+@import 'Variable.scss';
+.my-order-container {
+    .star {
+        color: #e68789;
+    }
+    label {
+        font-weight: $kor-font-medium;
+        color: $dark-gray;
+        font-size: 1vw;
+    }
+    small {
+        font-weight: $kor-font-regular;
+        color: #999999;
+    }
+    @media screen and (max-width: 1050px) {
+        .term {
+            font-size:1vw;
+        }
+    }
+
+    .more-info {
+        @extend small;
+        margin-left:1rem;
+    }
+    v-text-field {
+        display: inline-block;
+    }
+    .btn-space {
+        text-align:center;
+    }
+    .cancleActiveTicket {
+        background:#e68789 !important; color:white !important;
+    }
+    .cancleInactiveTicket {
+        background:#EFEDED !important; color:#4C4E51 !important;
+    }
+    .dropbox {
+        width:15vw;
+    }
+    .updateProfileBtn, .goOrderBtn{
+        background:$pink !important;
+        color:white;
+    }
+    .order-table {
+        border-top:4px solid $pink;
+        margin:0 auto; width:48vw;
+    }
+
+    .ticket-active-td,.ticket-inactive-td {
+        width:17vw; background-color: #EFEDED;
+    }
+
+    .active-ticket, .inactive-ticket {
+        padding-left:2vw; padding-top:2.5vh;
+    }
+    @media screen and (max-width: 1050px) {
+        .active-ticket, .inactive-ticket {
+            padding-left:1vw; padding-top:1vh;
+        }
+    }
+
+
+    .active-flag {
+        font-size:0.9vw; margin-bottom:-0.2vh; padding:0 0.2vw 0 0.2vw; background-color:#e68789; color:white;
+    }
+    @media screen and (max-width: 1050px) {
+        .active-flag {
+            font-size:0.5vw;
+        }
+    }
+
+    .inactive-flag {
+        @extend .active-flag;
+        background-color:#999999;
+    }
+    
+    .product {
+        font-size:1.5vw; margin-bottom:-0.1vh
+    }
+    @media screen and (max-width: 1050px) {
+        .product {
+            font-size:1vw;
+        }
+    }
+    
+
+    .ticket-detail > table {
+        border-right: 1px solid #edefef; font-size:0.9rem; padding-left:1vw; padding-right:1vw;
+        .detail-title {
+            width:6vw; padding-bottom:1vh;
+        }
+        .detail-content {
+            padding-bottom:1vh;
+        }
+    }
+
+    .no-data-ticket {
+        height:20vh; text-align:center;
+    }
+}
+
+.section-divide {
+    border-top:4px solid $pink;
+}
+.title {
+    font-weight:$kor-font-medium;
+    font-size:1rem;
+    margin-bottom:1rem;
+}

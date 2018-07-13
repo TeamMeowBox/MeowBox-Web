@@ -8,8 +8,9 @@ import 'vuetify/dist/vuetify.min.css'
 import {store} from './store/index'
 
 Vue.config.productionTip = false;
-Vue.use(Vuetify);
-
+Vue.use(Vuetify, {
+  iconfont: 'fa4'
+});
 
 /* eslint-disable no-new */
 new Vue({

@@ -65,7 +65,7 @@
                 <table class="faq-table">
                     <tr>
                         <td class="category">배송</td>
-                        <td>Q&nbsp;&nbsp;배송일은 몇일 정도 걸리나요?</td>
+                        <td>Q&nbsp;&nbsp;배송일은 며칠정도 걸리나요?</td>
                     </tr>
                 </table>
             </div>

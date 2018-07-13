@@ -2,10 +2,10 @@
   <v-container>
     <my-info></my-info>
     <v-layout class="container" style="width:70vw;">
-      <section xs12 sm6>
+      <section xs12 sm6 md4 lg3>
         <vertical-toolbar></vertical-toolbar>
       </section>
-      <section xs12 sm6 offset-sm3 style="margin-left:4vw">
+      <section xs12 sm6 md4 lg3 offset-sm3 style="margin-left:4vw">
         <router-view></router-view>
       </section>
     </v-layout>
@@ -30,7 +30,7 @@ export default {
   },
   async created() {
     // await this.$store.dispatch('fetchUserProfile', localStorage.getItem('user_idx'));
-    // await this.fetchUserProfile(localStorage.getItem('user_idx'));
+    await this.fetchUserProfile();
   }
 }
 </script>

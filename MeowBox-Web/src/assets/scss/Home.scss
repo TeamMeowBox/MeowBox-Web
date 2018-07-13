@@ -1,0 +1,137 @@
+@import 'Variable.scss';
+
+.meow_start{
+    background:$pink !important;
+    color:white !important;
+    width:15rem;
+}
+.love_info {
+    color:white;
+    font-weight: $kor_font_bold;
+    font-size:2.5rem;
+    border-bottom: 10px solid #EEB1B2;
+}
+.love_info_sec{
+    padding-right:2rem;
+}
+
+table {
+    margin:auto;
+}
+.col_pink {
+    color: $pink;
+    font-weight: bold;
+}
+.box_info {
+    .box-card {
+        padding:2rem; text-align:left;
+    }
+    .v-card {
+        width:100%; border-radius:20px;
+    }
+    .box-title{
+        width:25vw; display:table;
+        span{
+            display:table-cell;vertical-align:middle; font-weight:bold; font-size:1.5rem;
+        }
+    }
+    .box-content {
+        padding-left:1rem;
+        padding-bottom:1rem;
+        span {
+            display:table-cell;vertical-align:middle;
+        }
+    }
+}
+
+.tropical-info {
+    background-color:#142441;
+    table {
+        @extend table;
+        height:45vh;
+    }
+    .event-logo {
+        padding:2rem;
+        img {
+            width:15vw;
+        }
+    }
+    .event-content {
+        @extend .event-logo;
+        width:25vw;
+        .content-title {
+            @extend .love_info;
+            border-bottom: 0px;
+            font-size:2rem;
+
+        }
+        .content-subtitle {
+            @extend .content-title;
+            font-size:1.5rem;
+            font-weight: $kor_font_regular;
+        }
+        small {
+            color:white;
+        }
+    }
+}
+
+.detail-info {
+    .detail-title {
+        font-weight:$kor_font_bold;
+        color:$dark_gray;
+        font-size:1.5rem;
+        padding: 3rem 0 3rem 0;
+    }
+    .meow_start{
+        margin: 3rem 0 6rem 0;
+    }
+}
+
+.food-info {
+    table {
+        @extend table;
+        width:100%; background-color:#FCF3F3;
+    }
+    .food-content {
+        text-align:center; padding-left:5rem;
+    }
+    .food-picture {
+        text-align:right;
+        margin:0;
+        padding:0;
+        border-collapse: collapse;
+        img {
+            margin:auto;
+            display: block;
+        }
+    }
+}
+.insta-info {
+    table {
+        @extend table;
+    }
+    .insta-card {
+        text-align:left;
+        padding:0.4rem;
+    }
+    .v-card {
+        width:100%;
+        .v-card__title, .v-card__title--primary {
+            height:10vh;
+        }
+    }
+    .insta-head {
+        width:11vw; display:table; margin:1rem;
+        span {
+            display:table-cell;vertical-align:middle; font-weight:bold;
+        }
+    }
+    .insta-footer {
+        text-align:center; padding-top:3rem; padding-bottom:5rem;
+    }
+}
+.cat-info {
+    text-align:center; padding-top:6rem; padding-bottom:3rem;
+    font-size:1.8rem;
+}

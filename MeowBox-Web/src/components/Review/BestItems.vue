@@ -53,19 +53,10 @@
         </table>
       </section>
 
-      <!--<section v-for="(item, index) in items" :key="index">-->
-        <!--<p>{{item.month}}월의 베스트</p>-->
-        <!--<p>{{item.description}}</p>-->
-        <!--<article v-for="(image, idx) in item.images" :key="idx" style="display: inline-block">-->
-          <!--<img :src="image.url" alt="" height="300" width="300">-->
-          <!--<p>{{image.instaNick}}</p>-->
-          <!--<p>{{image.instaId}}</p>-->
-        <!--</article>-->
-      <!--</section>-->
-
+      <br><br><br>
       <section>
-        <p>베스트 컷을 기대해주세요!</p>
-        <v-btn class="meow_btn">맨위로 가기</v-btn>
+        <p class="foot-msg">베스트 컷을 기대해주세요!</p>
+        <v-btn class="meow_btn" href="#" title=Top >맨위로 가기</v-btn>
       </section>
     </v-flex>
   </v-layout>

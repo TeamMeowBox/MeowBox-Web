@@ -9,9 +9,10 @@
 </template>
 
 <script>
-    export default {
-        name:'MainInfo'
-    }
+export default {
+  name: 'MainInfo',
+
+}
 </script>
 
 <style lang="scss">
@@ -22,3 +23,4 @@
     width:100%;
 }
 </style>
+

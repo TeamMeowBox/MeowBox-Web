@@ -119,6 +119,7 @@
         } catch (e) {
           alert(e);
         }
+        await this.fetchUserProfile();
         return result ? alert('변경 성공') : alert('변경 실패')
       },
       async init() {

@@ -22,7 +22,7 @@
             </v-progress-linear>
           </template>
 
-          <template v-else-if="usedTicket.flag === '-1'">
+          <template v-else>
             <img :src="usedTicket.sendImage" alt="" style="width:14vw;">
           </template>
 
@@ -58,10 +58,7 @@ export default {
   methods: {
     ...mapActions([
       'fetchMyPageInfoAction'
-    ]),
-    // async getMyPage() {
-    //   await this.fetchMyPageInfoAction();
-    // }
+    ])
   },
   async created() {
     await this.fetchMyPageInfoAction();

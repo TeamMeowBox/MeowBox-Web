@@ -18,13 +18,13 @@
           </td>
               <td class="cat-size-table" colspan="2">
                     <div class="cat-size" >
-                        <input id="small" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="1"/> 조금 마른
+                        <input id="small" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="0"/> 조금 마른
                     </div>
                     <div class="cat-size">
-                      <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="2"/> 보통
+                      <input id="middle" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size"  value="1"/> 보통
                     </div>
                     <div class="cat-size">
-                      <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="3" /> 과체중
+                      <input id="large" class="catSize" type="radio" name="accessible-radio" v-model="catInfo.size" value="2" /> 과체중
                     </div>
               </td>
         </tr>

@@ -80,7 +80,7 @@ export default {
     ]),
     checkCat() {
       // 등록된 고양이가 없을 경우
-      return this.catProfile.idx === null || this.catProfile.idx === -1
+      return this.catProfile.cat_idx === null || this.catProfile.cat_idx === -1
     }
   },
   methods: {

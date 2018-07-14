@@ -33,6 +33,14 @@
           <br>
           <span class="star"><i class="fas fa-envelope"></i> {{myPageInfo.email}}</span><br>
           <span class="star"><i class="far fa-grin-squint"></i> {{myPageInfo.cat_info}}</span>
+
+
+          <!--<span class="star"><i class="fas fa-envelope"></i> {{userProfile.email}}</span><br>-->
+          <!--<span class="star"><i class="far fa-grin-squint"></i> {{userProfile.cat_name}} / -->
+          <!--<span class="star" v-if="userProfile.size === 0">조금 마름</span>-->
+          <!--<span class="star" v-if="userProfile.size === 1">보통</span>-->
+          <!--<span class="star" v-if="userProfile.size === 2">과체중</span>-->
+           <!--/ {{userProfile.birthday}}</span>-->
         </td>
       </tr>
     </table>

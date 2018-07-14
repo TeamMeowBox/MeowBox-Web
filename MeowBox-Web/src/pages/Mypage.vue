@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <my-info v-if="userProfile && usedTicket "></my-info>
+    <my-info v-if="userProfile && myPageInfo "></my-info>
     <v-layout class="container" style="width:70vw;">
       <section xs12 sm6 md4 lg3>
         <vertical-toolbar></vertical-toolbar>
@@ -26,7 +26,8 @@ export default {
   computed: {
     ...mapGetters([
       'userProfile',
-      'usedTicket'
+      'usedTicket',
+      'myPageInfo'
     ])
   },
   methods: {

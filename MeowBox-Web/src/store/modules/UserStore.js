@@ -42,6 +42,7 @@ const state = {
   //   catName: null,
   //   birthday: null
   // },
+  myPageInfo: null,
   userProfile: null,
   flag: 0,
   usedTicket: null
@@ -51,7 +52,8 @@ const getters = {
   token: state => state.token,
   userProfile: state => state.userProfile,
   getFlag: state => state.flag,
-  usedTicket: state => state.usedTicket
+  usedTicket: state => state.usedTicket,
+  myPageInfo: state => state.myPageInfo
 }
 
 const actions = {
@@ -184,7 +186,7 @@ const actions = {
   },
   fetchMyPageInfoAction(context) {
     return new Promise((resolve, reject) => {
-      axios.get(`${BASE_URL}/mypage/mypageinfo`, HEADER)
+      axios.get(`${BASE_URL}/mypage/mypageinfo/web`, HEADER)
         .then((res) => {
           if (res.data.status) {
             context.commit(GET_MYPAGE_INFO, res.data.result)
@@ -206,7 +208,7 @@ const actions = {
           }
         })
     })
-  }
+  },
 }
 
 const mutations = {
@@ -234,6 +236,7 @@ const mutations = {
   },
   [GET_MYPAGE_INFO](state, payload) {
     state.usedTicket = payload
+    state.myPageInfo = payload
   },
   [REMOVE_TICKET](state, payload) {
     state.usedTicket = payload

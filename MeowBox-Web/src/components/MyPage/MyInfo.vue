@@ -7,23 +7,23 @@
         </td>
         <td class="profile-detail">
           안녕하세요<br>
-          {{userProfile.cat_name}} 집사 <b>{{userProfile.user_name}}</b>님!
+          {{myPageInfo.cat_name}} 집사 <b>{{myPageInfo.user_name}}</b>님!
         </td>
         <td class="progress-bar">
           <small>정기권 ></small>
           <br>
-          <template v-if="usedTicket.flag === '1'">
-            <p>{{usedTicket.ticket}} 중 {{usedTicket.use}}를 받았어요</p>
+          <template v-if="myPageInfo.flag === '1'">
+            <p>{{myPageInfo.ticket}} 중 {{myPageInfo.use}}를 받았어요</p>
             <v-progress-linear
               height="10"
-              :value="usedTicket.percent"
+              :value="myPageInfo.percent"
               background-color="grey"
               color="pink">
             </v-progress-linear>
           </template>
 
           <template v-else>
-            <img :src="usedTicket.sendImage" alt="" style="width:14vw;">
+            <img :src="myPageInfo.sendImage" alt="" style="width:14vw;">
           </template>
 
         </td>
@@ -31,8 +31,8 @@
         <td class="personal-info">
           <small>내 개인정보 ></small>
           <br>
-          <span class="star"><i class="fas fa-envelope"></i> {{userProfile.email}}</span><br>
-          <span class="star"><i class="far fa-grin-squint"></i> {{userProfile.cat_name}} / {{userProfile.size}} / {{userProfile.birthday}}</span>
+          <span class="star"><i class="fas fa-envelope"></i> {{myPageInfo.email}}</span><br>
+          <span class="star"><i class="far fa-grin-squint"></i> {{myPageInfo.cat_info}}</span>
         </td>
       </tr>
     </table>
@@ -52,7 +52,8 @@ export default {
   computed: {
     ...mapGetters([
       'userProfile',
-      'usedTicket'
+      'usedTicket',
+      'myPageInfo'
     ])
   },
   methods: {

@@ -4,7 +4,7 @@
       <a href="/"><img src="../../assets/images/meowbox_logo.png" height="40vh" alt=""/></a>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-xs-only">
+    <v-toolbar-items class="hidden-sm-and-down hidden-md-and-down">
       <v-btn flat v-for="item in toolbarItems" :key="item.title" router :to="item.link">
         {{item.title}}
       </v-btn>

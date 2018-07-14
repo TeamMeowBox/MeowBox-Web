@@ -1,10 +1,10 @@
 <template>
-    <article class="StoryBanner">
+    <v-layout align-center column class="StoryBanner">
         <section class="first">
             <span class="header">내 고양이에게</span><br>
             <span class="header">꼭 필요한 특별 선물</span><br><br>
             <img src="../../assets/images/home/meow_text_logo.png" alt="" style="width:20vw;"><br><br>
-            <v-btn class="box-order-go" >박스 주문하기</v-btn>
+            <v-btn class="box-order-go" router to="/order" >박스 주문하기</v-btn>
         </section>
         <section class="second">
             <table style="margin:auto">
@@ -21,11 +21,11 @@
                 </tr>
             </table>
         </section>
-        <section class="three" style="text-align:center">
+        <section class="three" style="text-align:center; width:100%">
             <span class="col_pink">"&nbsp;</span><span class="bolder_font"> 우리가 함께, 쉽게 행복해질 수는 없을까요? </span><span class="col_pink">&nbsp;"</span>
         </section>
         <section class="four">
-            <table style="margin:auto">
+            <table style="margin:auto; width:67vw;">
                 <tr>
                     <td style="text-align:center">
                         <div style="text-align:right">
@@ -68,9 +68,9 @@
             <img src="../../assets/images/meow_box_story_img_5.png" alt="" style="width:40vw">
             <p class="header">당신은 <span class="underline-pink">사랑만</span> 주세요</p>
             <p class="header"><span class="underline-pink">고민은 미유박스</span>가 할게요</p>
-            <v-btn class="box-order-go" >미유박스 주문하기</v-btn>
+            <v-btn class="box-order-go" router to="/order" >미유박스 주문하기</v-btn>
         </section>
-    </article>
+    </v-layout>
 </template>
 
 <script>

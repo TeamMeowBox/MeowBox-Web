@@ -35,7 +35,7 @@ const actions = {
 
           if (res.data.status) {
             localStorage.cat_idx = res.data.result.cat_idx
-            // console.log(res.data.result);
+             console.log(res.data.result);
 
             context.commit(SET_CAT, res.data.result)
             resolve(true)

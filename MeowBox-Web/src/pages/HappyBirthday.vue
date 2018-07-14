@@ -3,7 +3,9 @@
         <birthday-detail v-if="flag === 1"></birthday-detail>
         <img v-else src="../assets/images/webtoon_img.png" alt="" style="width:50vw">
         <br><br>
-        <v-btn class="birthday-info" @click="changeFlag()" >생일박스 상세보기</v-btn>
+        <v-btn v-if="flag === -1" class="birthday-info" href="#" title=Top @click="changeFlag()" >생일박스 상세보기</v-btn>
+        <v-btn v-if="flag === 1" class="birthday-info" href="#" title=Top @click="changeFlag()" >웹툰으로 돌아가기</v-btn>
+        
     </div>
 </template>
 

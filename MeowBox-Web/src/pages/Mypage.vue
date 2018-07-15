@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <my-info v-if="userProfile && myPageInfo "></my-info>
+    <my-info></my-info>
     <v-layout class="container" style="width:70vw;">
       <section xs12 sm6 md4 lg3>
         <vertical-toolbar></vertical-toolbar>

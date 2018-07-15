@@ -70,7 +70,7 @@ export default {
     ])
   },
   async created() {
-    await this.fetchMyPageInfoAction();
+    // await this.fetchMyPageInfoAction();
   }
 }
 </script>
